@@ -16,39 +16,6 @@
       margin: 0;
       padding: 0;
       color: #333;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Glittery sparkle container */
-    .glitter {
-      pointer-events: none; /* so clicks pass through */
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 9999;
-      overflow: visible;
-    }
-
-    /* Single sparkle style */
-    .sparkle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0;
-      box-shadow:
-        0 0 8px 2px white,
-        0 0 12px 4px white;
-      animation-name: twinkle;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
-    }
-
-    /* Sparkle animation */
-    @keyframes twinkle {
-      0%, 100% {opacity: 0;}
-      50% {opacity: 1;}
     }
 
     header {
@@ -68,8 +35,6 @@
       color: white;
       padding: 40px 0;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 10;
     }
 
     @keyframes gradientAnimation {
@@ -100,8 +65,6 @@
       width: 85%;
       margin: 30px auto;
       padding: 20px;
-      position: relative;
-      z-index: 5;
     }
 
     section {
@@ -178,8 +141,6 @@
       padding: 20px 0;
       font-size: 0.9em;
       animation: pulse 3s ease-in-out infinite;
-      position: relative;
-      z-index: 5;
     }
 
     @keyframes pulse {
@@ -230,7 +191,65 @@
     </section>
 
     <section class="projects">
-      <h2>Projects
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Personal Portfolio</h3>
+        <p>A responsive website showcasing my skills and projects.</p>
+      </div>
+      <div class="project">
+        <h3>Weather App</h3>
+        <p>An app that shows current weather information based on user location.</p>
+      </div>
+      <div class="project">
+        <h3>Task Manager</h3>
+        <p>An app to manage and track your daily tasks.</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>Contact Me</h2>
+      <p>If you'd like to connect or have any questions, feel free to reach out!</p>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:poudelaafreen@gmail.com">poudelaafreen@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/aafreen-poudel-954836301/" target="_blank" rel="noopener noreferrer">linkedin.com/in/aafreenpoudel</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Aafreen Poudel</p>
+  </footer>
+
+  <script>
+    // Animate sections and cards when they scroll into view
+    const sections = document.querySelectorAll('section');
+    const skillCards = document.querySelectorAll('.skill, .project');
+
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      const revealPoint = 150; // distance from bottom to trigger
+
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+          section.classList.add('visible');
+        }
+      });
+
+      skillCards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+          card.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
+
 
 
 
