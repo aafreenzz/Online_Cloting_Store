@@ -1,138 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aafreen Poudel - My Portfolio</title>
-  <style>
-    body {
-      background-color: yellow;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+  /* Body stays mostly the same but with a nicer font */
+  body {
+    background-color: #fff8dc;
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
 
-    header {
-      background-color: yellow;
-      color: white;
-      padding: 30px 0;
-    }
+  /* Header with animated gradient */
+  header {
+    background: linear-gradient(270deg, #ff6a00, #ee0979, #ff6a00);
+    background-size: 600% 600%;
+    animation: gradientAnimation 12s ease infinite;
+    color: white;
+    padding: 40px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
 
-    h1 {
-      font-size: 3em;
-    }
+  @keyframes gradientAnimation {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+  }
 
-    .container {
-      width: 80%;
-      margin: 20px auto;
-      padding: 20px;
-    }
+  h1 {
+    font-size: 3.5em;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+  }
 
-    section {
-      margin: 30px 0;
-    }
+  header p {
+    font-size: 1.3em;
+    font-weight: 300;
+  }
 
-    .skills, .projects {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
+  /* Container */
+  .container {
+    width: 85%;
+    margin: 30px auto;
+    padding: 20px;
+  }
 
-    .skill, .project {
-      background-color: white;
-      padding: 15px;
-      margin: 10px;
-      border-radius: 10px;
-      width: 200px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+  section {
+    margin: 40px 0;
+  }
 
-    footer {
-      background-color: white;
-      color: black;
-      padding: 20px 0;
-    }
+  /* Skills and Projects grid with hover effect */
+  .skills, .projects {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
 
-    .contact-info {
-      font-size: 1.2em;
-    }
-  </style>
-</head>
-<body>
+  .skill, .project {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    width: 220px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
 
-  <header style="color: black;">
-    <h1>Hello, I’m Aafreen Poudel </h1>
-    <p>This is my personal portfolio site </p>
-  </header>
+  .skill:hover, .project:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
 
-  <div class="container">
-    <section class="about-me">
-      <h2>About Me</h2>
-      <p>I'm a passionate developer with a love for creating beautiful, functional websites. I specialize in front-end development, and I'm always eager to learn new technologies to improve my skills.</p>
-    </section>
+  h3 {
+    margin-bottom: 8px;
+    color: #ff6a00;
+  }
 
-    <section class="skills">
-      <h2>Skills & Technologies</h2>
-      <div class="skill">
-        <h3>HTML</h3>
-        <p>Structure of the web</p>
-      </div>
-      <div class="skill">
-        <h3>CSS</h3>
-        <p>Styling and layout</p>
-      </div>
-      <div class="skill">
-        <h3>JavaScript</h3>
-        <p>Interactive elements</p>
-      </div>
-      
-   <div class="skill" style="align-items: center;
-  color: black;
-  text-align: center;
-">
-    
-      <h3>Flutter</h3>
-        <p>Building Apps</p>
-      </div>
-   
-      
-        
-       <div class="skill"align:center>
-        <h3>Python</h3>
-        <p>Backend</p>
-      </div>
-    </section>
+  /* Contact info styling */
+  .contact-info a {
+    color: #ee0979;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
 
-    <section class="projects">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>Personal Portfolio</h3>
-        <p>A responsive website showcasing my skills and projects.</p>
-      </div>
-      <div class="project">
-        <h3>Weather App</h3>
-        <p>An app that shows current weather information based on user location.</p>
-      </div>
-      <div class="project">
-        <h3>Task Manager</h3>
-        <p>An app to manage and track your daily tasks.</p>
-      </div>
-    </section>
+  .contact-info a:hover {
+    color: #ff6a00;
+    text-decoration: underline;
+  }
 
-    <section class="contact">
-      <h2>Contact Me</h2>
-      <p>If you'd like to connect or have any questions, feel free to reach out!</p>
-      <div class="contact-info">
-        <p>Email: <a href="mailto:poudelaafreen@gmail.com">poudelaafreen@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/aafreen-poudel-954836301/" target="_blank">linkedin.com/in/aafreenpoudel</a></p>
-      </div>
-    </section>
-  </div>
+  /* Footer */
+  footer {
+    background-color: #222;
+    color: #eee;
+    padding: 20px 0;
+    font-size: 0.9em;
+  }
+</style>
 
-  <footer>
-    <p>&copy; 2024 Aafreen Poudel</p>
-  </footer>
+<!-- Also add Google Fonts link for Poppins in <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
-</body>
-</html>
