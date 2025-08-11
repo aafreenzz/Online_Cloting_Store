@@ -4,117 +4,187 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Aafreen Poudel - My Portfolio</title>
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
-  
+
   <style>
-    /* Body and font */
+    /* Galaxy background with stars */
     body {
-      background-color: #fff8dc;
-      font-family: 'Poppins', Arial, sans-serif;
-      text-align: center;
       margin: 0;
       padding: 0;
-      color: #333;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #cbd5e1;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
     }
 
-    /* Header with animated gradient background */
+    /* Starry background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 40% 60%, #fff9, transparent),
+        radial-gradient(1px 1px at 70% 80%, #ddd, transparent),
+        radial-gradient(0.8px 0.8px at 80% 20%, #fff8, transparent),
+        radial-gradient(1.2px 1.2px at 90% 70%, #eee, transparent);
+      background-repeat: repeat;
+      background-size: 100px 100px;
+      animation: twinkle 10s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
+      50% { background-position: 50px 50px, 30px 30px, 80px 40px, 60px 20px, 10px 60px; }
+    }
+
+    /* Header */
     header {
-      background: linear-gradient(270deg, #ff6a00, #ee0979, #ff6a00);
-      background-size: 600% 600%;
-      animation: gradientAnimation 12s ease infinite;
-      color: white;
-      padding: 40px 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      padding: 60px 20px;
+      text-align: center;
+      background: transparent;
+      color: #7df9ff;
+      text-shadow:
+        0 0 10px #7df9ff,
+        0 0 20px #0ff,
+        0 0 30px #0ff,
+        0 0 40px #00ffff;
     }
 
-    @keyframes gradientAnimation {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    /* Header text styles */
     h1 {
-      font-size: 3.5em;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      font-size: 3.8em;
       margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
     }
 
     header p {
+      font-size: 1.4em;
       font-weight: 300;
-      font-size: 1.3em;
+      color: #a3f7ffcc;
+      letter-spacing: 1.2px;
+      margin-top: 0;
     }
 
-    /* Container for page content */
+    /* Container */
     .container {
-      width: 85%;
-      margin: 30px auto;
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto;
       padding: 20px;
     }
 
+    /* Sections fade in and float up */
     section {
-      margin: 40px 0;
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+      color: #cbd5e1;
     }
-
-    /* Skills and projects displayed in flexible rows */
-    .skills, .projects {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-    }
-
-    /* Card style for skill and project boxes */
-    .skill, .project {
-      background-color: white;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 15px;
-      width: 220px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-    }
-
-    /* Hover effect to make cards pop */
-    .skill:hover, .project:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
-      color: #ee0979;
-      font-weight: 600;
+      font-size: 2.8em;
       margin-bottom: 25px;
+      color: #7df9ff;
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 15px #0ff;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+    }
+
+    /* Skill and project cards */
+    .skills, .projects {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .skill, .project {
+      background: rgba(13, 24, 35, 0.85);
+      border-radius: 18px;
+      box-shadow:
+        0 0 10px #0ff,
+        0 0 20px #0ff66,
+        0 0 30px #0ff66aa;
+      padding: 25px;
+      width: 230px;
+      color: #a3f7ffcc;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      cursor: default;
+    }
+    .skill.visible, .project.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .skill:hover, .project:hover {
+      box-shadow:
+        0 0 20px #00ffff,
+        0 0 40px #00ffffcc,
+        0 0 60px #00ffffdd;
+      transform: scale(1.07);
+      color: #d0ffff;
+      transition: all 0.3s ease;
     }
 
     h3 {
-      margin-bottom: 8px;
-      color: #ff6a00;
+      margin-bottom: 10px;
+      color: #7df9ff;
+      text-shadow:
+        0 0 6px #0ff,
+        0 0 10px #0ffcc;
     }
 
-    /* Contact links style */
+    p {
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* Contact */
     .contact-info a {
-      color: #ee0979;
-      text-decoration: none;
+      color: #7df9ff;
       font-weight: 600;
-      transition: color 0.3s ease;
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+      margin: 0 8px;
     }
-
     .contact-info a:hover {
-      color: #ff6a00;
+      color: #00ffff;
       text-decoration: underline;
+      transform: scale(1.1);
     }
 
-    /* Footer styling */
+    /* Footer */
     footer {
-      background-color: #222;
-      color: #eee;
+      background: transparent;
+      text-align: center;
       padding: 20px 0;
+      color: #7df9ff88;
       font-size: 0.9em;
+      text-shadow: 0 0 6px #0ff;
+      animation: pulse 4s ease-in-out infinite;
+      user-select: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% {opacity: 0.7;}
+      50% {opacity: 1;}
     }
   </style>
 </head>
@@ -185,7 +255,35 @@
     <p>&copy; 2024 Aafreen Poudel</p>
   </footer>
 
+  <script>
+    // Animate sections and cards on scroll
+    const sections = document.querySelectorAll('section');
+    const cards = document.querySelectorAll('.skill, .project');
+
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      const revealPoint = 150;
+
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+          section.classList.add('visible');
+        }
+      });
+
+      cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+          card.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
 </body>
 </html>
+
 
 
