@@ -1,25 +1,247 @@
-header {
-  background: linear-gradient(270deg, 
-    #722f37,    /* wine */
-    #800000,    /* maroon */
-    #5C4033,    /* brown */
-    #000000,    /* black */
-    #722f37     /* loop back to wine */
-  );
-  background-size: 1000% 1000%;
-  animation: gradientAnimation 20s ease infinite;
-  color: white;
-  padding: 40px 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aafreen Poudel - My Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  
+  <style>
+    body {
+      background-color: #fff8dc;
+      font-family: 'Poppins', Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
 
-@keyframes gradientAnimation {
-  0% {background-position: 0% 50%;}
-  25% {background-position: 25% 50%;}
-  50% {background-position: 50% 50%;}
-  75% {background-position: 75% 50%;}
-  100% {background-position: 100% 50%;}
-}
+    header {
+      background: linear-gradient(270deg, 
+        #722f37,    /* wine */
+        #800000,    /* maroon */
+        #5C4033,    /* brown */
+        #000000,    /* black */
+        #722f37     /* loop back to wine */
+      );
+      background-size: 1000% 1000%;
+      animation: gradientAnimation 20s ease infinite;
+      color: white;
+      padding: 40px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    @keyframes gradientAnimation {
+      0% {background-position: 0% 50%;}
+      25% {background-position: 25% 50%;}
+      50% {background-position: 50% 50%;}
+      75% {background-position: 75% 50%;}
+      100% {background-position: 100% 50%;}
+    }
+
+    h1 {
+      font-size: 3.5em;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-weight: 300;
+      font-size: 1.3em;
+    }
+
+    .container {
+      width: 85%;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    section {
+      margin: 40px 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .skills, .projects {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .skill, .project {
+      background-color: white;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 15px;
+      width: 220px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .skill.visible, .project.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .skill:hover, .project:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #6a1b4d; /* boysenberry */
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      color: #722f37; /* wine */
+    }
+
+    .contact-info a {
+      color: #6a1b4d; /* boysenberry */
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .contact-info a:hover {
+      color: #722f37; /* wine */
+      text-decoration: underline;
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: #222;
+      color: #eee;
+      padding: 20px 0;
+      font-size: 0.9em;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hello, I’m Aafreen Poudel</h1>
+    <p>This is my personal portfolio site</p>
+  </header>
+
+  <div class="container">
+    <section class="about-me">
+      <h2>About Me</h2>
+      <p>I'm a passionate developer with a love for creating beautiful, functional websites. I specialize in front-end development, and I'm always eager to learn new technologies to improve my skills.</p>
+    </section>
+
+    <section class="skills">
+      <h2>Skills & Technologies</h2>
+      <div class="skill">
+        <h3>HTML</h3>
+        <p>Structure of the web</p>
+      </div>
+      <div class="skill">
+        <h3>CSS</h3>
+        <p>Styling and layout</p>
+      </div>
+      <div class="skill">
+        <h3>JavaScript</h3>
+        <p>Interactive elements</p>
+      </div>
+      <div class="skill">
+        <h3>Flutter</h3>
+        <p>Building Apps</p>
+      </div>
+      <div class="skill">
+        <h3>Python</h3>
+        <p>Backend</p>
+      </div>
+    </section>
+
+    <section class="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Personal Portfolio</h3>
+        <p>A responsive website showcasing my skills and projects.</p>
+      </div>
+      <div class="project">
+        <h3>Weather App</h3>
+        <p>An app that shows current weather information based on user location.</p>
+      </div>
+      <div class="project">
+        <h3>Task Manager</h3>
+        <p>An app to manage and track your daily tasks.</p>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>Contact Me</h2>
+      <p>If you'd like to connect or have any questions, feel free to reach out!</p>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:poudelaafreen@gmail.com">poudelaafreen@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/aafreen-poudel-954836301/" target="_blank" rel="noopener noreferrer">linkedin.com/in/aafreenpoudel</a></p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Aafreen Poudel</p>
+  </footer>
+
+  <script>
+    // Animate sections and cards when they scroll into view
+    const sections = document.querySelectorAll('section');
+    const skillCards = document.querySelectorAll('.skill, .project');
+
+    function revealOnScroll() {
+      const windowHeight = window.innerHeight;
+      const revealPoint = 150; // distance from bottom to trigger
+
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+          section.classList.add('visible');
+        }
+      });
+
+      skillCards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+          card.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
+
 
 
 
