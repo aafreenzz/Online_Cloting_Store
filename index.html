@@ -21,13 +21,15 @@
     header {
       background: linear-gradient(270deg, 
         #722f37,    /* wine */
+        #DC143C,    /* crimson */
+        #FF00FF,    /* magenta */
         #800000,    /* maroon */
         #5C4033,    /* brown */
         #000000,    /* black */
         #722f37     /* loop back to wine */
       );
-      background-size: 1000% 1000%;
-      animation: gradientAnimation 20s ease infinite;
+      background-size: 1400% 1400%;
+      animation: gradientAnimation 30s ease infinite;
       color: white;
       padding: 40px 0;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -35,9 +37,11 @@
 
     @keyframes gradientAnimation {
       0% {background-position: 0% 50%;}
-      25% {background-position: 25% 50%;}
+      16.66% {background-position: 16.66% 50%;}
+      33.33% {background-position: 33.33% 50%;}
       50% {background-position: 50% 50%;}
-      75% {background-position: 75% 50%;}
+      66.66% {background-position: 66.66% 50%;}
+      83.33% {background-position: 83.33% 50%;}
       100% {background-position: 100% 50%;}
     }
 
@@ -241,6 +245,7 @@
   </script>
 </body>
 </html>
+
 
 
 
