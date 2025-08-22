@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Happy Father’s Day 💙</title>
+<style>
+  body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background: #ffffff;
+    color: #000000;
+    overflow: hidden;
+  }
+  .card {
+    background: #ffffffee;
+    border: 2px solid #87ceeb;
+    border-radius: 22px;
+    padding: 30px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 40px #00000033;
+    position: relative;
+    animation: fadeIn 2s ease-out;
+  }
+  .card h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #87ceeb;
+  }
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #000000;
+  }
+  .card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    color: #000000;
+  }
+  .card .from {
+    font-size: 14px;
+    opacity: 0.8;
+    color: #000000;
+  }
+  .hearts, .stars {
+    position: absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .heart, .star {
+    position:absolute;
+    border-radius:50%;
+    animation: float 6s linear infinite;
+  }
+  .heart {
+    width:18px;
+    height:18px;
+    background: conic-gradient(from 0deg, #87ceeb, #ffffff, #000000);
+  }
+  .star {
+    width:10px;
+    height:10px;
+    background: radial-gradient(circle, #87ceeb, #ffffff);
+  }
+  @keyframes float {
+    0% { transform: translateY(40px) rotate(0deg); opacity:0; }
+    10% { opacity:1; }
+    100% { transform: translateY(-500px) rotate(360deg); opacity:0; }
+  }
+  @keyframes fadeIn {
+    0% { opacity:0; transform: scale(0.9); }
+    100% { opacity:1; transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="hearts" id="hearts"></div>
+  <div class="stars" id="stars"></div>
+  <h1>Happy Father’s Day! 💙</h1>
+  <h2>To the man who lights up my world</h2>
+  <p>Thank you for being my guiding star  and my greatest teacher. Your wisdom and patience inspire me every single day, and your laughter brightens the darkest moments.</p>
+  <p>Even when life gets tough, your strength and love make everything feel possible. You taught me to dream without fear, to believe in myself, and to face challenges with courage. Every memory we share is a treasure I hold close to my heart.</p>
+  <p>Today, I celebrate you—not just as my father, but as my hero, my friend, and my forever inspiration. I hope you feel all the love, gratitude, and joy that you bring into my life.</p>
+  <h2 class="from">— With endless love, Your Alphie 💙 I love uuuuuuuu!</h2>
+</div>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const heartsBox = document.getElementById('hearts');
+const starsBox = document.getElementById('stars');
+
+function popHearts(){
+  for(let i=0;i<10;i++){
+    const h = document.createElement('div');
+    h.className='heart';
+    h.style.left=Math.random()*100+'%';
+    h.style.bottom='-20px';
+    h.style.animationDuration=(5+Math.random()*5)+'s';
+    heartsBox.appendChild(h);
+    setTimeout(()=>h.remove(),10000);
+  }
+}
+
+function popStars(){
+  for(let i=0;i<15;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    s.style.left=Math.random()*100+'%';
+    s.style.bottom='-10px';
+    s.style.animationDuration=(4+Math.random()*4)+'s';
+    starsBox.appendChild(s);
+    setTimeout(()=>s.remove(),10000);
+  }
+}
+
+setInterval(popHearts, 700);
+setInterval(popStars, 500);
+popHearts();
+popStars();
+</script>
+</body>
+</html>
