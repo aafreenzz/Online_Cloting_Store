@@ -1,419 +1,214 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta name="viewport" content="width=device-width, initial-scale=0.5">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="fire.js" defer></script>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Clothing Store</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Basic Reset and Styling */
+    body {
+      background-color: rgb(204, 164, 164);
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Header styles */
+    .move, .moves, .mova {
+      text-align: center;
+      padding: 5px;
+    }
+    .move {
+      background-color: pink;
+    }
+    .moves {
+      background-color: rgb(165, 65, 65);
+      color: white;
+    }
+    .mova {
+      background-color: antiquewhite;
+    }
+
+    /* Cart Button */
+    .cart-btn {
+      background-color: rgb(224, 163, 117);
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+    .cart-btn img {
+      height: 20px;
+      width: 20px;
+      margin-right: 8px;
+    }
+
+    /* Products container */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Individual product */
+    .product {
+      margin: 10px;
+      flex: 1 1 200px; /* flexible width */
+      max-width: 220px;
+      text-align: center;
+    }
+    .product img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Sidebar toggle button */
+    .sidebar-toggle {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: #a52a2a;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1000;
+      border-radius: 4px;
+    }
+
+    /* Sidebar styles */
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* hidden initially */
+      width: 200px;
+      height: 100%;
+      background-color: rgb(164, 66, 66);
+      transition: left 0.3s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+    }
+    #sidebar.show {
+      left: 0;
+    }
+    #sidebar button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      background-color: rgb(164, 66, 66);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #sidebar button:hover {
+      background-color: rgb(113, 65, 56);
+    }
+    #sidebar h3 {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: rgb(182, 114, 114);
+    }
+
+    /* Responsive adjustments */
+    @media(max-width: 768px){
+      /* Make header font sizes smaller if needed */
+      h1 { font-size: 24px; }
+      h3 { font-size: 18px; }
+      
+      /* Position cart button differently or hide if desired */
+      .cart-btn {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
 </head>
-<body style="background-color:rgb(204, 164, 164);">
+<body>
+
+  <!-- Sidebar toggle button -->
+  <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <button onclick="location.href='signin.html'"><h3>Sign in</h3></button>
+    <h3 style="margin:0; padding:10px;">Categories:</h3>
+    <button onclick="location.href='women.html'">Women Fashion</button>
+    <button onclick="location.href='men.html'">Men Fashion</button>
+    <button onclick="location.href='footwear.html'">Footwears</button>
+    <button onclick="location.href='about.html'">About us</button>
+    <button onclick="location.href='help.html'">Help and Settings</button>
+  </div>
 
   <!-- Header -->
-  <div class="move" style="background-color:pink; text-align:center; padding:5px;">
+  <div class="move">
     <h1>Welcome To ModaWear</h1>
   </div>
 
   <!-- Sub header -->
-  <div class="moves" style="background-color:rgb(165, 65, 65); text-align:center; padding:5px;">
+  <div class="moves">
     <h3>Where Fashion Meets Model</h3>
   </div>
 
   <!-- Promo -->
-  <div class="mova" style="background-color: antiquewhite; text-align:center; padding:5px;">
+  <div class="mova">
     <h3>(Shop Now?) Help yourself with some of our popular assets</h3>
   </div>
 
   <!-- Cart Button -->
-  <button onclick="location.href='signin.html'" style="background-color: rgb(224, 163, 117);position: relative;top:-138px;left:1350px;width:100px;"> 
-    <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=" style="height:20px;width:20px;"> My Cart
+  <button class="cart-btn" onclick="location.href='signin.html'">
+    <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=">
+    My Cart
   </button>
 
   <!-- Products -->
-  <div style="padding:20px;">
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://cdn.shopify.com/s/files/1/0242/0156/0160/files/Duo-Model-Unisex-Pressure-Washed-Heavyweight-Tee-Oversize-Black-White-1.jpg?v=1755150268" height="200px">
+  <div class="products">
+    <div class="product">
+      <img src="https://cdn.shopify.com/s/files/1/0242/0156/0160/files/Duo-Model-Unisex-Pressure-Washed-Heavyweight-Tee-Oversize-Black-White-1.jpg?v=1755150268" alt="Product 1">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://www.mountcart.in/wp-content/uploads/2024/06/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-3-1.jpg" height="200px">
+    <div class="product">
+      <img src="https://www.mountcart.in/wp-content/uploads/2024/06/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-3-1.jpg" alt="Product 2">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://brandedcountrywear.com/cdn/shop/files/10058773_front_warm.jpg?v=1746639036" style="width:210px; height:200px;">
+    <div class="product">
+      <img src="https://brandedcountrywear.com/cdn/shop/files/10058773_front_warm.jpg?v=1746639036" alt="Product 3">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large" style="width:180px; height:200px;">
+    <div class="product">
+      <img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large" alt="Product 4">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://m.media-amazon.com/images/I/31sZk71NtPL._SY1000_.jpg" style="width:190px; height:200px;">
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/31sZk71NtPL._SY1000_.jpg" alt="Product 5">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://eu.thefrankieshop.com/cdn/shop/products/beo-blazer-charcoal-blazer-the-frankie-shop-280096.jpg?v=1655465571" style="width:170px; height:200px;">
+    <div class="product">
+      <img src="https://eu.thefrankieshop.com/cdn/shop/products/beo-blazer-charcoal-blazer-the-frankie-shop-280096.jpg?v=1655465571" alt="Product 6">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://cdn.aboutstatic.com/file/5d74e3f588e6bd29fa38ddbbb8aed6cf?quality=75&height=480&width=350" style="width:170px; height:200px;">
+    <div class="product">
+      <img src="https://cdn.aboutstatic.com/file/5d74e3f588e6bd29fa38ddbbb8aed6cf?quality=75&height=480&width=350" alt="Product 7">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://st2.depositphotos.com/1017228/7475/i/950/depositphotos_74752425-stock-photo-fashion-young-man-in-glasses.jpg" style="height:290px;">
+    <div class="product">
+      <img src="https://st2.depositphotos.com/1017228/7475/i/950/depositphotos_74752425-stock-photo-fashion-young-man-in-glasses.jpg" alt="Product 8" style="height:auto; max-height:290px;">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" style="width:500px; height:290px;">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="Product 9" style="width:100%; max-width:500px; height:auto;">
     </div>
-
-    <div style="display:inline-block; margin:10px;">
-      <img src="https://cdn.shopify.com/s/files/1/0163/6622/files/Hands_in_pockets_web_1.jpg?v=1669923238" style="width:400px; height:290px;">
+    <div class="product">
+      <img src="https://cdn.shopify.com/s/files/1/0163/6622/files/Hands_in_pockets_web_1.jpg?v=1669923238" alt="Product 10" style="width:100%; max-width:400px; height:auto;">
     </div>
   </div>
 
-  <!-- Sidebar toggle button -->
-  <button style="position:absolute; top:10px; left:20px; cursor:pointer;" onclick="toggleSidebar()">&#9776;</button>
-
-  <!-- Sidebar -->
-  <div id="sidebar" style="position:absolute; top:50px; left:-200px; width:200px; height:20%; background-color:rgb(164, 66, 66); transition:left 0.7s ease;">
-    <button onclick="location.href='signin.html'" style="background-color:rgb(113, 65, 56); width:100%;"><h3>Sign in</h3></button>
-    <div style="text-align:center; padding:10px; background-color:rgb(182, 114, 114);">Categories:</div>
-    <button onclick="location.href='women.html'" style="background-color:rgb(164, 66, 66); width:100%;">Women Fashion</button>
-    <button  onclick="location.href='men.html'" style="background-color:rgb(164, 66, 66); width:100%;">Men Fashion</button>
-    <button onclick="location.href='footwear.html'" style="background-color:rgb(164, 66, 66); width:100%;">Footwears</button>
-    <button onclick="location.href='about.html'" style="background-color:antiquewhite; width:100%;">About us</button>
-    <button onclick="location.href='help.html'" style="background-color:antiquewhite; width:100%;">Help and Settings</button>
-  </div>
-
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+  </script>
 </body>
-</html>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>
