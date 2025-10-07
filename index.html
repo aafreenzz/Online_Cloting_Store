@@ -1,48 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.6">
   <title>Aafreen Poudel - My Portfolio</title>
   
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   
   <style>
     /* GENERAL STYLES */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #f0f4f8;
-      color: #333;
-      overflow-x: hidden;
+      color: #fff;
       text-align: center;
+      overflow-x: hidden;
+      background: #0b1d3a; /* dark navy background */
+      position: relative;
+    }
+
+    /* STAR BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: moveStars 60s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    @keyframes moveStars {
+      from {transform: translate(0,0);}
+      to {transform: translate(-100px,-100px);}
     }
 
     /* HEADER */
     header {
-      background: linear-gradient(270deg, #0d47a1, #1976d2, #1565c0, #1e88e5, #0d47a1);
-      background-size: 1600% 1600%;
-      animation: gradientAnimation 12s ease infinite;
-      color: #fff;
-      padding: 40px 20px;
+      background: linear-gradient(135deg, #0d1b3a, #1a2f6e, #0b1d3a);
+      padding: 50px 20px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
     }
 
-    @keyframes gradientAnimation {
-      0% {background-position: 0% 50%;}
-      14% {background-position: 14% 50%;}
-      28% {background-position: 28% 50%;}
-      42% {background-position: 42% 50%;}
-      56% {background-position: 56% 50%;}
-      70% {background-position: 70% 50%;}
-      84% {background-position: 84% 50%;}
-      100% {background-position: 100% 50%;}
+    header h1 {
+      font-size: 3em;
+      margin: 0 0 10px;
+      color: #d1e0ff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      animation: fadeInDown 1.5s ease forwards;
     }
 
-    h1 { font-size: 3em; margin-bottom: 10px; }
-    header p { font-weight: 300; font-size: 1.2em; }
+    header p {
+      font-weight: 300;
+      font-size: 1.2em;
+      color: #a0c4ff;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    @keyframes fadeInDown {
+      0% {opacity:0; transform: translateY(-30px);}
+      100% {opacity:1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInUp {
+      0% {opacity:0; transform: translateY(30px);}
+      100% {opacity:1; transform: translateY(0);}
+    }
 
     .container {
       width: 90%;
@@ -62,6 +91,7 @@
       transform: translateY(0);
     }
 
+    /* SKILLS AND PROJECTS */
     .skills, .projects {
       display: flex;
       justify-content: center;
@@ -70,11 +100,11 @@
     }
 
     .skill, .project {
-      background: #e0e0e0;
+      background: linear-gradient(145deg, #1a2f6e, #0b1d3a);
       border-radius: 15px;
       padding: 20px;
       width: 220px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
       transition: all 0.3s ease;
       opacity: 0;
       transform: scale(0.95);
@@ -87,16 +117,15 @@
 
     .skill:hover, .project:hover {
       transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-      background: linear-gradient(135deg, #64b5f6 0%, #1e88e5 100%);
-      color: #fff;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+      background: linear-gradient(135deg, #304a9c, #0b1d3a);
     }
 
-    h2 { color: #0d47a1; font-weight: 600; margin-bottom: 25px; }
-    h3 { margin-bottom: 8px; color: #1565c0; }
+    h2 { color: #a0c4ff; font-weight: 600; margin-bottom: 25px; }
+    h3 { margin-bottom: 8px; color: #d1e0ff; }
 
     .contact-info a {
-      color: #0d47a1;
+      color: #a0c4ff;
       text-decoration: none;
       font-weight: 600;
       display: inline-block;
@@ -104,27 +133,18 @@
     }
 
     .contact-info a:hover {
-      color: #1976d2;
-      text-decoration: underline;
+      color: #d1e0ff;
       transform: scale(1.1);
+      text-decoration: underline;
     }
 
-    footer {
-      background: linear-gradient(270deg, #1565c0, #1976d2, #0d47a1);
-      background-size: 600% 600%;
-      animation: gradientAnimation 10s ease infinite;
-      color: #fff;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 0.9em;
-    }
-
+    /* BUTTONS */
     button {
       padding: 10px 20px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      background: #1e3a8a;
+      background: #304a9c;
       color: #fff;
       font-weight: 600;
       transition: all 0.3s ease;
@@ -132,7 +152,18 @@
 
     button:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(30,58,138,0.6);
+      box-shadow: 0 8px 20px rgba(48,74,156,0.7);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0b1d3a;
+      color: #a0c4ff;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9em;
+      position: relative;
+      overflow: hidden;
     }
 
     /* RESPONSIVE */
@@ -142,8 +173,8 @@
         align-items: center;
       }
 
-      header h1 { font-size: 2.5em; }
-      header p { font-size: 1.1em; }
+      header h1 { font-size: 2.2em; }
+      header p { font-size: 1em; }
     }
   </style>
 </head>
@@ -221,5 +252,6 @@
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
   </script>
+
 </body>
 </html>
