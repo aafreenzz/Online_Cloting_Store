@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=0.8">
- 
-<style>
-@media (max-width: 600px) {
-  body {
-    transform: scale(0.8); /* Shrinks the page to fit mobile */
-    transform-origin: top left;
-    width: 125%; /* Adjust so scaled page fills screen */
-    overflow-x: auto;
-  }
-}
-</style>
-
-
-  <script src="fire.js" defer></script>
   <meta charset="UTF-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clothing Store</title>
   <link rel="stylesheet" href="style.css">
+  <script src="fire.js" defer></script>
+
+  <!-- Mobile fix: allow horizontal scroll without changing layout -->
+  <style>
+    body {
+      overflow-x: auto;
+    }
+  </style>
 </head>
 <body style="background-color:rgb(204, 164, 164);">
 
@@ -103,14 +95,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
