@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=0.1">
-  
-
-  <script src="fire.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clothing Store</title>
   <link rel="stylesheet" href="style.css">
+  <script src="fire.js" defer></script>
+
+  <!-- Mobile-friendly CSS -->
+  <style>
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+
+      /* Make cart button responsive */
+      button[onclick*="signin.html"] {
+        position: fixed !important;
+        top: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        padding: 8px 12px !important;
+      }
+
+      /* Stack product images vertically */
+      div[style*="display:inline-block"] {
+        display: block !important;
+        width: 100% !important;
+        margin: 10px 0 !important;
+      }
+
+      /* Make images fit their container */
+      img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      /* Sidebar width on mobile */
+      #sidebar {
+        width: 70% !important;
+        left: -70% !important;
+      }
+
+      /* Shrink header text */
+      .move h1, .moves h3, .mova h3 {
+        font-size: 1.2em !important;
+      }
+
+      body {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
-<body style="background-color:#CA7373;">
+<body style="background-color:rgb(204, 164, 164);">
 
   <!-- Header -->
   <div class="move" style="background-color:pink; text-align:center; padding:5px;">
@@ -47,7 +88,7 @@
     </div>
 
     <div style="display:inline-block; margin:10px;">
-      <img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large" style="width:180px; height:200px;">
+      <img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg" style="width:180px; height:200px;">
     </div>
 
     <div style="display:inline-block; margin:10px;">
@@ -91,7 +132,3 @@
 
 </body>
 </html>
-
-
-
-
