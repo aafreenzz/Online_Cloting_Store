@@ -1,1 +1,416 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta name="viewport" content="width=device-width, initial-scale=0.1"> <script src="fire.js" defer></script> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Clothing Store</title> <link rel="stylesheet" href="style.css"> </head> <body style="background-color:rgb(204, 164, 164);"> <!-- Header --> <div class="move" style="background-color:pink; text-align:center; padding:5px;"> <h1>Welcome To ModaWear</h1> </div> <!-- Sub header --> <div class="moves" style="background-color:rgb(165, 65, 65); text-align:center; padding:5px;"> <h3>Where Fashion Meets Model</h3> </div> <!-- Promo --> <div class="mova" style="background-color: antiquewhite; text-align:center; padding:5px;"> <h3>(Shop Now?) Help yourself with some of our popular assets</h3> </div> <!-- Cart Button --> <button onclick="location.href='signin.html'" style="background-color: rgb(224, 163, 117);position: relative;top:-138px;left:1350px;width:100px;"> <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=" style="height:20px;width:20px;"> My Cart </button> <!-- Products --> <div style="padding:20px;"> <div style="display:inline-block; margin:10px;"> <img src="https://cdn.shopify.com/s/files/1/0242/0156/0160/files/Duo-Model-Unisex-Pressure-Washed-Heavyweight-Tee-Oversize-Black-White-1.jpg?v=1755150268" height="200px"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://www.mountcart.in/wp-content/uploads/2024/06/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-3-1.jpg" height="200px"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://brandedcountrywear.com/cdn/shop/files/10058773_front_warm.jpg?v=1746639036" style="width:210px; height:200px;"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large" style="width:180px; height:200px;"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://m.media-amazon.com/images/I/31sZk71NtPL._SY1000_.jpg" style="width:190px; height:200px;"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://eu.thefrankieshop.com/cdn/shop/products/beo-blazer-charcoal-blazer-the-frankie-shop-280096.jpg?v=1655465571" style="width:170px; height:200px;"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://cdn.aboutstatic.com/file/5d74e3f588e6bd29fa38ddbbb8aed6cf?quality=75&height=480&width=350" style="width:170px; height:200px;"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://st2.depositphotos.com/1017228/7475/i/950/depositphotos_74752425-stock-photo-fashion-young-man-in-glasses.jpg" style="height:290px;"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" style="width:500px; height:290px;"> </div> <div style="display:inline-block; margin:10px;"> <img src="https://cdn.shopify.com/s/files/1/0163/6622/files/Hands_in_pockets_web_1.jpg?v=1669923238" style="width:400px; height:290px;"> </div> </div> <!-- Sidebar toggle button --> <button style="position:absolute; top:10px; left:20px; cursor:pointer;" onclick="toggleSidebar()">&#9776;</button> <!-- Sidebar --> <div id="sidebar" style="position:absolute; top:50px; left:-200px; width:200px; height:20%; background-color:rgb(164, 66, 66); transition:left 0.7s ease;"> <button onclick="location.href='signin.html'" style="background-color:rgb(113, 65, 56); width:100%;"><h3>Sign in</h3></button> <div style="text-align:center; padding:10px; background-color:rgb(182, 114, 114);">Categories:</div> <button onclick="location.href='women.html'" style="background-color:rgb(164, 66, 66); width:100%;">Women Fashion</button> <button onclick="location.href='men.html'" style="background-color:rgb(164, 66, 66); width:100%;">Men Fashion</button> <button onclick="location.href='footwear.html'" style="background-color:rgb(164, 66, 66); width:100%;">Footwears</button> <button onclick="location.href='about.html'" style="background-color:antiquewhite; width:100%;">About us</button> <button onclick="location.href='help.html'" style="background-color:antiquewhite; width:100%;">Help and Settings</button> </div> </body> </html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=0.1">
+  
+
+  <script src="fire.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clothing Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color:rgb(204, 164, 164);">
+
+  <!-- Header -->
+  <div class="move" style="background-color:pink; text-align:center; padding:5px;">
+    <h1>Welcome To ModaWear</h1>
+  </div>
+
+  <!-- Sub header -->
+  <div class="moves" style="background-color:rgb(165, 65, 65); text-align:center; padding:5px;">
+    <h3>Where Fashion Meets Model</h3>
+  </div>
+
+  <!-- Promo -->
+  <div class="mova" style="background-color: antiquewhite; text-align:center; padding:5px;">
+    <h3>(Shop Now?) Help yourself with some of our popular assets</h3>
+  </div>
+
+  <!-- Cart Button -->
+  <button onclick="location.href='signin.html'" style="background-color: rgb(224, 163, 117);position: relative;top:-138px;left:1350px;width:100px;"> 
+    <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=" style="height:20px;width:20px;"> My Cart
+  </button>
+
+  <!-- Products -->
+  <div style="padding:20px;">
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://cdn.shopify.com/s/files/1/0242/0156/0160/files/Duo-Model-Unisex-Pressure-Washed-Heavyweight-Tee-Oversize-Black-White-1.jpg?v=1755150268" height="200px">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://www.mountcart.in/wp-content/uploads/2024/06/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-3-1.jpg" height="200px">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://brandedcountrywear.com/cdn/shop/files/10058773_front_warm.jpg?v=1746639036" style="width:210px; height:200px;">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large" style="width:180px; height:200px;">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://m.media-amazon.com/images/I/31sZk71NtPL._SY1000_.jpg" style="width:190px; height:200px;">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://eu.thefrankieshop.com/cdn/shop/products/beo-blazer-charcoal-blazer-the-frankie-shop-280096.jpg?v=1655465571" style="width:170px; height:200px;">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://cdn.aboutstatic.com/file/5d74e3f588e6bd29fa38ddbbb8aed6cf?quality=75&height=480&width=350" style="width:170px; height:200px;">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://st2.depositphotos.com/1017228/7475/i/950/depositphotos_74752425-stock-photo-fashion-young-man-in-glasses.jpg" style="height:290px;">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" style="width:500px; height:290px;">
+    </div>
+
+    <div style="display:inline-block; margin:10px;">
+      <img src="https://cdn.shopify.com/s/files/1/0163/6622/files/Hands_in_pockets_web_1.jpg?v=1669923238" style="width:400px; height:290px;">
+    </div>
+  </div>
+
+  <!-- Sidebar toggle button -->
+  <button style="position:absolute; top:10px; left:20px; cursor:pointer;" onclick="toggleSidebar()">&#9776;</button>
+
+  <!-- Sidebar -->
+  <div id="sidebar" style="position:absolute; top:50px; left:-200px; width:200px; height:20%; background-color:rgb(164, 66, 66); transition:left 0.7s ease;">
+    <button onclick="location.href='signin.html'" style="background-color:rgb(113, 65, 56); width:100%;"><h3>Sign in</h3></button>
+    <div style="text-align:center; padding:10px; background-color:rgb(182, 114, 114);">Categories:</div>
+    <button onclick="location.href='women.html'" style="background-color:rgb(164, 66, 66); width:100%;">Women Fashion</button>
+    <button  onclick="location.href='men.html'" style="background-color:rgb(164, 66, 66); width:100%;">Men Fashion</button>
+    <button onclick="location.href='footwear.html'" style="background-color:rgb(164, 66, 66); width:100%;">Footwears</button>
+    <button onclick="location.href='about.html'" style="background-color:antiquewhite; width:100%;">About us</button>
+    <button onclick="location.href='help.html'" style="background-color:antiquewhite; width:100%;">Help and Settings</button>
+  </div>
+
+</body>
+</html>  fix this for phones
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
