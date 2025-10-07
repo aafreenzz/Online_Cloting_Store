@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products Collection</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .header-container {
+    background-color: rgb(139, 124, 104);
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
+  .subheader {
+    background-color: rgb(78, 78, 78);
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+    color: white;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  .product-info {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery"></div>
+
+<script>
+  const products = [
+   
+    
+  { name:"Trouser", price:13, img:"https://styleunion.in/cdn/shop/files/WTR00016CHARCOALGREY_1.jpg?v=1753857051&width=1200", url:"pruducts.html?id=306" },
+  { name:"Trouser", price:14, img:"https://image.made-in-china.com/202f0j00piszmFtrAKgM/Women-Trousers-Fashion-Casual-Streetwear-Style-Ripped-Drawstring-Waist-Sweatpants-2021.webp", url:"pruducts.html?id=307" },
+  { name:"Trouser", price:15, img:"https://i.pinimg.com/736x/90/91/72/909172bf2c96f151dcaf8c50298daa0b.jpg", url:"pruducts.html?id=308" },
+  { name:"Trouser", price:16, img:"https://www.jiomart.com/images/product/original/rvsz4hijlk/popwings-camel-brown-bootcut-women-trouser-product-images-rvsz4hijlk-0-202210202010.jpg?im=Resize=(500,630)", url:"pruducts.html?id=309" },
+  { name:"Trouser", price:17, img:"https://bravo-dance.com/image/cache/catalog/fashiondance/autamn23/ladies-ballroom-dance-pants-fashion-dance-003-red-1-808x1212.jpg", url:"pruducts.html?id=310" },
+  { name:"Trouser", price:18, img:"https://media.kohlsimg.com/is/image/kohls/5659834_ALT3?wid=400&hei=400&op_sharpen=1", url:"pruducts.html?id=311" },
+  { name:"Trouser", price:19, img:"https://s.alicdn.com/@sc04/kf/H1ffac98cdb79425183e2d0c0c0dba44bJ/2023woman-High-Waist-Wholesale-Korean-Work-Dress-Pant-Trousers-Pantalones-Ladies-Formal-Flare-Palazos-Wide-Leg-Pants-for-Women.jpg", url:"pruducts.html?id=312" },
+  { name:"Trouser", price:20, img:"https://assets.ajio.com/medias/sys_master/root/20250310/WV8w/67cf15d72960820c49e0d48c/max_black_women_wide_leg_belted_trousers.jpg", url:"pruducts.html?id=313" },
+  { name:"Trouser", price:21, img:"https://styleunion.in/cdn/shop/products/LT00036ORCHID_1.jpg?v=1740677691&width=1200", url:"pruducts.html?id=314" },
+  { name:"Trouser", price:22, img:"https://imagescdn.pantaloons.com/img/app/product/9/970709-12747323.jpg?auto=format&w=450", url:"pruducts.html?id=315" },
+  { name:"Trouser", price:23, img:"https://cdn.shopify.com/s/files/1/0289/5219/9203/files/a441b05c7e395d7a7a04b139c72de6de.jpg?v=1757821036&width=200", url:"pruducts.html?id=316" },
+  { name:"Trouser", price:24, img:"https://i5.walmartimages.com/seo/Womens-Work-Pants-Knit-Pants-Women-Loose-Fit-Casual-Elastic-Waist-Trousers-Solid-Color-Relaxed-Style-Lounge-Wear-Comfortable-Bottoms-Sopatenor-Women_b2dd6ad5-403b-43d4-86f5-e4bd3a1a81e9.6114ebc161ef02a00eaa670b86ac6956.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"pruducts.html?id=317" },
+  { name:"Trouser", price:25, img:"https://img.tatacliq.com/images/i15//437Wx649H/MP000000020463037_437Wx649H_202312152049331.jpeg", url:"pruducts.html?id=318" },
+  { name:"Trouser", price:26, img:"https://cdn2.peuterey.com.filoblu.com/rx/768x,ofmt_webp/media/catalog/product/P/E/PED548099012363983_L1.jpg", url:"pruducts.html?id=319" },
+  { name:"Trouser", price:27, img:"https://img.kwcdn.com/product/fancy/2c154553-3c65-4a14-b3a0-c2311ad60998.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp", url:"pruducts.html?id=320" },
+  { name:"Trouser", price:28, img:"https://assets.ajio.com/medias/sys_master/root/20250317/X1gS/67d806072960820c49f27dc5/-286Wx359H-700442220-aqua-MODEL.jpg", url:"pruducts.html?id=321" },
+  { name:"Trouser", price:29, img:"https://theseamstressofbloomsbury.co.uk/cdn/shop/files/AudreyTrousers-HamptonGreen_2000x.png?v=1704973690", url:"pruducts.html?id=322" },
+  { name:"Trouser", price:30, img:"https://my-test-11.slatic.net/p/44c15189ab4e96f77d1a4611443d366e.jpg", url:"pruducts.html?id=323" },
+  { name:"Trouser", price:31, img:"https://i0.wp.com/www.herstylecode.com/wp-content/uploads/2022/03/Khaki-pants-for-young-girls.jpg", url:"pruducts.html?id=324" },
+  { name:"Trouser", price:32, img:"https://ordicle.com/cdn/shop/products/product-image-1750811374.jpg?v=1621202468", url:"pruducts.html?id=325" },
+  { name:"Trouser", price:33, img:"https://img.joomcdn.net/9ce21420682d5a2eab9d19736b03b08aac0ef318_original.jpeg", url:"pruducts.html?id=326" },
+  { name:"Trouser", price:34, img:"https://i.pinimg.com/736x/c9/18/1c/c9181c3e61fd2a345a98697c79b61790.jpg", url:"pruducts.html?id=327" },
+  { name:"Trouser", price:35, img:"https://images.meesho.com/images/products/579897295/t6bxb_512.webp?width=512", url:"pruducts.html?id=328" },
+  { name:"Trouser", price:35, img:"https://www.lilyandlionel.com/cdn/shop/files/230125_LilyLionel_383115_b1fc2b19-0eca-4ee0-ae7b-c7361a391503.jpg?v=1757348288&width=3840", url:"pruducts.html?id=329" }
+];
+
+
+
+
+// Generate product cards dynamically
+const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+
+</body>
+</html>

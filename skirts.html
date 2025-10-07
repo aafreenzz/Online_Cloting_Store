@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+  }
+  h2 { text-align: center; }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .product-card h4 {
+    margin: 10px 0 5px;
+  }
+  .product-card span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  .add-btn {
+    padding: 5px 10px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+<div style="background-color: bisque;text-align: center;">
+<h2>Our Skirt Collection</h2>
+</div>
+<div class="gallery" id="productGallery"></div>
+
+<script>
+const products = [
+  { name: "Skirt A", price: 13, img: "https://www.joebrowns.co.uk/media/catalog/product/W/S/WS482A_1.jpg", url: "pruducts.html?id=0" },
+  { name: "Skirt B", price: 14, img: "https://www.routinesfashion.nl/cdn/shop/files/RoutinesTwoPieceTrenchSkirtSet-Camel522020133-9.jpg?v=1747815034&width=1080", url: "pruducts.html?id=1" },
+  { name: "Skirt C", price: 15, img: "https://cdn.lookastic.com/looks/black-coat-black-crew-neck-sweater-dark-green-midi-skirt-large-28839.jpg", url: "pruducts.html?id=2" },
+  { name: "Skirt D", price: 12, img: "https://us.motelrocks.com/cdn/shop/files/KESHI-PUFF-BALL-MINI-SKIRT-BLACK-_1_1.jpg", url: "pruducts.html?id=3" },
+  { name: "Skirt E", price: 16, img: "https://businesswomen.com/wp-content/uploads/2025/04/business-casual-skirts-pleated-eyelet-midi-skirt-819x1024.jpg.webp", url: "pruducts.html?id=4" },
+  { name: "Skirt F", price: 11, img: "https://img.abercrombie.com/is/image/anf/KIC_140-5094-00391-900_model1?policy=product-medium", url: "pruducts.html?id=5" },
+  { name: "Skirt G", price: 13, img: "https://i.pinimg.com/736x/04/db/6e/04db6e68e717912fce1adb45b2892103.jpg", url: "pruducts.html?id=6" },
+  { name: "Skirt H", price: 12, img: "https://cdn.shopify.com/s/files/1/0445/9705/1543/files/26-07-24_reb2446_540x.jpg?v=1722259137", url: "pruducts.html?id=7" },
+  { name: "Skirt I", price: 14, img: "https://m.media-amazon.com/images/I/41Ft3UOS87L._UY1000_.jpg", url: "pruducts.html?id=8" },
+  { name: "Skirt J", price: 15, img: "https://www.blog.falgunishanepeacock.com/wp-content/uploads/2023/11/BLUE-DENIM-APPLIQUE-SKIRT-WITH-A-WHITE-SHIRT-AND-BLACK-BELT.jpg", url: "pruducts.html?id=9" },
+  { name: "Skirt K", price: 16, img: "https://www.fewmoda.com/cdn/shop/files/C25WSKA0503SC_2_js_533x.png?v=1752505622", url: "pruducts.html?id=10" },
+  { name: "Skirt L", price: 14, img: "https://gaudi-fashion.com/media/catalog/product/cache/4875d4271e6d42c3b8cca70fb34e604d/2/5/251_521BD75001_525016-01-P01.jpg", url: "pruducts.html?id=11" },
+  { name: "Skirt M", price: 13, img: "https://www.madewell.com/images/NW428_BR8791_m?wid=480&hei=610&fmt=jpeg&fit=crop&qlt=75", url: "pruducts.html?id=12" },
+  { name: "Skirt N", price: 15, img: "https://www.libelloula.com/media/catalog/product/cache/ab397c61875cd759335e2ed9265fdb55/3/2/3200-libeloula20773-2_1748432100.jpg", url: "pruducts.html?id=13" },
+  { name: "Skirt O", price: 12, img: "https://hulaglobal.com/wp-content/uploads/2020/12/3-20.jpg", url: "pruducts.html?id=14" },
+  { name: "Skirt P", price: 16, img: "https://www.thefashionspot.com/wp-content/uploads/sites/11/2025/01/Untitled-design-2025-01-28T154751.368.png?w=683", url: "pruducts.html?id=15" },
+  { name: "Skirt Q", price: 14, img: "https://aiowear.com/_next/image?url=https%3A%2F%2Faiowear-us-east-1.s3.amazonaws.com%2Fmarketplace%2Fskirt-b3c7075d.webp&w=3840&q=75", url: "pruducts.html?id=16" },
+  { name: "Skirt R", price: 13, img: "https://assets.ajio.com/medias/sys_master/root/20231214/SmJQ/657b0519afa4cf41f5d0d80b/-473Wx593H-466886979-black-MODEL.jpg", url: "pruducts.html?id=17" },
+  { name: "Skirt S", price: 15, img: "https://img.kwcdn.com/product/1d14c6c056a/0f99a4e5-07ad-4629-846d-89c57bd2c960_1500x2000.jpeg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp", url: "pruducts.html?id=18" },
+  { name: "Skirt T", price: 12, img: "https://media.karenmillen.com/i/karenmillen/bkk20361_floral_xl?$product_image_main_mobile$&fmt=webp", url: "pruducts.html?id=19" },
+  { name: "Skirt U", price: 18, img: "https://maybellindia.com/cdn/shop/files/SKT00540124S-16647.jpg?v=1754040608&width=1200", url: "pruducts.html?id=23" }
+  
+];
+
+const gallery = document.getElementById('productGallery');
+
+function addToCart(product) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(product);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${product.name} added to your cart!`);
+}
+
+// Generate product cards
+products.forEach((product) => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+  img.onclick = () => { window.location.href = product.url; };
+
+  const name = document.createElement('h4');
+  name.textContent = product.name;
+
+  const price = document.createElement('span');
+  price.textContent = `$${product.price.toFixed(2)}`;
+
+  const btn = document.createElement('button');
+  btn.className = 'add-btn';
+  btn.textContent = 'Add to Cart';
+  btn.onclick = () => addToCart(product);
+
+  card.appendChild(img);
+  card.appendChild(name);
+  card.appendChild(price);
+  card.appendChild(btn);
+
+  gallery.appendChild(card);
+});
+</script>
+
+</body>
+</html>

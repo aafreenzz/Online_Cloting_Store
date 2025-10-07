@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products Collection</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .header-container {
+    background-color: rgb(139, 124, 104);
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
+  .subheader {
+    background-color: rgb(78, 78, 78);
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+    color: white;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  .product-info {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery"></div>
+
+<script>
+  const products = [
+ {name: "Sweatshirt",
+    price: 3.89,
+    img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2024/SEPTEMBER/9/1bs7GcoZ_3279fa8db6984eb5a100f706c1e9aea2.jpg",
+    url: "product.html?id=0"},
+  { name:"Sweatshirt", price:5.70, img: "https://assets.ajio.com/medias/sys_master/root/20240703/chs6/6684a7791d763220faa9d959/being_human_grey_men_floral_print_regular_fit_sweatshirt.jpg",url: "product.html?id=1"},
+  {name:"Sweatshirt", img: "https://img.drz.lazcdn.com/static/pk/p/0b17041200535fd948054bc52ee1bb83.jpg_960x960q80.jpg_.webp", price:4.49, url: "product.html?id=2"},
+  {name:"Sweatshirt",price:6, img: "https://images.meesho.com/images/products/468173261/jnbk9_512.jpg",url: "product.html?id=3"},
+  {name:"Sweatshirt",price:12, img: "https://m.media-amazon.com/images/I/71lw1SceLWL._UY1000_.jpg",url:" product.html?id=4"},
+  {name:"Sweatshirt",price:5, img: "https://ae01.alicdn.com/kf/S0bdf1755304e4ee6a67f6491808a6840f.jpg",url:"product.html?id=5"},
+  {name:"Sweatshirt",price:11, img: "https://verenovale.com/cdn/shop/files/81IYIGY3hhL._AC_SL1500.jpg?v=1740663950&width=1445",url:"product.html?id=6"},
+  {name:"Sweatshirt",price:11, img: "https://m.media-amazon.com/images/I/61tZ3LZNpeL._UY1000_.jpg",url:"product.html?id=7"},
+  {name:"Sweatshirt",price:11, img: "https://rukminim2.flixcart.com/image/480/640/xif0q/sweatshirt/u/v/e/l-vh0423mmpl61-veirdo-original-imahf8gzyy4utgyz.jpeg?q=90",url:"product.html?id=8"},
+  {name:"Sweatshirt",price:11, img: "https://www.mindffatigue.com/cdn/shop/files/Hoodie_WS.jpg?v=1731696619&width=2048",url:"product.html?id=9"},
+  {name:"Sweatshirt",price:11, img: "https://images.meesho.com/images/products/452089594/wcmd8_512.webp?width=512",url:"product.html?id=10"},
+  {name:"Sweatshirt",price:11, img: "https://ae01.alicdn.com/kf/S59549f9730894550a34971e2cbb51a2a9.jpg_960x960.jpg",url:"product.html?id=11"},
+  {name:"Sweatshirt",price:11, img: "https://dynamic.bonfireassets.com/thumb/design-image/04547ffe-de3d-47d9-830b-3c506e056070/575825cb-db7c-4eda-9846-bee09003cd8d/900/",url:"product.html?id=12"},
+  {name:"Sweatshirt",price:11, img: "https://image.made-in-china.com/202f0j00HslhmaLnkKuF/Fashion-Color-Hoodies-Men-prime-S-Thick-Clothes-Winter-Sweatshirts-Men-Hip-Hop-Streetwear-Solid-Fleece-Hoody.webp",url:"product.html?id=13"},
+  {name:"Sweatshirt",price:11, img: "https://images.bewakoof.com/original/men-sage-goosebumps-printed-sweatshirt-550988-1672832986-1.jpg",url:"product.html?id=14"},
+  {name:"Sweatshirt",price:11, img: "https://assets.bongenie.ch/media103562/sweat-shirt-en-coton-a-capuche-dsquared-2-cool-fit-dsquared2-a256000-gris-1068681-p9i9gc2lbq.jpg",url:"product.html?id=15"},
+  {name:"Sweatshirt",price:11, img: "https://img.kwcdn.com/product/open/2023-12-11/1702286573937-409e259ad17a44c6aba143d2144f9345-goods.jpeg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp",url:"product.html?id=16"},
+  {name:"Sweatshirt",price:11, img: "https://m.media-amazon.com/images/I/61EIbZ2o5pL._AC_SX425_.jpg",url:"product.html?id=17"},
+  {name:"Sweatshirt",price:11, img: "https://img.drz.lazcdn.com/static/bd/p/c73c581934bf971856cccb0dbc68c82b.jpg_720x720q80.jpg",url:"product.html?id=18"},
+  {name:"Sweatshirt",price:11, img: "https://assets.ajio.com/medias/sys_master/root/h0f/h26/13901870956574/-473Wx593H-460344445-royalblue-MODEL.jpg",url:"product.html?id=19"},
+  {name:"Sweatshirt",price:10, img: "https://hoodrichuk.com/cdn/shop/files/Hoodrich17122411512.jpg?v=1737029987&width=1800",url:"product.html?id=20"},
+  {name:"Sweatshirt",price:11, img: "https://i.pinimg.com/736x/5b/4d/97/5b4d975feecacfbdd99f1ed352df56b9.jpg",url:"product.html?id=21"},
+  {name:"Sweatshirt",price:11, img: "https://vybn.in/wp-content/uploads/2023/09/MENS-OVERSIZED-HOODIE-IN-GREY-1-840x1120.jpg",url:"product.html?id=22"},
+  {name:"Sweatshirt",price:5, img: "https://p16-oec-general-useast5.ttcdn-us.com/tos-useast5-i-omjb5zjo8w-tx/ecdcd03242604c75bf2ca28c9f87ce6b~tplv-fhlh96nyum-crop-webp:400:400.webp?dr=12190&t=555f072d&ps=933b5bde&shp=57fff0e0&shcp=0d52deaf&idc=useast8&from=1476391136",url:"product.html?id=23"},
+  { name:"Sweatshirt",price:4,img: "https://m.media-amazon.com/images/I/611gf-nBgfL._UY1000_.jpg",url:"product.html?id=24"},
+  { name:"Sweatshirt",price:4,img: "https://m.media-amazon.com/images/I/71ZSywHMLLL._UY1000_.jpg",url:"product.html?id=25"},
+  { name:"Sweatshirt",price:4,img: "https://wearium.pk/cdn/shop/files/FullSizeRender_2b9de5e2-5541-4acc-893d-9578ecccb76c.jpg?v=1731063606&width=1080",url:"product.html?id=26"},
+  { name:"Sweatshirt",price:4,img: "https://imagescdn.peterengland.com/img/app/product/3/39627671-12954593.jpg?auto=format&w=390",url:"product.html?id=27"},
+  { name:"Sweatshirt",price:4,img: "https://rngsportshub.com.np/assets/tenant/uploads/media-uploader/rngsportshub/grid/grid-whatsapp-image-2025-03-07-at-22104-pm-21741501459.jpg",url:"product.html?id=28"},
+  { name:"Sweatshirt",price:4,img: "https://m.media-amazon.com/images/I/61tZ3LZNpeL._UY1000_.jpg",url:"product.html?id=29"},
+  
+ 
+];
+
+// Generate product cards dynamically
+const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+
+</body>
+</html>

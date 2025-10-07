@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products Collection</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .header-container {
+    background-color: rgb(139, 124, 104);
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
+  .subheader {
+    background-color: rgb(78, 78, 78);
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+    color: white;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  .product-info {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery"></div>
+
+<script>
+  const products = [
+  { name:"Trouser", price:13, img:"https://brandsego.com/cdn/shop/files/Untitled-3copy_999396d0-a483-4db4-bf0a-cd7be725f45b.jpg?v=1750766174&width=1340", url:"product.html?id=108" },
+  { name:"Trouser", price:14, img:"https://www.sainly.com/cdn/shop/products/sainly-apparel-accessories-green-m-basic-men-s-cotton-linen-pants-male-casual-solid-color-breathable-loose-trousers-straight-pants-men-cotton-linen-pants-casual-loose-trousers-straigh_2048x2048.png?v=1663259228", url:"product.html?id=109" },
+  { name:"Trouser", price:15, img:"https://sa.redtagfashion.com/cdn/shop/files/131286598-1-Beige_20_20Mens_20_20Casual_20_20Trouser_20_20-_20_20Beige_20_20-_20_2030_20_20Waist_700x.jpg?v=1737461600", url:"product.html?id=110" },
+  { name:"Trouser", price:16, img:"https://engine.com.pk/cdn/shop/files/01_a92c9eb7-ae80-4ac7-96f4-808e4fda144b.jpg?v=1754726193", url:"product.html?id=111" },
+  { name:"Trouser", price:17, img:"https://img.drz.lazcdn.com/static/pk/p/ea14a7e5a200e8ebcf88e55a6805497f.jpg_960x960q80.jpg_.webp", url:"product.html?id=112" },
+  { name:"Trouser", price:18, img:"https://image.made-in-china.com/202f0j00yvVclhbJkIkp/Stripes-Straight-Leg-Pants-Casual-Trousers-Men-s-Loose-Hoodies.webp", url:"product.html?id=113" },
+  { name:"Trouser", price:19, img:"https://m.media-amazon.com/images/I/61Unh+jAqUL.jpg", url:"product.html?id=114" },
+  { name:"Trouser", price:20, img:"https://images.meesho.com/images/products/447727976/3vcpf_512.webp?width=512", url:"product.html?id=115" },
+  { name:"Trouser", price:21, img:"https://images-na.ssl-images-amazon.com/images/I/411XuRv9r7L._SL500_._AC_SL500_.jpg", url:"product.html?id=116" },
+  { name:"Trouser", price:22, img:"https://img.bestdealplus.com/ae04/kf/H78e94de712f6412ab049d0fce6d4f2f24.jpg", url:"product.html?id=117" },
+  { name:"Trouser", price:23, img:"https://img4.dhresource.com/webp/m/0x0/f3/albu/jc/s/13/53df2eba-7e9e-4faf-b688-ef32f27cfa09.jpg", url:"product.html?id=118" },
+  { name:"Trouser", price:24, img:"https://www.beyoung.in/api/cache/catalog/products/trousers/aj25_p2b_lycra_gurkha/new/navy_lycra_gurkha_pants_base_16_09_2025_400x533.jpg", url:"product.html?id=119" },
+  { name:"Trouser", price:25, img:"https://m.media-amazon.com/images/I/71A7HShC1zL._AC_SX385_.jpg", url:"product.html?id=120" },
+  { name:"Trouser", price:26, img:"https://assets.ajio.com/medias/sys_master/root/20241209/qVEr/6756cb66c148fa1b30260113/-473Wx593H-700898625-grey-MODEL.jpg", url:"product.html?id=121" },
+  { name:"Trouser", price:27, img:"https://turbobrandsfactory.com/cdn/shop/files/DGR_bb4acbe7-1a76-4715-b946-d702b80c9d71_1370x.jpg?v=1758034227", url:"product.html?id=122" },
+  { name:"Trouser", price:28, img:"https://img.shopstyle-cdn.com/sim/f6/06/f606553ab02dd85707e792ff644318a4_xlarge/kangyan-cargo-trousers-for-men-men-pants-mens-casual-pants-mens-pants-fashion-loose-pants-baggy-cargo-pants-casual-trousers-relaxed-fit-cargo-pant-reg-and-big-and-tall-sizes.jpg", url:"product.html?id=123" },
+  { name:"Trouser", price:29, img:"https://images2.zoodmall.uz/cdn-cgi/image/w=500,fit=contain,f=auto/https%3A%2F%2Fimages2.zoodmall.com%2Fhttps%253A%2Fimg.joomcdn.net%2F1e1ca8714fc6fac9ff04ebedf1edd2b5581f18d3_original.jpeg", url:"product.html?id=124" },
+  { name:"Trouser", price:30, img:"https://down-sg.img.susercontent.com/file/12d8ed1a894d5e10de3d71cb0bda1aa1", url:"product.html?id=125" },
+  { name:"Trouser", price:31, img:"https://images.meesho.com/images/products/541882057/8lcde_512.webp?width=512", url:"product.html?id=126" },
+  { name:"Trouser", price:32, img:"https://images.vestiairecollective.com/images/resized/w=1246,q=75,f=auto,/produit/black-cotton-rick-owens-drkshdw-trousers-56544777-1_2.jpg", url:"product.html?id=127" },
+  { name:"Trouser", price:33, img:"https://i.ebayimg.com/images/g/VIUAAOSw6IJdulK0/s-l1200.jpg", url:"product.html?id=128" },
+  { name:"Trouser", price:34, img:"https://static-01.daraz.com.np/p/ab728f4abdea69f09fab9b5bdbf883a1.jpg", url:"product.html?id=129" },
+  { name:"Trouser", price:35, img:"https://static-01.daraz.com.np/p/1551c7e4c9d2cae2d4d22a98e0da9198.jpg", url:"product.html?id=130" },
+  { name:"Trouser", price:36, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/MAY/14/GJK3ftOz_cb4d3230ecb8436099a4bfb2e593e727.jpg", url:"product.html?id=131" },
+  { name:"Trouser", price:37, img:"https://nobero.com/cdn/shop/files/8905816227806.jpg?v=1756281921", url:"product.html?id=132" },
+  { name:"Trouser", price:38, img:"https://img.drz.lazcdn.com/static/np/p/7cd94bbf7a5a273d693a4624123cd973.jpg_960x960q80.jpg_.webp", url:"product.html?id=133" },
+  { name:"Trouser", price:39, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsL74dHQ2ZjJrGu6zGMfDbUsK3X5hcOSokVndkMTGxbE527D4dta0FTPM0QmaMvqs5U2k&usqp=CAU", url:"product.html?id=134" },
+  { name:"Trouser", price:40, img:"https://images-cdn.ubuy.co.in/66849d5be366c27e381cfe15-mens-cargo-pants-relaxed-fit-parachute.jpg", url:"product.html?id=135" },
+  { name:"Trouser", price:41, img:"https://static-01.daraz.com.np/p/307eec560f3929a6c51df0fcd7c5e93c.jpg", url:"product.html?id=136" },
+  { name:"Trouser", price:42, img:"https://img4.dhresource.com/webp/m/0x0/f3/albu/jc/g/01/bef6296e-e0eb-4e6b-a2ed-62d8b235c242.jpg", url:"product.html?id=137" },
+  { name:"Trouser", price:43, img:"https://m.media-amazon.com/images/I/71MLb1mwU1L._UY1100_.jpg", url:"product.html?id=138" },
+  { name:"Trouser", price:44, img:"https://i5.walmartimages.com/asr/0745461f-0107-43fe-b7de-d577a6e87e28.00c780334029e99e3378df54c2586e62.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF", url:"product.html?id=139" },
+  { name:"Trouser", price:45, img:"https://m.media-amazon.com/images/I/61L1+GGHkZL._UY1000_.jpg", url:"product.html?id=140" },
+  { name:"Trouser", price:46, img:"https://fortcollins.co.in/cdn/shop/files/fort-collins-relaxed-fit-cargo-track-pants-for-men-with-utility-pockets-in-wine-shade-tp212-1.webp?v=1744973537&width=2048", url:"product.html?id=141" },
+  { name:"Trouser", price:47, img:"https://m.media-amazon.com/images/I/61AyNdrWSsL._UY1000_.jpg", url:"product.html?id=142" },
+  { name:"Trouser", price:48, img:"https://img-lcwaikiki.mncdn.com/mnpadding/1020/1360/ffffff/pim/productimages/20242/7992768/v1/l_20242-w4lt90z8-hzz-94-75-93-189_a1.jpg", url:"product.html?id=143" }
+];
+
+
+// Generate product cards dynamically
+const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+
+</body>
+</html>

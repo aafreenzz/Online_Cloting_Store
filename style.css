@@ -1,0 +1,75 @@
+button:hover {
+    background-color: rgb(141, 157, 169);
+}
+
+/* Sidebar transition */
+#sidebar {
+    position: relative; 
+    left: 0;
+    transition: left 0.5s ease;
+}
+
+/* Move right */
+.move {
+    animation: slide 1s ease-out forwards;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+        border-radius: 0;
+    }
+    100% {
+        transform: translateX(0px);
+        border-radius: 0%;
+    }
+}
+
+/* Move left */
+.moves {
+    animation: slideback 2s ease-out forwards;
+}
+
+@keyframes slideback {
+    0% {
+        transform: translateX(0);
+        border-radius: 20%;
+    }
+    100% {
+        transform: translateX(-300px);
+        border-radius: 20%;
+    }
+}
+
+/* Another slide with pop */
+.mova {
+    animation: slides 2s ease-in forwards;
+}
+
+@keyframes slides {
+    0% {
+        transform: translateX(0);
+        border-radius: 0;
+    }
+    100% {
+        transform: translateX(300px);
+        border-radius: 20%;
+    }
+}
+body{
+    font-family:' poppins', sans-serif;
+    margin: 0;
+}
+.icon-cart
+span {
+     display:flex;
+        justify-content:center;
+        align-items:center;
+        width:30px;
+        height:30px;
+        background-color:rgb(255, 255, 255);
+        border-radius:50%;
+        position:fixed;
+        top:20px;
+}
+
