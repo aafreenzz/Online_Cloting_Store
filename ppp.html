@@ -4,8 +4,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.8">
  
 <style>
-body { overflow-x: auto; }
+@media (max-width: 600px) {
+  body {
+    transform: scale(0.8); /* Shrinks the page to fit mobile */
+    transform-origin: top left;
+    width: 125%; /* Adjust so scaled page fills screen */
+    overflow-x: auto;
+  }
+}
 </style>
+
 
   <script src="fire.js" defer></script>
   <meta charset="UTF-8">
@@ -95,6 +103,7 @@ body { overflow-x: auto; }
 
 </body>
 </html>
+
 
 
 
