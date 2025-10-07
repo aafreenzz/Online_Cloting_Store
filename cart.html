@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-image:url('https://media.istockphoto.com/id/160949344/photo/man-shopping-with-his-wife-in-a-trolley.jpg?s=612x612&w=0&k=20&c=NeH04eeJCh91ORakyQZ4RPTkXnu1kFoWGQIojA2G6KI=');background-size:390px;background-position:-820px center;margin-top: 100px;">
+    <div style="background-color: rgb(160, 122, 122);border-radius: 20px;width:800px;height:800px;position: relative;left:320px;text-align: center;position: absolute;top:2px;" >
+    <h1> Welcome TO YOUR Cart !</h1>
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+  h2 { text-align: center; margin-bottom: 20px; }
+  .cart-item { display: flex; align-items: center; margin-bottom: 15px; padding: 10px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  .cart-item img { width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 5px; }
+  .cart-item span { margin-right: 15px; font-size: 16px; }
+  .cart-total { font-weight: bold; font-size: 18px; margin-top: 20px; position: relative;right:"20px"; }
+  button { padding: 5px 10px; cursor: pointer; border: none; background-color: #16181a; color: #fff; border-radius: 4px; }
+  button:hover { background-color: #101113; }
+  .empty-msg { text-align: center; font-size: 18px; color: #ffeaea; margin-top: 50px; }
+</style>
+</head>
+<body>
+
+<h2>Your Shopping Cart</h2>
+<div id="cart-items"></div>
+<div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+<div style="text-align: center; margin-top: 20px;">
+  <button onclick="clearCart()">Clear Cart</button>
+</div>
+
+<script>
+// Get cart from localStorage or initialize empty array
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Function to display cart items
+function displayCart() {
+  const cartItems = document.getElementById('cart-items');
+  cartItems.innerHTML = '';
+
+  if(cart.length === 0){
+    cartItems.innerHTML = '<div class="empty-msg">Your cart is empty!</div>';
+    document.getElementById('cart-total').innerText = '0.00';
+    return;
+  }
+
+  let total = 0;
+  cart.forEach((item, index) => {
+    total += item.price;
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.img}" alt="${item.name}">
+        <span>${item.name}</span>
+        <span>$${item.price.toFixed(2)}</span>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  document.getElementById('cart-total').innerText = total.toFixed(2);
+}
+
+// Remove single item
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  displayCart();
+}
+
+// Clear all items
+function clearCart() {
+  cart = [];
+  localStorage.setItem('cart', JSON.stringify(cart));
+  displayCart();
+}
+
+// Function to add item to cart (call this from your product page)
+function addToCart(name, price, img) {
+  cart.push({ name, price, img });
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(name + ' added to cart!');
+  displayCart();
+}
+
+// Initialize cart display on page load
+displayCart();
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

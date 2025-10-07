@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+  }
+  h2 { text-align: center; }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .product-card h4 {
+    margin: 10px 0 5px;
+  }
+  .product-card span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  .add-btn {
+    padding: 5px 10px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+<div style="background-color: bisque;text-align: center;">
+<h2> Pamper Yourself With Our Dress Collections</h2>
+</div>
+<div class="gallery" id="productGallery"></div>
+
+<script>
+const products = [
+  { name:"Dress", price:20, img:"https://img.kwcdn.com/product/fancy/3661ab13-0b9f-4426-90fa-1092f6eb9d7f.jpg?imageView2/2/w/500/q/60/format/webp", url:"pruducts.html?id=91" },
+  { name:"Dress", price:21, img:"https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/30298657/2024/7/22/03d1a220-fc75-4582-a3a6-20dbe0f956b91721653688320KALINIPolkaDotPrintGeorgetteA-LineMidiDress1.jpg", url:"pruducts.html?id=92" },
+  { name:"Dress", price:22, img:"https://image.made-in-china.com/2f0j00BbwkrUTECdcV/Women-Dresses-Simple-Classy-Long-Bodycon-Dress-Tropical-Elegant-Casual-Pleated.webp", url:"pruducts.html?id=93" },
+  { name:"Dress", price:19, img:"https://i5.walmartimages.com/seo/CAICJ98-Fall-Dresses-Women-2023-Wedding-Guest-Dresses-Women-2023-Casual-Womens-Plus-Size-V-Neck-Short-Sleeve-Midi-Wedding-Guest-Party-Casual-Dresses_b44df473-0406-43c0-b244-a018157fe752.4bc283b88a81172df5467435c968b58f.jpeg", url:"pruducts.html?id=94" },
+  { name:"Dress", price:20, img:"https://img.kwcdn.com/product/fancy/5c18260e-7f6f-47c0-81a1-4fa981da503d.jpg", url:"pruducts.html?id=95" },
+  { name:"Dress", price:21, img:"https://www.papilioboutique.com/wp-content/uploads/2023/10/dress-formal-3.jpg?x21004", url:"pruducts.html?id=96" },
+  { name:"Dress", price:19, img:"https://img.clevup.in/352617/women-latest-new-dress-trending-1707799811540_SKU-3920_0.jpg?width=600&format=webp", url:"pruducts.html?id=97" },
+  { name:"Dress", price:22, img:"https://img.kwcdn.com/product/fancy/79655e43-d31c-4cad-800d-278694e485bb.jpg", url:"pruducts.html?id=98" },
+  { name:"Dress", price:20, img:"https://img.drz.lazcdn.com/g/kf/S79ff3ed9bd2c4c6e80bd1216edb26e8bn.jpg_720x720q80.jpg", url:"pruducts.html?id=99" },
+  { name:"Dress", price:21, img:"https://i5.walmartimages.com/asr/fb775c55-b4b7-4d38-bb1f-cf2c72bfc02c.1c6acab3ccad77752415a403d5be51c7.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"pruducts.html?id=100" },
+  { name:"Dress", price:22, img:"https://www.lilyboutique.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/3/136_43_.jpg", url:"pruducts.html?id=101" },
+  { name:"Dress", price:20, img:"https://shopluu.com/cdn/shop/products/dress.3_3d68db4a-1ce8-46a9-960f-45486c2a1660_800x.jpg?v=1509163310", url:"pruducts.html?id=102" },
+  { name:"Dress", price:21, img:"https://www.cdn3.kr/http://nain-en.com/storage/naingirlU0/www//product/2025/32/O/product.41959.175441157665278.jpeg", url:"pruducts.html?id=103" },
+  { name:"Dress", price:19, img:"https://www.ohpolly.com/cdn/shop/products/6790_6_Tivoli-Blush-Embellished-Cowl-Neck-Side-Drape-Flare-Sleeve-Mini.jpg?v=1682328144&width=920", url:"pruducts.html?id=104" },
+  { name:"Dress", price:22, img:"https://cdn.shopify.com/s/files/1/0414/2622/3270/files/ST2186D01ORANGE-1_560x.jpg?v=1741067411", url:"pruducts.html?id=105" },
+  { name:"Dress", price:20, img:"https://images.meesho.com/images/products/476058379/a78hm_512.jpg?width=256", url:"pruducts.html?id=106" },
+  { name:"Dress", price:21, img:"https://dimg.dillards.com/is/image/DillardsZoom/nav2/rare-editions-big-girls-7-16-sleeveless-bow-accented-mikado-fit--flare-dress/00000000_zi_aed6203a-e41e-4b1a-9f9c-3ebe8b647ce6.jpg", url:"pruducts.html?id=107" },
+  { name:"Dress", price:19, img:"https://i5.walmartimages.com/seo/CAICJ98-Winter-Dresses-for-Women-2023-Midi-Formal-Dresses-for-Women-Evening-Party-Wedding-Guest-Bodycon-Dresses-Grey-XXL_b44df473-0406-43c0-b244-a018157fe752.4bc283b88a81172df5467435c968b58f.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"pruducts.html?id=108" },
+  { name:"Dress", price:22, img:"https://cdn.platform.next/common/items/default/default/itemimages/3_4Ratio/SearchTP/Lge/W87186.jpg?im=Resize,width=450", url:"pruducts.html?id=109" },
+  { name:"Dress", price:20, img:"https://images.jdmagicbox.com/quickquotes/images_main/-88g2kb91.jpg", url:"pruducts.html?id=110" },
+  { name:"Dress", price:21, img:"https://cdn.shopify.com/s/files/1/2147/7595/files/What_Is_Cocktail_Dress_Code_480x480.jpg?v=1695715392", url:"pruducts.html?id=111" },
+  { name:"Dress", price:19, img:"https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1723143478-514-74lloKL.jpg?crop=0.909xw:1xh;center,top&resize=980:*", url:"pruducts.html?id=112" },
+  { name:"Dress", price:22, img:"https://5.imimg.com/data5/SELLER/Default/2023/4/303600803/BU/IY/TB/58398864/blue-one-piece-women-dress.jpg", url:"pruducts.html?id=113" },
+  { name:"Dress", price:20, img:"https://dy9ihb9itgy3g.cloudfront.net/products/12371/mt8101/mt8101_diamondwhite_f_d.webp", url:"pruducts.html?id=114" },
+  { name:"Dress", price:21, img:"https://cdn-img.prettylittlething.com/d/8/f/7/d8f75a64d609c6f426d1706206e273d5dda0b397_CNF8754_1_hot_pink_twill_cut_out_bow_shift_dress.jpg?imwidth=600", url:"pruducts.html?id=115" },
+  { name:"Dress", price:19, img:"https://cdn.shopify.com/s/files/1/0422/4481/files/sample_3140.jpg?v=1756273399&width=640", url:"pruducts.html?id=116" },
+  { name:"Dress", price:22, img:"https://cdn-images.farfetch-contents.com/29/55/61/92/29556192_58747986_600.jpg", url:"pruducts.html?id=117" },
+  { name:"Dress", price:23, img:"https://www.loveshackfancy.com/cdn/shop/files/ALONA-DRESS-017-CHANTILLY.jpg?v=1758210856&width=500", url:"pruducts.html?id=118" },
+];
+
+const gallery = document.getElementById('productGallery');
+
+function addToCart(product) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(product);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${product.name} added to your cart!`);
+}
+
+// Generate product cards
+products.forEach((product) => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+  img.onclick = () => { window.location.href = product.url; };
+
+  const name = document.createElement('h4');
+  name.textContent = product.name;
+
+  const price = document.createElement('span');
+  price.textContent = `$${product.price.toFixed(2)}`;
+
+  const btn = document.createElement('button');
+  btn.className = 'add-btn';
+  btn.textContent = 'Add to Cart';
+  btn.onclick = () => addToCart(product);
+
+  card.appendChild(img);
+  card.appendChild(name);
+  card.appendChild(price);
+  card.appendChild(btn);
+
+  gallery.appendChild(card);
+});
+</script>
+
+</body>
+</html>

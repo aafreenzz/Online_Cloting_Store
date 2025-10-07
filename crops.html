@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+  }
+  h2 { text-align: center; }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .product-card h4 {
+    margin: 10px 0 5px;
+  }
+  .product-card span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  .add-btn {
+    padding: 5px 10px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+<div style="background-color: bisque;text-align: center;">
+<h2>Pamper Yourself With Our Crop Collections</h2>
+</div>
+<div class="gallery" id="productGallery"></div>
+
+<script>
+const products = [
+  { id: 49, name:"Crop", price:20, img:"https://cdn-img.prettylittlething.com/f/b/7/1/fb71cef6cf66f0c8de355d8a780f555c66bfabf1_cnj5903_1.jpg", url:"pruducts.html?id=49" },
+  { id: 50, name:"Crop", price:22, img:"https://anchorbluejeans.com/cdn/shop/products/e5d779d9549e49e8b0f95c877f2341f8-Max.jpg", url:"pruducts.html?id=50" },
+  { id: 51, name:"Crop", price:18, img:"https://assets.myntassets.com/w_412,q_30,dpr_3,fl_progressive,f_webp/assets/images/27684952/2024/2/19/55070187-49ca-4599-bc0c-37c4181bf2d11708340641873BerryBirdCropTop1.jpg", url:"pruducts.html?id=51" },
+  { id: 52, name:"Crop", price:21, img:"https://i.pinimg.com/736x/12/c4/ae/12c4aea22bdbf392ec5ad76a922c890b.jpg", url:"pruducts.html?id=52" },
+  { id: 53, name:"Crop", price:19, img:"https://gypsysoulshop.com/cdn/shop/files/7375eca22a2848c38e679eac5f07a431-Max_800x.jpg?v=1715353584", url:"pruducts.html?id=53" },
+  { id: 54, name:"Crop", price:23, img:"https://popwings.in/cdn/shop/files/p_23aef1e5-3885-46be-9afd-76c7ec2b1725.jpg?v=1711024024", url:"pruducts.html?id=54" },
+  { id: 55, name:"Crop", price:20, img:"https://gflock.lk/cdn/shop/files/09_050888da-f8f6-4fe5-a176-d9e5ec8d8e93.jpg?v=1741271447", url:"pruducts.html?id=55" },
+  { id: 56, name:"Crop", price:21, img:"https://au.motelrocks.com/cdn/shop/products/MERITA-TOP-LIGHT-BLUE-118220.jpg?crop=center&height=2428&v=1657606007&width=1920", url:"pruducts.html?id=56" },
+  { id: 57, name:"Crop", price:22, img:"https://shop.mango.com/assets/rcs/pics/static/T5/fotos/S/57010494_99.jpg?imwidth=2048&imdensity=1&ts=1683740095313", url:"pruducts.html?id=57" },
+  { id: 58, name:"Crop", price:19, img:"https://images.meesho.com/images/products/313471271/v0h71_512.webp?width=512", url:"pruducts.html?id=58" },
+  { id: 59, name:"Crop", price:20, img:"https://i5.walmartimages.com/asr/cc6b834f-153d-473e-9cad-f0128d435211.5e7d9541653460064c17646f7cbf4f52.jpeg", url:"pruducts.html?id=59" },
+  { id: 60, name:"Crop", price:21, img:"https://m.media-amazon.com/images/I/61JNfN8QBiL._AC_UL1412_.jpg", url:"pruducts.html?id=60" },
+  { id: 61, name:"Crop", price:22, img:"https://www.jiomart.com/images/product/original/rvgftzadwb/popwings-women-casual-pink-floral-print-georgette-crop-top-tops-for-women-tops-for-women-stylish-tops-latest-design-for-women-product-images-rvgftzadwb-1-202307141409.jpg?im=Resize=(500,630)", url:"pruducts.html?id=61" },
+  { id: 62, name:"Crop", price:19, img:"https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/94/3911883/1.jpg?4784", url:"pruducts.html?id=62" },
+  { id: 63, name:"Crop", price:20, img:"https://shopaa.com/cdn/shop/products/2E7A6440_2_800x.jpg?v=1571461932", url:"pruducts.html?id=63" },
+  { id: 64, name:"Crop", price:21, img:"https://www.billboard.com/wp-content/uploads/2024/07/New-Crop-Top.jpg?w=754", url:"pruducts.html?id=64" },
+  { id: 65, name:"Crop", price:22, img:"https://2ccdn.celestino.gr/verybig/SM0029.4003-21@4.JPG", url:"pruducts.html?id=65" },
+  { id: 66, name:"Crop", price:20, img:"https://img01.ztat.net/article/spp-media-p1/7f90ade90e2f49de832e6a02af1fc300/5b6e9b28b86c40a5b156bfeed28b70bc.jpg?imwidth=762&filter=packshot", url:"pruducts.html?id=66" },
+  { id: 67, name:"Crop", price:19, img:"https://levi.in/cdn/shop/files/001SD0003_01_Styleshot_360x.jpg?v=1756369398", url:"pruducts.html?id=67" },
+  { id: 68, name:"Crop", price:21, img:"https://image.made-in-china.com/202f0j00DJdiFErckwkf/Fashion-Custom-Logo-Print-Shirt-Sexy-Ladies-Summer-Plain-Solid-Loose-Women-Crop-Tops-Sport-Women-Workout-Crop-Top-T-Shirt.jpg", url:"pruducts.html?id=68" },
+  { id: 69, name:"Crop", price:22, img:"https://highstreet.com.mx/cdn/shop/files/HIGH-STREET-Crop-top-tirantes-TBSM-200066_01_b587129d-3913-4dd9-ab7d-6d615d038995.jpg?v=1723149662", url:"pruducts.html?id=69" },
+  { id: 70, name:"Crop", price:20, img:"https://ohpolly.ae/cdn/shop/files/10185-Black_Zene_1_4a8af293-49e1-481c-8daa-16157a11c8bc.jpg?v=1719469894&width=1244", url:"pruducts.html?id=70" }
+];
+
+const gallery = document.getElementById('productGallery');
+
+function addToCart(product) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(product);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${product.name} added to your cart!`);
+}
+
+// Generate product cards
+products.forEach((product) => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+  img.onclick = () => { window.location.href = product.url; };
+
+  const name = document.createElement('h4');
+  name.textContent = product.name;
+
+  const price = document.createElement('span');
+  price.textContent = `$${product.price.toFixed(2)}`;
+
+  const btn = document.createElement('button');
+  btn.className = 'add-btn';
+  btn.textContent = 'Add to Cart';
+  btn.onclick = () => addToCart(product);
+
+  card.appendChild(img);
+  card.appendChild(name);
+  card.appendChild(price);
+  card.appendChild(btn);
+
+  gallery.appendChild(card);
+});
+</script>
+
+</body>
+</html>

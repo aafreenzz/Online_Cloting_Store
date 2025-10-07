@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .header-container {
+    background-color: antiquewhite;
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+  }
+  .subheader {
+    background-color: azure;
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .price-span {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery">
+  <!-- Products will be generated here -->
+</div>
+
+<script>
+  // Array of all products
+  
+  const products = [
+  { name:"Blazer", price:25, img:"https://imagescdn.vanheusenindia.com/img/app/product/9/944962-12119644.jpg?auto=format&w=390", url:"pruducts.html?id=168" },
+  { name:"Blazer", price:26, img:"https://m.media-amazon.com/images/I/71KPTXDCSsL._UY1000_.jpg", url:"pruducts.html?id=169" },
+  { name:"Blazer", price:27, img:"https://i5.walmartimages.com/seo/Christmas-Blazer-Deals-Blazers-Women-Womens-Casual-Blazers-Open-Front-Long-Sleeve-Work-Office-Jackets-Blazer-Lapel-Button-Slim-Blazer-Lightweight-Sol_751418dd-67bb-49c8-b44c-23dc40e4c43d.cdc3d75ee6806210569a23e6946298f9.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"pruducts.html?id=170" },
+  { name:"Blazer", price:28, img:"https://vivianseven.com/cdn/shop/articles/Women_s_blazer_from_Vivian_Seven.jpg?v=1710660182", url:"pruducts.html?id=171" },
+  { name:"Blazer", price:29, img:"https://euro.saintandsofia.com/cdn/shop/files/cambridge-blazer-emerald-green-women-s-blazers-saint-sofia-eu-1125078743.jpg?v=1738853884&width=5760", url:"pruducts.html?id=172" },
+  { name:"Blazer", price:30, img:"https://res.cloudinary.com/the-groomsman-suit/image/upload/f_jpg,h_1124,w_830,c_crop,g_north,h_1124,w_830,q_auto/v1/gatsby-cloudinary/products/product_womens-blazers_7036916760749?_a=AXAH4S10", url:"pruducts.html?id=173" },
+  { name:"Blazer", price:31, img:"https://publish.purewow.net/wp-content/uploads/sites/2/2023/06/best-oversized-blazers-MIRACMODA-Velvet-Blazer.jpg?fit=680%2C800", url:"pruducts.html?id=174" },
+  { name:"Blazer", price:32, img:"https://marame.com/cdn/shop/files/womens-classic-blazer-natural-beige.jpg?v=1753876572", url:"pruducts.html?id=175" },
+  { name:"Blazer", price:33, img:"https://img.ltwebstatic.com/images3_pi/2022/10/17/16659725870ec96f2a517fa9710a2f3dbbe72eda15_thumbnail_720x_wk_shein.jpg", url:"pruducts.html?id=176" },
+  { name:"Blazer", price:34, img:"https://www.belleandbloom.com/cdn/shop/products/1.-Sheer-Genius-Blazer-White-Front.jpg?v=1685513223", url:"pruducts.html?id=177" },
+  { name:"Blazer", price:35, img:"https://dmfwoh5tsii9v.cloudfront.net/sites/files/hvv/productimg/202012/720x864/sorbet-linen-blazer-raspberry-1.jpg", url:"pruducts.html?id=178" },
+  { name:"Blazer", price:36, img:"https://www.theambitioncollective.in/cdn/shop/products/ClassicWorkBlazer_TrouserSet-Maroon_7_jpg.jpg?v=1670828259", url:"pruducts.html?id=179" },
+  { name:"Blazer", price:37, img:"https://static.zara.net/assets/public/be18/4093/27f44867b485/99c25f81718f/03546193420-a1/03546193420-a1.jpg?ts=1757584628568&w=352&f=auto", url:"pruducts.html?id=180" },
+  { name:"Blazer", price:38, img:"https://media.pendleton-usa.com/image/upload/f_auto,q_auto,dpr_auto/w_1000//prod/images/13127Z_69931_ALT3?_i=AG", url:"pruducts.html?id=181" },
+  { name:"Blazer", price:39, img:"https://cdn.media.amplience.net/i/primark/991139555108_01", url:"pruducts.html?id=182" },
+  { name:"Blazer", price:40, img:"https://images.riverisland.com/image/upload/t_ProductImagePortraitSmall/f_auto/q_auto/926340_main?_a=BATAV5AA0", url:"pruducts.html?id=183" },
+  { name:"Blazer", price:41, img:"https://media.boohoo.com/i/boohoo/gzz52826_magenta_xl?w=900&qlt=default&fmt.jp2.qlt=70&fmt=auto&sm=fit", url:"pruducts.html?id=184" },
+  { name:"Blazer", price:42, img:"https://static-01.daraz.com.np/p/1b3d9693e882c2de9120bc62402660c1.jpg", url:"pruducts.html?id=185" },
+  { name:"Blazer", price:43, img:"https://www.powersutra.co/cdn/shop/files/BL177_b492f857-4613-490d-94c9-130d6c2bcccc.jpg?v=1757148713&width=600", url:"pruducts.html?id=186" },
+  { name:"Blazer", price:44, img:"https://images.asos-media.com/products/asos-design-high-break-fitted-waist-blazer-in-olive/209248028-1-olive/?$n_480w$&wid=476&fit=constrain", url:"pruducts.html?id=187" },
+  { name:"Blazer", price:45, img:"https://www.forevernew.com.au/media/catalog/product//A/l/AllTerritories_OnBody_29725405_F2.jpg", url:"pruducts.html?id=188" },
+  { name:"Blazer", price:46, img:"https://media.pendleton-usa.com/image/upload/f_auto,q_auto,dpr_auto/w_1000//prod/images/13127Z_69931?_i=AG", url:"pruducts.html?id=189" },
+  { name:"Blazer", price:47, img:"https://anninc.scene7.com/is/image/LO/775414_3260?$fullBplp$", url:"pruducts.html?id=190" },
+  { name:"Blazer", price:48, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/14230964/2021/9/29/490f13f1-790b-4785-8a9a-8cc363dbd83e1632918349468-all-about-you-Women-Blazers-4251632918348782-1.jpg", url:"pruducts.html?id=191" },
+  { name:"Blazer", price:49, img:"https://image.kilimall.com/kenya/shop/store/goods/7082/2024/01/7082_07578077194105312.jpg?x-image-process=image/format,webp/resize,w_720", url:"pruducts.html?id=192" },
+  { name:"Blazer", price:50, img:"https://images-na.ssl-images-amazon.com/images/I/71xnAxXVgDL._AC_UL375_SR375,375_.jpg", url:"pruducts.html?id=193" },
+  { name:"Blazer", price:51, img:"https://i5.walmartimages.com/asr/66c9fc9c-dfa7-4704-be86-b4b63e7f1d94.7b5afc50d488d932e485839e5a44db47.jpeg", url:"pruducts.html?id=194" },
+  { name:"Blazer", price:52, img:"https://media.boohoo.com/i/boohoo/hzz21782_cream_xl/female-cream-woven-tailored-corset-detail-hook-and-eye-blazer/?w=900&qlt=default&fmt.jp2.qlt=70&fmt=auto&sm=fit", url:"pruducts.html?id=195" }
+];
+
+
+
+
+ const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products Collection</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .header-container {
+    background-color: rgb(139, 124, 104);
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
+  .subheader {
+    background-color: rgb(78, 78, 78);
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+    color: white;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  .product-info {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery"></div>
+
+<script>
+  
+ const products = [
+  { name:"Jean", price:28, img:"https://static.aceomni.cmsaceturtle.com/prod/product-image/aceomni/Wrangler/Monobrand/WWJN001233/WWJN001233_1.jpg", url:"pruducts.html?id=342" },
+  { name:"Jean", price:29, img:"https://cdn.shopify.com/s/files/1/0696/4215/8323/files/Womens_Loose.webp?v=1729682346&width=400", url:"pruducts.html?id=343" },
+  { name:"Jean", price:30, img:"https://img.kwcdn.com/product/fancy/1c0540fb-da20-49cf-aa1d-3497a8e5de6e.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp", url:"pruducts.html?id=344" },
+  { name:"Jean", price:31, img:"https://showoffff.in/cdn/shop/files/CHN-9088_Blue_1_f654bd81-f347-41f7-82e7-2e43cf8313e3.jpg?v=1748619766&width=1080", url:"pruducts.html?id=345" },
+  { name:"Jean", price:32, img:"https://images.riverisland.com/image/upload/t_ProductImagePortraitSmall/f_auto/q_auto/0_20250801_VF_WW_PALAZZO.jpg?_a=BATAV5AA0", url:"pruducts.html?id=346" },
+  { name:"Jean", price:33, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/20341678/2022/10/10/7fe86a2d-470b-45ca-a31e-9497b3b3338b1665390796267Jeans1.jpg", url:"pruducts.html?id=347" },
+  { name:"Jean", price:34, img:"https://m.media-amazon.com/images/I/411s4AOj4DL._SR290,290_.jpg", url:"pruducts.html?id=348" },
+  { name:"Jean", price:35, img:"https://freakins.com/cdn/shop/files/A_2_d7cf67c8-145f-4d4c-80f3-c2c75a5f1093.jpg?v=1753794686&width=1000", url:"pruducts.html?id=349" },
+  { name:"Jean", price:36, img:"https://img.drz.lazcdn.com/static/np/p/953bdd8d381f62e7ab07e39057926bfa.jpg_720x720q80.jpg", url:"pruducts.html?id=350" },
+  { name:"Jean", price:37, img:"https://www.dihho.com/uploads/51cyTLavCDL-2025-07-22-11-55-51.jpg", url:"pruducts.html?id=351" },
+  { name:"Jean", price:38, img:"https://img.guess.com/image/upload/f_auto,q_auto,dpr_1.5,w_500,c_limit/v1/NA/Asset/North%20America/E-Commerce/Guess/Bug%20Number/10986/G_Site_YC_ContentCenter_Denim_10986_03", url:"pruducts.html?id=352" },
+  { name:"Jean", price:39, img:"https://static-01.daraz.com.np/p/42b5f244f73f7015a85618accb1b9e2e.png", url:"pruducts.html?id=353" },
+  { name:"Jean", price:40, img:"https://images.meesho.com/images/products/489824315/tlt5z_512.webp?width=512", url:"pruducts.html?id=354" },
+  { name:"Jean", price:41, img:"https://images.asos-media.com/products/asos-design-wide-leg-dad-jeans-in-lightwash/207720029-1-lightwash/?$n_480w$&wid=476&fit=constrain", url:"pruducts.html?id=355" },
+  { name:"Jean", price:42, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/JULY/15/A15P28Fc_15ba70cbfed142bcbaa890d2a484844a.jpg", url:"pruducts.html?id=356" },
+  { name:"Jean", price:43, img:"https://freakins.com/cdn/shop/files/03april_2840-Edit.jpg?v=1749907242&width=1001", url:"pruducts.html?id=357" },
+  { name:"Jean", price:44, img:"https://img.guess.com/image/upload/f_auto,q_auto:eco,fl_strip_profile,dpr_1.5,fl_advanced_resize,fl_progressive,w_392,c_scale/v1/NA/Style/ECOMM/W4BA82D4K30-B1UM-ALT1", url:"pruducts.html?id=358" },
+  { name:"Jean", price:45, img:"https://img1.shopcider.com/product/1687870941000-CdpA4K.jpg?x-oss-process=image/resize,w_1050,m_lfit/quality,Q_60/interlace,1", url:"pruducts.html?id=359" },
+  { name:"Jean", price:46, img:"https://images.bewakoof.com/t540/women-s-blue-baggy-straight-fit-jeans-625178-1751451595-4.jpg", url:"pruducts.html?id=360" },
+  { name:"Jean", price:47, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/FEBRUARY/5/mX8gomr4_f3cd012ed459441aa00d63afe2af5438.jpg", url:"pruducts.html?id=361" },
+  { name:"Jean", price:48, img:"https://images.bewakoof.com/t540/women-s-blue-baggy-straight-fit-jeans-625178-1751451595-4.jpg", url:"pruducts.html?id=362" },
+  { name:"Jean", price:49, img:"https://media.very.co.uk/i/very/WK1J8_SQ1_0000000265_MID_WASH_MDf", url:"pruducts.html?id=363" },
+  { name:"Jean", price:50, img:"https://www.cosmossport.gr/2978486-product_large/levi-s-xl-straight-dark-indigo-worn-in.jpg", url:"pruducts.html?id=364" },
+  { name:"Jean", price:51, img:"https://i5.walmartimages.com/seo/Signature-by-Levi-Strauss-Co-Women-s-Modern-Bootcut-Jeans_b70d5317-ba43-43f0-8660-3250e851ceb6.79e20f4bf49fb37539e2586e56f97e85.jpeg", url:"pruducts.html?id=365" },
+  { name:"Jean", price:52, img:"https://levis.com.au/cdn/shop/files/levis-womens-ribcage-wide-leg-jeans-A60810037_5_CM_D1_14c0e30d-d7a9-4d01-ab69-f198af118ce7_860x945_crop_center.progressive.jpg?v=1750403870", url:"pruducts.html?id=366" },
+  { name:"Jean", price:53, img:"https://lsco.scene7.com/is/image/lsco/196260465-front-pdp-lse?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=2000&hei=2500", url:"pruducts.html?id=367" },
+  { name:"Jean", price:54, img:"https://lsco.scene7.com/is/image/lsco/001PZ0001-detail1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=2000&hei=2500", url:"pruducts.html?id=368" },
+  { name:"Jean", price:55, img:"https://lsco.scene7.com/is/image/lsco/0039A0009-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1120&hei=1494", url:"pruducts.html?id=369" },
+  { name:"Jean", price:56, img:"https://lsco.scene7.com/is/image/lsco/003NF0001-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1120&hei=1494", url:"pruducts.html?id=370" },
+  { name:"Jean", price:53, img:"https://levi.com.hk/cdn/shop/files/001LA0002-dynamic1-pdp.webp?v=1754992092", url:"pruducts.html?id=371" }
+
+
+];
+
+// Generate product cards dynamically
+const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+
+</body>
+</html>

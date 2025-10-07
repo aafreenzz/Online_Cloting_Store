@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .header-container {
+    background-color: antiquewhite;
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+  }
+  .subheader {
+    background-color: azure;
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .price-span {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery">
+  <!-- Products will be generated here -->
+</div>
+
+<script>
+  // Array of all products
+  
+  
+  const products = [
+  { name:"Jumpsuit", price:15, img:"https://thefoschini.vtexassets.com/arquivos/ids/220036231-300-400/ad12684d-49f0-43ba-bc0e-784fbb58c673.png?v=638919738272400000", url:"pruducts.html?id=200" },
+  { name:"Jumpsuit", price:16, img:"https://cdn.aboutstatic.com/file/images/a601043caffe81b75903aa54e1396331.jpg?quality=75&height=480&width=360", url:"pruducts.html?id=201" },
+  { name:"Jumpsuit", price:17, img:"https://www.sparklygowns.com/cdn/shop/products/17436969_5e42e47c-3928-4f04-ac0f-1afa3be7d47a.jpg?v=1671673599", url:"pruducts.html?id=202" },
+  { name:"Jumpsuit", price:18, img:"https://kazo.com/cdn/shop/files/0Q3A8333.jpg?v=1756704575", url:"pruducts.html?id=203" },
+  { name:"Jumpsuit", price:19, img:"https://mediahub.debenhams.com/bcc10517_pink_xl?qlt=80&w=384&h=576&dpr=1&fit=ctn", url:"pruducts.html?id=204" },
+  { name:"Jumpsuit", price:20, img:"https://lavishalice.com/cdn/shop/files/LA-272JS84-RED-H-R_9937.jpg?v=1724249090&width=2400", url:"pruducts.html?id=205" },
+  { name:"Jumpsuit", price:21, img:"https://www.fabulousafter40.com/wp-content/uploads/2023/03/plus-size-jumpsuits-one-shoulder.jpg", url:"pruducts.html?id=206" },
+  { name:"Jumpsuit", price:22, img:"https://forevernew.co.za/cdn/shop/files/AllTerritories_OnBody_28813801_F2.jpg?v=1721047416&width=2048", url:"pruducts.html?id=207" },
+  { name:"Jumpsuit", price:23, img:"https://www.trinaturk.com/cdn/shop/files/36_2504601LI1_BZB_2081.jpg?v=1752787700&width=1600", url:"pruducts.html?id=208" },
+  { name:"Jumpsuit", price:24, img:"https://xcdn.next.co.uk/Common/Items/Default/Default/ItemImages/3_4Ratio/SearchINT/Lge/AN1752.jpg?im=Resize,width=450", url:"pruducts.html?id=209" },
+  { name:"Jumpsuit", price:25, img:"https://boandtee.com/cdn/shop/files/soft-active-backless-contrast-jumpsuit-classic-navy_1_250909105016.jpg?v=1757415030", url:"pruducts.html?id=210" },
+  { name:"Jumpsuit", price:26, img:"https://www.reitmans.com/on/demandware.static/-/Sites-Reitmans-catalog/default/dwa6d62659/images/large/reitmans_485491_464_0.jpg", url:"pruducts.html?id=211" },
+  { name:"Jumpsuit", price:27, img:"https://static.reserved.com/media/catalog/product/cache/850/a4e40ebdc3e371adff845072e1c73f37/9/2/927GA-89X-003-1-1098123_3.jpg", url:"pruducts.html?id=212" },
+  { name:"Jumpsuit", price:28, img:"https://media.centrepointstores.com/i/centrepoint/8516502-1332B07-SP21301020_01-2100.jpg?fmt=auto&$quality-standard$&sm=c&$prodimg-m-prt-pdp-2x$", url:"pruducts.html?id=213" },
+  { name:"Jumpsuit", price:29, img:"https://www.lacremeboutique.com/cdn/shop/collections/DSC_0005.jpg?v=1738934087", url:"pruducts.html?id=214" },
+  { name:"Jumpsuit", price:30, img:"https://www.joebrowns.co.uk/media/catalog/product/W/M/WM001A_1.jpg", url:"pruducts.html?id=215" },
+  { name:"Jumpsuit", price:31, img:"https://www.manieredevoir.com/cdn/shop/files/36-subcat-07-08-2025.jpg?v=1754996524&width=480", url:"pruducts.html?id=216" },
+  { name:"Jumpsuit", price:32, img:"https://media2.newlookassets.com/i/newlook/866305872/womens/clothing/playsuits-jumpsuits/pale-pink-cowl-neck-wide-leg-jumpsuit.jpg?strip=true&qlt=50&w=720", url:"pruducts.html?id=217" },
+  { name:"Jumpsuit", price:33, img:"https://www.missgcouture.co.uk/cdn/shop/products/23_05_MISSG_73641_800x.jpg?v=1653418664", url:"pruducts.html?id=218" },
+  { name:"Jumpsuit", price:34, img:"https://karpacheva.eu/images/stories/virtuemart/product/snimka_283.jpg", url:"pruducts.html?id=219" },
+  { name:"Jumpsuit", price:35, img:"https://www.galvanlondon.com/cdn/shop/files/PRISMJUMPSUITBLUEMOON1_600x.jpg?v=1744819835", url:"pruducts.html?id=220" },
+  { name:"Jumpsuit", price:36, img:"https://yaya.eu/cdn/shop/files/sleeveless-woven-jumpsuit-with-cord-detail-2_f83d7e49-1176-47af-89e7-7acc87ed7529.jpg?v=1751962654&width=1440", url:"pruducts.html?id=221" },
+  { name:"Jumpsuit", price:37, img:"https://cdn.shopify.com/s/files/1/0859/9853/4942/files/Miyako-Printed-Cotton-Chino-Crop-Jumpsuit-Aster-Blue-by-Natori_e55bf428-1cfa-4da8-bfb7-d16749fb4b1b_345x_crop_center.jpg?v=1730243240", url:"pruducts.html?id=222" },
+  { name:"Jumpsuit", price:38, img:"https://shopduer.com/cdn/shop/files/Performance_Denim_Jumpsuit-Stone_Wash_5342_R-584663.jpg?v=1717706020&width=1143", url:"pruducts.html?id=223" },
+  { name:"Jumpsuit", price:39, img:"https://cdn.aboutstatic.com/file/images/19157087acf517265a74f5c81ef1e340.jpg?quality=75&height=480&width=360", url:"pruducts.html?id=224" },
+  { name:"Jumpsuit", price:29, img:"https://dimesnco.com/cdn/shop/collections/image_7ad591c0-efc9-4696-9319-e38569f036ea.jpg?v=1706791076", url:"pruducts.html?id=225" },
+  { name:"Jumpsuit", price:49, img:"https://twothirds.com/cdn/shop/files/hornos-umber-brown-898374.jpg?v=1739450078&width=1200", url:"pruducts.html?id=226" },
+  { name:"Jumpsuit", price:33, img:"https://www.only.in/cdn/shop/files/213555801_g3.jpg?v=1745888853&width=1080", url:"pruducts.html?id=227" }
+];
+
+
+
+
+
+
+ const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+</body>
+</html>

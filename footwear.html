@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products Collection</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .header-container {
+    background-color: rgb(139, 124, 104);
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+    color: white;
+  }
+  .subheader {
+    background-color: rgb(78, 78, 78);
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+    color: white;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  .product-info {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery"></div>
+
+<script>
+  const products = [
+   
+  { name:"Footwear", price:90, img:"https://5.imimg.com/data5/SELLER/Default/2023/7/323356025/UR/EQ/WS/192140499/safeimagekit-resized-img-3--500x500.png", url:"pruducts.html?id=270" },
+  { name:"Footwear", price:91, img:"https://img.kwcdn.com/product/fancy/43487f7a-7cc8-4f48-8cc3-681fcff30763.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp", url:"pruducts.html?id=271" },
+  { name:"Footwear", price:92, img:"https://images.meesho.com/images/products/396354454/3fdxs_512.jpg", url:"pruducts.html?id=272" },
+  { name:"Footwear", price:93, img:"https://paragonfootwear.com/cdn/shop/products/K11239G_BLK_1.jpg?v=1756713401&width=1920", url:"pruducts.html?id=273" },
+  { name:"Footwear", price:94, img:"https://www.jiomart.com/images/product/original/rvujjpnmzk/world-wear-footwear-new-latest-affordable-range-of-trendy-sports-running-shoes-for-men-product-images-rvujjpnmzk-0-202407151823.jpg?im=Resize=(500,630)", url:"pruducts.html?id=274" },
+  { name:"Footwear", price:95, img:"https://5.imimg.com/data5/SELLER/Default/2023/11/363327144/OL/UA/QK/137188390/flat-footwear.jpg", url:"pruducts.html?id=275" },
+  { name:"Footwear", price:96, img:"https://rukminim2.flixcart.com/image/704/844/krdtlzk0/sandal/p/i/g/5-bb0038black-37-b-b-ladies-footwear-black-original-imag56n4x7nhvday.jpeg?q=90&crop=false", url:"pruducts.html?id=276" },
+  { name:"Footwear", price:97, img:"https://img.kwcdn.com/product/fancy/a18d599c-ddaf-4376-b0aa-4384cea3aac1.jpg", url:"pruducts.html?id=277" },
+  { name:"Footwear", price:98, img:"https://www.famousfootwear.com/blob/product-images/20000/31/19/3/31193_pair_feed1000.jpg", url:"pruducts.html?id=278" },
+  { name:"Footwear", price:99, img:"https://img.joomcdn.net/1a0f2d4fda7437b348ba8ad13b642ed801591075_original.jpeg", url:"pruducts.html?id=279" },
+  { name:"Footwear", price:100, img:"https://img.kwcdn.com/product/fancy/44dd6500-26d2-4aa2-bfab-17c85df8740c.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp", url:"pruducts.html?id=280" },
+  { name:"Footwear", price:101, img:"https://images.bike24.com/i/mb/d1/fe/72/jack-wolfskin-prelight-swift-vent-low-shoes-women-cool-matcha14-1846544.jpg", url:"pruducts.html?id=281" },
+  { name:"Footwear", price:102, img:"https://ro.jack-wolfskin.eu/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw276a7074/large/A64085_1501_9-F200-prelight-swift-vent-low-w-pale-lavendar.jpg?sw=1800&sh=2600&sfrm=png&bgcolor=F5F5F5", url:"pruducts.html?id=282" },
+  { name:"Footwear", price:103, img:"https://img.joomcdn.net/87b4e40ade7805d10799aaf0458844f09737ef2f_original.jpeg", url:"pruducts.html?id=283" },
+  { name:"Footwear", price:104, img:"https://m.media-amazon.com/images/I/51tq97so2UL.jpg", url:"pruducts.html?id=284",url:"pruducts.html?id=284" },
+  { name:"Footwear", price:105, img:"https://images.asics.com/is/image/asics/1071A104_300_SR_RT_GLB?$sfcc-product$", url:"pruducts.html?id=285" },
+  { name:"Footwear", price:106, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCtg_ZgV0xKiq4uTn4dLSZaWcI_tADfu05Zg&s", url:"pruducts.html?id=286" },
+  { name:"Footwear", price:107, img:"https://ae01.alicdn.com/kf/Seb8426a7865d42c7914a7afd77c40f34M.jpg", url:"pruducts.html?id=287" },
+  { name:"Footwear", price:108, img:"https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/1cace6b0-369a-40c5-8dcc-76a0741a2a06/W+NIKE+DUNK+LOW.png", url:"pruducts.html?id=288" },
+  { name:"Footwear", price:109, img:"https://edhardy.eu/cdn/shop/files/WOMENS-WAVE-LOW-WAVES-WHITE-LIGHT-GREY-Ghost-shot-1.jpg?v=1747208746&width=1800", url:"pruducts.html?id=289" },
+  { name:"Footwear", price:110, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxpQ-rZRxx8qBwYq6MDfIscaSxr40luuMVdA&s", url:"pruducts.html?id=290" },
+  { name:"Footwear", price:111, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVVoo1CksM3OEvkb-7cCmWplUVpgQ-4ZTrfw&s", url:"pruducts.html?id=291" },
+  { name:"Footwear", price:112, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBlS8K3B0PK5frL2V5b5i5gR6rhbrIv8mQig&s", url:"pruducts.html?id=292" },
+  { name:"Footwear", price:113, img:"https://media.karousell.com/media/photos/products/2023/2/16/ecco_women_cool_20_gtx_1676562477_d503ef37_progressive.jpg", url:"pruducts.html?id=293" },
+  { name:"Footwear", price:114, img:"https://m.media-amazon.com/images/I/61kU4IN+2xL._UY900_.jpg", url:"pruducts.html?id=294" },
+  { name:"Footwear", price:115, img:"https://s.alicdn.com/@sc04/kf/H3bb7ad937ed544109ae05e0b6b88911aE.png", url:"pruducts.html?id=295" },
+  { name:"Footwear", price:116, img:"https://ae01.alicdn.com/kf/Sd27f6dfaf4f4498483a824ac8a9af7e7c.jpg_640x640q90.jpg", url:"pruducts.html?id=296" },
+  { name:"Footwear", price:117, img:"https://inquestyle.com/cdn/shop/products/uniquely-you-sneakers-for-men-cool-grey-running-shoes-mens-457.jpg?v=1695370632&width=1080", url:"pruducts.html?id=297" },
+  { name:"Footwear", price:119, img:"https://rukminim3.flixcart.com/image/824/972/xif0q/shoe/j/m/w/8-11-sku-mike-110-navy-blue-8-cooperwings-navy-blue-original-imahffzzjn8bzkyv.jpeg?q=60&crop=false", url:"pruducts.html?id=298" },
+  { name:"Footwear", price:111, img:"https://i5.walmartimages.com/asr/b12a78c9-b7b4-4a8f-88f0-e012768180de.7bdd7b50dafc730b011e44b28fbc3744.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF&odnDynImageQuality=10&format=avif", url:"pruducts.html?id=299" }
+  
+ 
+];
+ 
+
+
+// Generate product cards dynamically
+const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+
+</body>
+</html>

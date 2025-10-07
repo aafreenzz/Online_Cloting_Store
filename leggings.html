@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .header-container {
+    background-color: antiquewhite;
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+  }
+  .subheader {
+    background-color: azure;
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .price-span {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery">
+  <!-- Products will be generated here -->
+</div>
+
+<script>
+  // Array of all products
+  
+  
+  
+  const products = [
+  { name:"Leggings", price:12, img:"https://eu.oneractive.com/cdn/shop/files/241204_NOOS_EFFORTLESS_LEGGINGS_BLACK_PDP_1440x1800_01_400x.jpg?v=1736869414", url:"pruducts.html?id=234" },
+  { name:"Leggings", price:13, img:"https://us.aybl.com/cdn/shop/files/12.02.20253514.jpg?v=1740567012&width=2048", url:"pruducts.html?id=235" },
+  { name:"Leggings", price:14, img:"https://eu.oneractive.com/cdn/shop/products/UNIFIED_HIGH_WAISTED_LEGGINGS_ASH_GREY_01_400x.jpg?v=1728483423", url:"pruducts.html?id=236" },
+  { name:"Leggings", price:15, img:"https://dfyne.com/cdn/shop/products/IMG_0909-Edit_1800x1800.jpg?v=1669047171", url:"pruducts.html?id=237" },
+  { name:"Leggings", price:16, img:"https://strch.in/cdn/shop/files/136.png?v=1755673968&width=533", url:"pruducts.html?id=238" },
+  { name:"Leggings", price:17, img:"https://au.dfyne.com/cdn/shop/files/IMG_0024-Edit_1800x1800.jpg?v=1705771667", url:"pruducts.html?id=239" },
+  { name:"Leggings", price:18, img:"https://dfyne.com/cdn/shop/files/IMG_1984-Edit_f6c2aa46-6cdd-43fb-83a0-ba18aad062db.jpg?v=1727346367&width=1080", url:"pruducts.html?id=240" },
+  { name:"Leggings", price:19, img:"https://dfyne.com/cdn/shop/files/IMG_0383-Edit_1024x1024.jpg?v=1753362627", url:"pruducts.html?id=241" },
+  { name:"Leggings", price:20, img:"https://au.dfyne.com/cdn/shop/files/IMG_0327-Edit_3226ff6e-bab9-49bb-9f02-bb19c4192389_1800x1800.jpg?v=1726589703", url:"pruducts.html?id=242" },
+  { name:"Leggings", price:21, img:"https://dfyne.com/cdn/shop/files/IMG_0395_1-Edit-1_2bc24a99-94aa-4dcb-b55a-22a673b8e38e.jpg?v=1741425095&width=1080", url:"pruducts.html?id=243" },
+  { name:"Leggings", price:22, img:"https://dfyne.com/cdn/shop/files/IMG_1836-Edit_aed33209-b64a-4d4f-8fb8-6089b0ec2dfa.jpg?v=1751379049&width=1080", url:"pruducts.html?id=244" },
+  { name:"Leggings", price:23, img:"https://assets.adidas.com/images/w_766,h_766,f_auto,fl_lossy,c_fill,g_auto/26af9823b612404ab9c0ecd76ed81af8_9366/flared-leggings.jpg", url:"pruducts.html?id=245" },
+  { name:"Leggings", price:24, img:"https://assets.adidas.com/images/w_766,h_766,f_auto,fl_lossy,c_fill,g_auto/a1f3fa6e82044cb48e3fde82ca0d17f2_9366/adizero-archive-running-short-leggings.jpg", url:"pruducts.html?id=246" },
+  { name:"Leggings", price:25, img:"https://assets.adidas.com/images/w_766,h_766,f_auto,fl_lossy,c_fill,g_auto/e4293452860c4c72acb4514cb6ee5e43_9366/all-me-7-8-leggings.jpg", url:"pruducts.html?id=247" },
+  { name:"Leggings", price:26, img:"https://assets.adidas.com/images/w_766,h_766,f_auto,fl_lossy,c_fill,g_auto/db3d585ec6374f3f84699f350b7bc760_9366/optime-essentials-shine-7-8-leggings.jpg", url:"pruducts.html?id=248" },
+  { name:"Leggings", price:27, img:"https://assets.adidas.com/images/w_766,h_766,f_auto,fl_lossy,c_fill,g_auto/2c1ba0d854d545c0ad4e5b9fe9d1ad84_9366/essentials-rib-flared-leggings.jpg", url:"pruducts.html?id=249" },
+  { name:"Leggings", price:28, img:"https://mamamovement.com.au/cdn/shop/files/amazon-everyday-legging-78-length-198682_2048x.jpg?v=1717356353", url:"pruducts.html?id=250" },
+  { name:"Leggings", price:29, img:"https://slimwear.lv/cdn/shop/files/Sportines-timpos-pilkos-crocodile-all-up.webp?v=1747136137", url:"pruducts.html?id=251" },
+  { name:"Leggings", price:30, img:"https://assets.ajio.com/medias/sys_master/root/20240807/o0O1/66b382306f60443f31f3ec4e/-1117Wx1400H-441020957-white-MODEL.jpg", url:"pruducts.html?id=252" },
+  { name:"Leggings", price:31, img:"https://boandtee.com/cdn/shop/files/define-luxe-fresh-form-high-waist-leggings-berry_1_250429025939.jpg?v=1745938805", url:"pruducts.html?id=253" },
+  { name:"Leggings", price:32, img:"https://thedancebible.com/cdn/shop/files/Women_Printed_Tights_12_2_d3eb30df-659b-4e52-b5a3-52025fc0d564.jpg?v=1695239533", url:"pruducts.html?id=254" },
+  { name:"Leggings", price:33, img:"https://www.laicaactive.com/cdn/shop/files/2_5238c213-af82-4cbe-b0fe-8b6c9510b2df.png?v=1709781578&width=3617", url:"pruducts.html?id=255" },
+  { name:"Leggings", price:34, img:"https://www.wearetala.com/cdn/shop/files/SCULPTSEAMLESSRIB_RIBBEDLEGGING_GREYMARL_2879.jpg?v=1708515459", url:"pruducts.html?id=256" },
+  { name:"Leggings", price:35, img:"https://kidley.in/media/catalog/product/cache/efa2e0284b37d329bb525391326f6be6/0/i/0i2a6122_large_1.webp", url:"pruducts.html?id=257" },
+  { name:"Leggings", price:36, img:"https://ecdn.speedsize.com/1e7c580d-ad97-4270-aca5-5910d34af508/https://mayadelorez.centracdn.net/client/dynamic/images/538_4bda01f991-rwlt-h1-thelma-v-shape-leggings-2-large.jpg?speedsize=w_3840", url:"pruducts.html?id=258" },
+  { name:"Leggings", price:37, img:"https://www.aviatornation.com/cdn/shop/products/full-length-hi-rise-bolt-leggings-black-leggings-aviator-nation-472143.jpg?v=1689028980", url:"pruducts.html?id=259" },
+  { name:"Leggings", price:38, img:"https://m.media-amazon.com/images/I/71ALeGMNBEL._UY1000_.jpg", url:"pruducts.html?id=260" },
+  { name:"Leggings", price:39, img:"https://www.tipsyelves.com/cdn/shop/files/w-silver-sequin-high-waisted-leggings-sparkle-effect-1.png?v=1689891679", url:"pruducts.html?id=261" },
+  { name:"Leggings", price:40, img:"https://adanola.com/cdn/shop/files/25_0717_ADANOLA_AUGUST_COLLECTION_DAY01_PASA_12_1835.jpg?v=1754318108&width=533", url:"pruducts.html?id=262" },
+  { name:"Leggings", price:41, img:"https://img01.ztat.net/article/spp-media-p1/e5ef225edbcc49c0a264b9739212aca2/b7d4abcfed3d4add8a7a7f3e40de8978.jpg?imwidth=762", url:"pruducts.html?id=263" },
+  { name:"Leggings", price:42, img:"https://au.ryderwear.com/cdn/shop/products/nkd-high-waisted-scrunch-leggings-black-clothing-ryderwear-519227_1080x.jpg", url:"pruducts.html?id=264" },
+  { name:"Leggings", price:43, img:"https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/ef7a005a-efc1-4d33-8715-b52e0187b151/W+NK+DF+ZENVY+HR+FLARE.png", url:"pruducts.html?id=265" },
+  { name:"Leggings", price:44, img:"https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/334893cb-6526-4b18-8b2f-698b1d80a137/W+NP+DF+MR+7%2F8+TIGHT+TT+GRX.png", url:"pruducts.html?id=266" },
+  { name:"Leggings", price:45, img:"https://cdn.shopify.com/s/files/1/0156/6146/files/images-EverydaySeamlessLeggingsGSBuildPinkB7A3L_KB7B_2.jpg?v=1755093881", url:"pruducts.html?id=267" },
+  { name:"Leggings", price:46, img:"https://cdn.shopify.com/s/files/1/1367/5211/products/VITALSEAMLESSWLEGGINGSB1A2BB1A2B-RBML-0271.25_c5d6b00c-93d5-4710-b4f8-f0e0557fbbb5.jpg?v=1679991499", url:"pruducts.html?id=268" }
+];
+
+
+
+
+
+
+
+
+ const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+</body>
+</html>

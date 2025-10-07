@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    img { max-width: 300px; margin-bottom: 20px; border-radius: 10px; }
+    .sizes button { margin: 5px; padding: 10px 15px; }
+    .buy { margin-top: 20px; padding: 12px 20px; background: rgb(0, 0, 0); color: white; border: none; cursor: pointer; }
+    .selected{ background-color: rgb(139, 89, 89); color: white; }
+  </style>
+</head>
+<body style="background-color:rgb(161, 150, 150);">
+  
+ 
+  <h1 id="product-title"></h1>
+  
+  <img id="product-img" src="" alt="Product">
+  
+
+  <h2>Select Size:</h2>
+  <div class="sizes">
+   <button  class="size-button" >S</button>
+    <button class="size-button">M</button>
+    <button class="size-button">L</button>
+  </div>
+  <script>
+  const buttons = document.querySelectorAll('.size-button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove 'selected' from all buttons
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      // Add 'selected' to the clicked button
+      button.classList.add('selected');
+    });
+  });
+</script>
+
+
+  <button onclick="location.href='buy.html'"class="buy">Buy Now</button>
+
+  <script>
+    // Product data
+   const products = [
+  {id: 1, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2024/SEPTEMBER/9/1bs7GcoZ_3279fa8db6984eb5a100f706c1e9aea2.jpg"},
+  {id: 2, img: "https://assets.ajio.com/medias/sys_master/root/20240703/chs6/6684a7791d763220faa9d959/being_human_grey_men_floral_print_regular_fit_sweatshirt.jpg"},
+  {id: 3, img: "https://img.drz.lazcdn.com/static/pk/p/0b17041200535fd948054bc52ee1bb83.jpg_960x960q80.jpg_.webp"},
+  {id: 4, img: "https://images.meesho.com/images/products/468173261/jnbk9_512.jpg"},
+  {id: 5, img: "https://m.media-amazon.com/images/I/71lw1SceLWL._UY1000_.jpg"},
+  {id: 6, img: "https://ae01.alicdn.com/kf/S0bdf1755304e4ee6a67f6491808a6840f.jpg"},
+  {id: 7, img: "https://verenovale.com/cdn/shop/files/81IYIGY3hhL._AC_SL1500.jpg?v=1740663950&width=1445"},
+  {id: 8, img: "https://m.media-amazon.com/images/I/61tZ3LZNpeL._UY1000_.jpg"},
+  {id: 9, img: "https://rukminim2.flixcart.com/image/480/640/xif0q/sweatshirt/u/v/e/l-vh0423mmpl61-veirdo-original-imahf8gzyy4utgyz.jpeg?q=90"},
+  {id: 10, img: "https://www.mindffatigue.com/cdn/shop/files/Hoodie_WS.jpg?v=1731696619&width=2048"},
+  {id: 11, img: "https://images.meesho.com/images/products/452089594/wcmd8_512.webp?width=512"},
+  {id: 12, img: "https://ae01.alicdn.com/kf/S59549f9730894550a34971e2cbb51a2a9.jpg_960x960.jpg"},
+  {id: 13, img: "https://dynamic.bonfireassets.com/thumb/design-image/04547ffe-de3d-47d9-830b-3c506e056070/575825cb-db7c-4eda-9846-bee09003cd8d/900/"},
+  {id: 14, img: "https://image.made-in-china.com/202f0j00HslhmaLnkKuF/Fashion-Color-Hoodies-Men-prime-S-Thick-Clothes-Winter-Sweatshirts-Men-Hip-Hop-Streetwear-Solid-Fleece-Hoody.webp"},
+  {id: 15, img: "https://images.bewakoof.com/original/men-sage-goosebumps-printed-sweatshirt-550988-1672832986-1.jpg"},
+  {id: 16, img: "https://assets.bongenie.ch/media103562/sweat-shirt-en-coton-a-capuche-dsquared-2-cool-fit-dsquared2-a256000-gris-1068681-p9i9gc2lbq.jpg"},
+  {id: 17, img: "https://img.kwcdn.com/product/open/2023-12-11/1702286573937-409e259ad17a44c6aba143d2144f9345-goods.jpeg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp"},
+  {id: 18, img: "https://m.media-amazon.com/images/I/61EIbZ2o5pL._AC_SX425_.jpg"},
+  {id: 19, img: "https://img.drz.lazcdn.com/static/bd/p/c73c581934bf971856cccb0dbc68c82b.jpg_720x720q80.jpg"},
+  {id: 20, img: "https://assets.ajio.com/medias/sys_master/root/h0f/h26/13901870956574/-473Wx593H-460344445-royalblue-MODEL.jpg"},
+  {id: 21, img: "https://hoodrichuk.com/cdn/shop/files/Hoodrich17122411512.jpg?v=1737029987&width=1800"},
+  {id: 22, img: "https://i.pinimg.com/736x/5b/4d/97/5b4d975feecacfbdd99f1ed352df56b9.jpg"},
+  {id: 23, img: "https://vybn.in/wp-content/uploads/2023/09/MENS-OVERSIZED-HOODIE-IN-GREY-1-840x1120.jpg"},
+  {id: 24, img: "https://p16-oec-general-useast5.ttcdn-us.com/tos-useast5-i-omjb5zjo8w-tx/ecdcd03242604c75bf2ca28c9f87ce6b~tplv-fhlh96nyum-crop-webp:400:400.webp?dr=12190&t=555f072d&ps=933b5bde&shp=57fff0e0&shcp=0d52deaf&idc=useast8&from=1476391136"},
+  {id: 25, img: "https://m.media-amazon.com/images/I/611gf-nBgfL._UY1000_.jpg"},
+  {id: 26, img: "https://img.joomcdn.net/83c896b300ba3cb1cae0f55dd8bbbbc8d4d86e21_original.jpeg"},
+  {id: 27, img: "https://celio.in/cdn/shop/files/14968651-1755103800304549_f6cf2900-2d4a-4ae9-b2cd-26bd9368da7b.webp?v=1754321036"},
+  {id: 28, img: "https://www.beforethehighstreet.com/cdn/shop/files/Essential-Heavyweight-Oversized-Hoodie-streetwear-techwear-2.webp?v=1742396217&width=1280"},
+  {id: 29, img: "https://shopslickstreet.com/cdn/shop/products/rescue_2_720x_30a9daf8-140f-4b69-b14c-06184c6316a0.jpg?v=1745269584&width=600"},
+  {id: 30, img: "https://www.shopcapsul.com/cdn/shop/files/sp1_a2e0d0b0-e643-4559-8eed-34700e09b923_600x.jpg?v=1738244617"},
+  {id: 31, img: "https://seakoff.com/cdn/shop/files/O1CN01gfbTtj1aPWat3N9Bt__1672513322.webp?v=1729325672"},
+  {id: 32, img: "https://menochic.com/cdn/shop/products/Hoodie-Sweatshirt-Mens-Hip-Hop-Pullover-Hoodies-Streetwear-Casual-Fashion-Clothes-colorblock-hoodie-2019-cotton_1200x1200.jpg?v=1584484089"},
+  {id: 33, img: "https://www.britishdsire.com/cdn/shop/products/covisoty-mens-hoodie-techwear-hip-hop-urban-streetwear-hoodies-print-patchwork-long-sleeve-pullover-japanese-sweatshirt-autumn-winte-599854.jpg?v=1706713836"},
+  {id: 34, img: "https://i.etsystatic.com/44091135/r/il/17fbff/5212734926/il_fullxfull.5212734926_d5oc.jpg"},
+  {id: 35,  img: "https://shoppingfactory23.in/cdn/shop/files/6374e03a96d0b01ee5f5fdd7f06d5168.jpg?v=1736335820&width=1445"},
+  {id: 36, img: "https://i5.walmartimages.com/seo/SSAAVKUY-Mens-Hoodless-Sweatshirts-Oversized-Crew-Neck-Tops-Dressy-Casual-Fall-Winter-Pullover-Raglan-Sleeve-Long-Stylish-Webbing-Design-Tees-Gray-4_7fcabd6c-3622-4747-abdf-1269088c3466.9a8a0744a86774580630b0163ef867fc.jpeg"},
+  { id: 37, img: "https://rukminim2.flixcart.com/image/368/490/xif0q/blazer/f/7/w/42-pibzwnsfi16409-peter-england-original-imagxydnqa5vqhfz.jpeg?q=90&crop=false" },
+{ id: 38, img: "https://m.media-amazon.com/images/I/51InVIt3OIL._AC_SL1001_.jpg" },
+{ id: 39, img: "https://assets.ajio.com/medias/sys_master/root1/20250818/r9kf/68a3331d3d468c61ab766d75/-473Wx593H-702128858-grey-MODEL.jpg" },
+{ id: 40, img: "https://5.imimg.com/data5/SELLER/Default/2023/10/357100907/ID/WZ/GK/54166109/men-casual-blazers.jpeg" },
+{ id: 41, img: "https://www.diyanu.com/cdn/shop/files/HamiMen_sAfricanPrintLightweightBlazer_MossBlackGeometric_-11_2194bf3c-f6aa-4e89-a561-1b2119014aa4.jpg?v=1704477261" },
+{ id: 42, img: "https://images.meesho.com/images/products/420709260/2nirx_512.webp?width=512" },
+{ id: 43, img: "https://www.justinmichaelemmanuel.com/wp-content/uploads/2023/10/casual-blazer-for-men-194tiq-1.jpg" },
+{ id: 44, img: "https://shop.westside.com/_next/image?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0266%2F6276%2F4597%2Ffiles%2F300973274STONE_1.jpg%3Fv%3D1724926471&w=2048&q=75" },
+{ id: 45, img: "https://frenchcrown.com/cdn/shop/files/BL2960-CBG-D513_1.jpg?v=1700655112&width=3500" },
+{ id: 46, img: "https://www.crimsouneclub.com/cdn/shop/files/UntitledSession03249_1080x.jpg?v=1754568629" },
+{ id: 47, img: "https://img.mensxp.com/media/content/2022/Nov/man-wearing-a-double-breasted-blazer_638475c89a512.jpeg?w=780&h=520&cc=1" },
+{ id: 48, img: "https://m.media-amazon.com/images/I/81paAo+A9RL._UY1100_.jpg" },
+{ id: 49, img: "https://images-na.ssl-images-amazon.com/images/I/61LutX4ZEQL._UL500_.jpg" },
+{ id: 50, img: "https://blog.g3fashion.com/wp-content/uploads/2022/12/All-White-Blazer-Ensemble-1-768x1024.jpg" },
+{ id: 51, img: "https://i5.walmartimages.com/seo/YanHoo-Gray-Plaid-Blazer-for-Slim-Fit-One-Button-Mens-Casual-Blazers-Stylish-Men-s-Dinner-Prom-Party-Jacket_62956b1f-30f7-4458-8213-b4b97a36a9be.7ad791838d5bd81447af4d63a0b7571e.jpeg" },
+{ id: 52, img: "https://s.alicdn.com/@sc04/kf/H4e3ff3cfa5b24e4e97bf3c528995d6779.jpg" },
+{ id: 53, img: "https://dennison.in/cdn/shop/files/07-02-2400077.jpg?v=1709192578&width=1080" },
+{ id: 54, img: "https://www.westside.com/cdn/shop/products/300902658GREY_4.jpg" },
+{ id: 55, img: "https://docket.kartmax.in/sites/9s145MyZrWdIAwpU0JYS/product-images/stunning_grey_printed_blazer_for_men_1742274850as3241091_1.jpg" },
+{ id: 56, img: "https://cdn.thecoolist.com/wp-content/uploads/2016/03/Acne-Studios-Black-Jack-Wool-Pique-Blazer.png" },
+{ id: 57, img: "https://rukminim2.flixcart.com/image/368/490/xif0q/blazer/a/b/b/-original-imahf3zfzafuzwzh.jpeg?q=90&crop=false" },
+{ id: 58, img: "https://southerntide.com/cdn/shop/files/charleston-blazer-perfectly-pale-khaki-lifestyle-7242_1024x1024.jpg?v=1746649677" },
+{ id: 59, img: "https://m.media-amazon.com/images/I/71HKumZmxbL._AC_SL1500_.jpg" },
+{ id: 60, img: "https://m.media-amazon.com/images/I/41EGC-QcR3L._SR290,290_.jpg" },
+{ id: 61, img: "https://jadeblue.com/cdn/shop/products/4msn_2.jpg?v=1685393348" },
+{ id: 62, img: "https://imagescdn.louisphilippe.com/img/app/product/3/39755988-15864808.jpg" },
+{ id: 63, img: "https://frenchcrown.in/cdn/shop/products/BL1392-SB_9.jpg?v=1658743330&width=1800" },
+{ id: 64, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/21145428/2022/12/9/47bdb987-2934-456a-83e6-fac320c1d7711670592298326MenGreySolidRegularFitFormalBlazer1.jpg" },
+{ id: 65, img: "https://m.media-amazon.com/images/I/41uMphglDPL._SY1000_.jpg" },
+{ id: 66, img: "https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/12554420/2020/10/16/9e79f09f-1184-4843-bcdc-bd4aea14a66c1602829611719-MANQ-Men-Blazers-2701602829609587-1.jpg" },
+{ id: 67, img: "https://blackberrys.com/cdn/shop/files/textured-bandhgala-blazer-in-wine-franco-blackberrys-clothing-1.jpg" },
+{ id: 68, img: "https://img.perniaspopupshop.com/catalog/product/s/n/SNGC032514_1.jpg?impolicy=listingimagenew" },
+{ id: 69, img: "https://assets.ajio.com/medias/sys_master/root/20240807/ACf2/66b2a4126f60443f31f2134c/-473Wx593H-700266903-maroon-MODEL.jpg" },
+{ id: 70, img: "https://imagescdn.louisphilippe.com/img/app/product/3/39622188-12731044.jpg" },
+{ id: 71, img: "https://www.allaboutsuit.com/pdcimg/list/image/2020/11/700f047d2b474b636cde9c435d8bed1c.jpg" },
+{ id: 72, img: "https://m.media-amazon.com/images/I/517+aO51wWL._UY1000_.jpg" },
+{ id: 73, img: "https://squirehood.com/products/products/mens-dark-blue-straight-fit-jeans-SHJN06_1.jpg" },
+{ id: 74, img: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1732134319-14-673e459b11846.png?crop=1xw:1xh;center,top&resize=980:*" },
+{ id: 75, img: "https://bwolves.com/cdn/shop/files/baggy20_1.jpg?v=1756625340" },
+{ id: 76, img: "https://shopduer.com/cdn/shop/files/pd-slim-black_62c8db45-0c0f-43f0-bcc8-f46f764ce31f.jpg?v=1744050046&width=1200" },
+{ id: 77, img: "https://images.wrangler.com/is/image/Wrangler/112332243-HERO?$PDP24-XXLARGE$&fit=crop" },
+{ id: 78, img: "https://lscoecomm.scene7.com/is/image/lscoecomm/RELAXED%20PANTS?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1200&hei=1500" },
+{ id: 79, img: "https://imagescdn.pantaloons.com/img/app/product/3/390194-2010115.jpg?auto=format&w=450" },
+{ id: 80, img: "https://offduty.in/cdn/shop/products/ff2def08-93ae-4984-89e8-8352dea110da.jpg?v=1676893036" },
+{ id: 81, img: "https://i5.walmartimages.com/seo/snowsong-Mens-Jeans-Baggy-Jeans-Men-Fashion-Casual-Plus-Size-Loose-Elastic-Waist-Jeans-Street-Wide-Leg-Trousers-Pants-Pants-For-Men-Blue-XXL_66d9fd97-7bde-477d-b825-9e839fa149c7.a45fa778c634856733f826f9298a76a3.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" },
+{ id: 82, img: "https://static-01.daraz.com.np/p/ec75edcb2ce92401d595e83fbe596405.jpg" },
+{ id: 83, img: "https://m.media-amazon.com/images/I/51+3bmExmLL.jpg" },
+{ id: 84, img: "https://lscoglobal.scene7.com/is/image/lscoglobal/00501-3592_M_JEANS_ORIGINAL%2090S?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1200&hei=1500" },
+{ id: 85, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/MAY/21/gcfJv2a1_877cd4c07f9a4dd2aaf308e552426e9c.jpg" },
+{ id: 86, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/FEBRUARY/22/Rtfe71uP_e11658c97a0a4b248d4dabfded578e0a.jpg" },
+{ id: 87, img: "https://www.cernucci.com/cdn/shop/files/VG-NVRDE40DHM-LD-M-32-6663.jpg?v=1711460971&width=800" },
+{ id: 88, img: "https://cdn02.nnnow.com/web-images/medium/styles/QTEABYAE4IB/1677042353663/1.jpg" },
+{ id: 89, img: "https://tigc.in/cdn/shop/files/compress_men-straight-fit-jeans-0923-361vtstdnm-04-light-grey__1.jpg?v=1720715857" },
+{ id: 90, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/27684016/2025/7/22/4e3bb5b0-5a01-47c8-8527-9d0d0b001ee11753194249017-Urbano-Fashion-Men-Cotton-Loose-Fit-Non-Stretchable-Cargo-Je-1.jpg" },
+{ id: 91, img: "https://i5.walmartimages.com/asr/81b48fa3-7f58-4dce-adfd-78315b85854f.b9167bb16add994ade2b378dcf11866e.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" },
+{ id: 92, img: "https://www.urbanofashion.com/cdn/shop/files/jeanlscarpn-04-lgrey.jpg?v=1738593365" },
+{ id: 93, img: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1497131_alternate1?$plpDeskRF$" },
+{ id: 94, img: "https://www.bonkerscorner.com/cdn/shop/files/faded-grey-baggy-fit-jeans-xs-bonkerscorner-store-33704512553060.jpg?v=1728979239" },
+{ id: 95, img: "https://thestreetsofseoul.com/cdn/shop/files/Ripped-Knee-Grey-Wash-Baggy-Jeans-thestreetsofseoul-korean-street-style-minimal-streetwear-k-style-kstyle-mens-affordable-clothing.webp" },
+{ id: 96, img: "https://static.cilory.com/762384-thickbox_default/grunt-light-grey-straight-loose-fit-men-s-jeans.jpg.webp" },
+{ id: 97, img: "https://img.tatacliq.com/images/i23//437Wx649H/MP000000026224710_437Wx649H_202504232019321.jpeg" },
+{ id: 98, img: "https://freakins.com/cdn/shop/files/16julypart2_21471.jpg?v=1749906504&width=1001" },
+{ id: 99, img: "https://m.media-amazon.com/images/I/71uHivtw-OL._UY1100_.jpg" },
+{ id: 100, img: "https://www.urbanofashion.com/cdn/shop/files/epsjeanreg-iceblue-1.png?v=1727179358" },
+{ id: 101, img: "https://cdn.shopify.com/s/files/1/0420/7073/7058/files/4MSD3667-05-3274.jpg?v=1711341009&quality=80" },
+{ id: 102, img: "https://m.media-amazon.com/images/I/71mzQBHZjwL._UY1100_.jpg" },
+{ id: 103, img: "https://cms.sriyanidresspoint.lk/storage/product/front/mens-light-blue-classic-denim-pant--0208464785500.jpg" },
+{ id: 104, img: "https://m.media-amazon.com/images/I/61pgXxjIWZL._UY1100_.jpg" },
+{ id: 105, img: "https://cdni.llbean.net/is/image/wim/250265_1145_41?hei=1095&wid=950&resMode=sharp2&defaultImage=llbprod/250265_0_44" },
+{ id: 106, img: "https://tigc.in/cdn/shop/files/compress_men-straight-fit-jeans-0923-361vtstdnm-10-light-blue__3.jpg?v=1737702109" },
+{ id: 107, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy_4-OSxcYpansl1HrScA8k9FaaZpGXs0clQ&s" },
+{ id: 108, img: "https://www.urbanofashion.com/cdn/shop/files/bootjeanwhsk-dblue-1.jpg?v=1724845128" },
+
+  { "id": 109, "img": "https://brandsego.com/cdn/shop/files/Untitled-3copy_999396d0-a483-4db4-bf0a-cd7be725f45b.jpg?v=1750766174&width=1340" },
+  { "id": 110, "img": "https://www.sainly.com/cdn/shop/products/sainly-apparel-accessories-green-m-basic-men-s-cotton-linen-pants-male-casual-solid-color-breathable-loose-trousers-straight-pants-men-cotton-linen-pants-casual-loose-trousers-straigh_2048x2048.png?v=1663259228" },
+  { "id": 111, "img": "https://sa.redtagfashion.com/cdn/shop/files/131286598-1-Beige_20_20Mens_20_20Casual_20_20Trouser_20_20-_20_20Beige_20_20-_20_2030_20_20Waist_700x.jpg?v=1737461600" },
+  { "id": 112, "img": "https://engine.com.pk/cdn/shop/files/01_a92c9eb7-ae80-4ac7-96f4-808e4fda144b.jpg?v=1754726193" },
+  { "id": 113, "img": "https://img.drz.lazcdn.com/static/pk/p/ea14a7e5a200e8ebcf88e55a6805497f.jpg_960x960q80.jpg_.webp" },
+  { "id": 114, "img": "https://image.made-in-china.com/202f0j00yvVclhbJkIkp/Stripes-Straight-Leg-Pants-Casual-Trousers-Men-s-Loose-Hoodies.webp" },
+  { "id": 115, "img": "https://m.media-amazon.com/images/I/61Unh+jAqUL.jpg" },
+  { "id": 116, "img": "https://images.meesho.com/images/products/447727976/3vcpf_512.webp?width=512" },
+  { "id": 117, "img": "https://images-na.ssl-images-amazon.com/images/I/411XuRv9r7L._SL500_._AC_SL500_.jpg" },
+  { "id": 118, "img": "https://img.bestdealplus.com/ae04/kf/H78e94de712f6412ab049d0fce6d4f2f24.jpg" },
+  { "id": 119, "img": "https://img4.dhresource.com/webp/m/0x0/f3/albu/jc/s/13/53df2eba-7e9e-4faf-b688-ef32f27cfa09.jpg" },
+  { "id": 120, "img": "https://www.beyoung.in/api/cache/catalog/products/trousers/aj25_p2b_lycra_gurkha/new/navy_lycra_gurkha_pants_base_16_09_2025_400x533.jpg" },
+  { "id": 121, "img": "https://m.media-amazon.com/images/I/71A7HShC1zL._AC_SX385_.jpg" },
+  { "id": 122, "img": "https://assets.ajio.com/medias/sys_master/root/20241209/qVEr/6756cb66c148fa1b30260113/-473Wx593H-700898625-grey-MODEL.jpg" },
+  { "id": 123, "img": "https://turbobrandsfactory.com/cdn/shop/files/DGR_bb4acbe7-1a76-4715-b946-d702b80c9d71_1370x.jpg?v=1758034227" },
+  { "id": 124, "img": "https://img.shopstyle-cdn.com/sim/f6/06/f606553ab02dd85707e792ff644318a4_xlarge/kangyan-cargo-trousers-for-men-men-pants-mens-casual-pants-mens-pants-fashion-loose-pants-baggy-cargo-pants-casual-trousers-relaxed-fit-cargo-pant-reg-and-big-and-tall-sizes.jpg" },
+  { "id": 125, "img": "https://images2.zoodmall.uz/cdn-cgi/image/w=500,fit=contain,f=auto/https%3A%2F%2Fimages2.zoodmall.com%2Fhttps%253A%2Fimg.joomcdn.net%2F1e1ca8714fc6fac9ff04ebedf1edd2b5581f18d3_original.jpeg" },
+  { "id": 126, "img": "https://down-sg.img.susercontent.com/file/12d8ed1a894d5e10de3d71cb0bda1aa1" },
+  { "id": 127, "img": "https://images.meesho.com/images/products/541882057/8lcde_512.webp?width=512" },
+  { "id": 128, "img": "https://images.vestiairecollective.com/images/resized/w=1246,q=75,f=auto,/produit/black-cotton-rick-owens-drkshdw-trousers-56544777-1_2.jpg" },
+  { "id": 129, "img": "https://i.ebayimg.com/images/g/VIUAAOSw6IJdulK0/s-l1200.jpg" },
+  { "id": 130, "img": "https://static-01.daraz.com.np/p/ab728f4abdea69f09fab9b5bdbf883a1.jpg" },
+  { "id": 131, "img": "https://static-01.daraz.com.np/p/1551c7e4c9d2cae2d4d22a98e0da9198.jpg" },
+  { "id": 132, "img": "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/MAY/14/GJK3ftOz_cb4d3230ecb8436099a4bfb2e593e727.jpg" },
+  { "id": 133, "img": "https://nobero.com/cdn/shop/files/8905816227806.jpg?v=1756281921" },
+  { "id": 134, "img": "https://img.drz.lazcdn.com/static/np/p/7cd94bbf7a5a273d693a4624123cd973.jpg_960x960q80.jpg_.webp" },
+  { "id": 135, "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsL74dHQ2ZjJrGu6zGMfDbUsK3X5hcOSokVndkMTGxbE527D4dta0FTPM0QmaMvqs5U2k&usqp=CAU" },
+  { "id": 136, "img": "https://images-cdn.ubuy.co.in/66849d5be366c27e381cfe15-mens-cargo-pants-relaxed-fit-parachute.jpg" },
+  { "id": 137, "img": "https://static-01.daraz.com.np/p/307eec560f3929a6c51df0fcd7c5e93c.jpg" },
+  { "id": 138, "img": "https://img4.dhresource.com/webp/m/0x0/f3/albu/jc/g/01/bef6296e-e0eb-4e6b-a2ed-62d8b235c242.jpg" },
+  { "id": 139, "img": "https://m.media-amazon.com/images/I/71MLb1mwU1L._UY1100_.jpg" },
+  { "id": 140, "img": "https://i5.walmartimages.com/asr/0745461f-0107-43fe-b7de-d577a6e87e28.00c780334029e99e3378df54c2586e62.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" },
+  { "id": 141, "img": "https://m.media-amazon.com/images/I/61L1+GGHkZL._UY1000_.jpg" },
+  { "id": 142, "img": "https://fortcollins.co.in/cdn/shop/files/fort-collins-relaxed-fit-cargo-track-pants-for-men-with-utility-pockets-in-wine-shade-tp212-1.webp?v=1744973537&width=2048" },
+  { "id": 143, "img": "https://m.media-amazon.com/images/I/61AyNdrWSsL._UY1000_.jpg" },
+  { "id": 144, "img": "https://img-lcwaikiki.mncdn.com/mnpadding/1020/1360/ffffff/pim/productimages/20242/7992768/v1/l_20242-w4lt90z8-hzz-94-75-93-189_a1.jpg" },
+  
+  { id: 145, img: "https://m.media-amazon.com/images/I/71ZSywHMLLL._UY1000_.jpg" },
+  { id: 146, img: "https://wearium.pk/cdn/shop/files/FullSizeRender_2b9de5e2-5541-4acc-893d-9578ecccb76c.jpg?v=1731063606&width=1080" },
+  { id: 147, img: "https://imagescdn.peterengland.com/img/app/product/3/39627671-12954593.jpg?auto=format&w=390" },
+  { id: 148, img: "https://rngsportshub.com.np/assets/tenant/uploads/media-uploader/rngsportshub/grid/grid-whatsapp-image-2025-03-07-at-22104-pm-21741501459.jpg" },
+  { id: 149, img: "https://taroob.in/cdn/shop/files/18.png?v=1682927590" },
+  { id: 150, img: "https://images.canadagoose.com/c_scale,f_auto,q_auto:best/cg-global/pages/CROSuperFilter/shop-mens-parkas.png" },
+  { id: 151, img: "https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/2024/NOVEMBER/28/kZXkrVOH_e597f94b58d74d298164c16f6e618cb7.jpg" },
+  { id: 152, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/SEPTEMBER/3/iJlqCnAE_20146141ffb242a7acb5fb3150b9f96e.jpg" },
+  { id: 153, img: "https://www.outters.pk/cdn/shop/products/IMG_1654copy.jpg?v=1667559294" },
+  { id: 154, img: "https://www.switchbacktravel.com/sites/default/files/image_fields/Best%20Of%20Gear%20Articles/Winter/Winter%20jackets/Patagonia%20Tres%203-in-1%20parka%20%28winter%20jacket%29.jpg" },
+  { id: 155, img: "https://buckmans.com/files/store/items/lg/patagonia-isthmusparka-nena2-fw2425.jpg" },
+  { id: 156, img: "https://imagescdn.peterengland.com/img/app/product/9/927467-11727452.jpg?auto=format&w=390" },
+  { id: 157, img: "https://leatherdirect.co.nz/wp-content/uploads/2024/02/blue-leather-jacket1.png.webp" },
+  { id: 158, img: "https://lsco.scene7.com/is/image/lsco/003AQ0000-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1120&hei=1494" },
+  { id: 159, img: "https://calvinklein-eu.scene7.com/is/image/CalvinKleinEU/J30J326386_1A4_main?$b2c_uplp_listing_2560$" },
+  { id: 160, img: "https://m.media-amazon.com/images/I/71zT0tJ2CjL._UY1100_.jpg" },
+  { id: 161, img: "https://ae01.alicdn.com/kf/S57979babe1564438b5d43092b15fbe73Q.jpg" },
+  { id: 162, img: "https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470118/item/usgoods_69_470118_3x4.jpg?width=250" },
+  { id: 163, img: "https://rukminim2.flixcart.com/image/368/490/xif0q/jacket/u/v/o/l-1-no-kgymlrd-kbjacket-kelonbro-original-imah4gypw9dkxu59.jpeg?q=90&crop=false" },
+  { id: 164, img: "https://img.ltwebstatic.com/images3_pi/2023/10/23/99/1698031231ad967b3884b08ab42a5c0116a4322c95_thumbnail_405x552.jpg" },
+  { id: 165, img: "https://assets.thenorthface.eu/images/t_Thumbnail/v1753203973/NF0A7QAW4GU-HERO/Mens-Alta-Vista-Rain-Jacket.jpg" },
+  { id: 166, img: "https://images-cdn.ubuy.co.in/66ce055f6ae2b216585443d4-cartoden-z011-men-39-s-denim-jacket.jpg" },
+  { id: 167, img: "https://img.drz.lazcdn.com/static/np/p/313b13cc405ab7f76556ade04d7a5dcc.jpg_720x720q80.jpg" },
+  { id: 168, img: "https://static-01.daraz.com.np/p/a638aee02b64521c547211f3514f2f8b.jpg" },
+  { id: 169, img: "https://m.media-amazon.com/images/I/41qL+bE7e7L._SR290,290_.jpg" },
+  { id: 170, img: "https://static-01.daraz.com.np/p/09a1aa158b7388598d6a7ac5cbfb4dfb.jpg" },
+  { id: 171, img: "https://img.drz.lazcdn.com/static/np/p/b9de4033c44ecb7d57053c2c3fd64910.jpg_720x720q80.jpg" },
+  { id: 172, img: "https://img.drz.lazcdn.com/static/np/p/f6fd7aa8872a7999371ffea330039d24.jpg_720x720q80.jpg" },
+  { id: 173, img: "https://i5.walmartimages.com/asr/c310b9a1-617c-43fe-8eff-a9d21192a67c.05219a87511b38a416dd9e0feda7c30f.jpeg" },
+  { id: 174, img: "https://www.rhino-leathers.com/image/cache/catalog/Product/Jacket/IMG_3455-web-1200x1200.jpg" },
+  { id: 175, img: "https://www.bonkerscorner.com/cdn/shop/files/Bonkerscorner_Looney_TunesRed_Varsity_Jacket_8.jpg?v=1734521285" },
+  { id: 176, img: "https://i5.walmartimages.com/seo/LEEy-world-Light-Winter-Jackets-for-Men-Men-s-Jacket-Casual-Winter-Cotton-Jacket-Thicken-Hooded-Cargo-Coat-Black-M_d1b4fb6a-202d-4365-8d0e-3fbe2c1f4f8a.79c40acd1d0705e09d63634699248fdd.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF" },
+  { id: 177, img: "https://m.media-amazon.com/images/I/71eJ2sbvC2L._UY1000_.jpg" },
+  { id: 178, img: "https://www.timberland.com.sg/wp-content/uploads/product/f24/A695W001-HERO.jpg" },
+  { id: 179, img: "https://www.carhartt-wip.com.au/media/catalog/product/-/i/-i023083_hz_01-st-03.png" },
+  { id: 180, img: "https://www.ruff.in/cdn/shop/files/7926_FS_R.BLUE_1.jpg?v=1739360864" },
+  { id: 181, img: "https://img.drz.lazcdn.com/static/np/p/87c03b68c13965f740e8287e6cc22031.jpg_720x720q80.jpg_.webp" },
+  { id: 182, img: "https://veirdo.in/cdn/shop/files/18_5.jpg?v=1754545490" },
+  { id: 183, img: "https://m.media-amazon.com/images/I/81wy4PsxSCL._UY1100_.jpg" },
+  { id: 184, img: "https://www.jiomart.com/images/product/500x630/rvfn6xqv2z/coloured-collar-t-shirt-for-men-casual-regular-fit-t-shirt-pure-cotton-lightweight-comfortable-classic-t-shirt-classic-vertical-stripes-medium-green-product-images-rvfn6xqv2z-0-202209090824.jpg" },
+  { id: 185, img: "https://fastcolors.in/cdn/shop/files/LIFE_Mens_Oversize_Tshirt_-_FastColors-4952919.jpg?v=1729851075&width=2048" },
+  { id: 186, img: "https://shosaqualitees.com/cdn/shop/files/Petrol_Blue_e84b87f4-f4d8-47e4-9a4f-8daef7ab391c.jpg?v=1712740771&width=1445" },
+  { id: 187, img: "https://www.montecarlo.in/cdn/shop/files/224066148-2-38_1.jpg?v=1739283767" },
+  { id: 188, img: "https://omaneshop.com/wp-content/uploads/2025/05/Trendy-CK-Style-Mens-TShirt.jpg" },
+  { id: 189, img: "https://5.imimg.com/data5/VT/NW/MY-13845748/men-27s-stylish-t-shirt.jpg" },
+  { id: 190, img: "https://levi.in/cdn/shop/files/0005E0003_01_Styleshot_360x.jpg?v=1756965836" },
+  { id: 191, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/31426987/2025/5/14/ec2267f5-fa09-4163-a495-d386865906c91747216712981-glitchez-Typography-Printed-Relaxed-Fit-T-shirt-721747216712-1.jpg" },
+  { id: 192, img: "https://i.pinimg.com/474x/d2/57/65/d25765e9a7d8d3146e00cde65a9e449c.jpg" },
+  { id: 193, img: "https://underarmour.scene7.com/is/image/Underarmour/V5-6009095-001_FC?rp=standard-0pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640&size=512,640" },
+  { id: 194, img: "https://www.hopkicks.pk/image/cache/catalog/2024/OCT%2024/2nd%20session%20clothing/2/3-1100x1100.jpg" },
+  { id: 195, img: "https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/28137932/2024/3/19/10fa6957-1082-4a8e-a7fa-b28e8a4d7dc11710836900879-NOBERO-Men-Typography-Printed-Applique-T-shirt-2971710836900-7.jpg" },
+  { id: 196, img: "https://img.kwcdn.com/product/open/2024-08-17/1723901373787-877e307f45ae494b9118e9b43d2f41e0-goods.jpeg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp" },
+  { id: 197, img: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_300,h_300/global/631641/14/mod01/fnd/IND/fmt/png/F1%C2%AE-Graphic-Men's-Motorsport-Ringer-Tee" },
+  { id: 198, img: "https://asda.scene7.com/is/image/Asda/5059203379593?hei=523&wid=392&qlt=85&fmt=pjpg&resmode=sharp2&op_usm=1.1,0.5,0,0&defaultimage=default_details_George_rd" },
+  { id: 199, img: "https://images-na.ssl-images-amazon.com/images/I/51b0lITBHeL._AC_UL600_SR600,600_.jpg" },
+  { id: 200, img: "https://assets.thenorthface.com/images/t_img/f_auto,h_400,w_344,e_unsharp_mask:150/dpr_2.0/v1752758799/NF0A8E3M8K2-HERO/Mens-Mountain-Logo-Relaxed-Pocket-Tee.png" },
+  { id: 201, img: "https://i.pinimg.com/564x/d3/b3/f3/d3b3f3f836d8502d05d4e5713655dd3e.jpg" },
+  { id: 202, img: "https://fkngymwear.com/cdn/shop/files/LiftersOversizedTee.jpg?v=1699272148" },
+  { id: 203, img: "https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/36915/uploads/urunresimleri/buyuk/gym-rag-top-oversize-t-shirt-87-44f.jpg" },
+  { id: 204, img: "https://collegiateset.com/cdn/shop/products/315frkV51ZS._SL500__422629_3f3ad01f-c5dd-49a0-a368-45324de56741.jpg?v=1700070748" },
+  { id: 205, img: "https://images-na.ssl-images-amazon.com/images/I/71rZBXKhbmL._AC_UL600_SR600,600_.jpg" },
+  { id: 206, img: "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/3e76f405-425e-4caa-a3bd-47fedc22c8b2/AS+M+NSW+TEE+LBR+SSNL+CLUB.png" },
+  { id: 207, img: "https://assets.ajio.com/medias/sys_master/root/20230623/abKI/64953400d55b7d0c63b5086b/-473Wx593H-464620148-maroon-MODEL.jpg" },
+  { id: 208, img: "https://assets.myntassets.com/w_412,q_30,dpr_3,fl_progressive,f_webp/assets/images/31636884/2025/5/26/8fd0c05a-1bbb-48ab-bbfe-218fe97db99b1748232027099-Puma-Men-Printed-Cotton-Slim-Fit-T-Shirt-1201748232026438-1.jpg" },
+  { id: 209, img: "https://assets.ajio.com/medias/sys_master/root/20240522/eCD7/664df7ae16fd2c6e6a1bf8a1/-473Wx593H-442423766-black-MODEL.jpg" },
+  { id: 210, img: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/586724/01/fnd/IND/fmt/png/Active-Big-Logo-Regular-Fit-Men's-T-shirt" },
+  { id: 211, img: "https://veirdo.in/cdn/shop/files/01_0004_8_9550f34c-29a5-445a-98cc-7038d725642d.jpg?v=1753523542" },
+  { id: 212, img: "https://cdn10.nnnow.com/web-images/large/styles/LGTBNH6BI3S/1720511891032/1.jpg" },
+  { id: 213, img: "https://replayjeans.kleecks-cdn.com/nl/media/catalog/product/M/3/M3241_000_22662G_619_2.jpg" },
+  { id: 214, img: "https://assets.ajio.com/medias/sys_master/root/20240715/DwLz/669551186f60443f313ed1f8/-473Wx593H-700196137-black-MODEL.jpg" },
+  { id: 215, img: "https://marottastore.com/cdn/shop/files/immagine-1-roy-rogers-rru90048-tp-t-shirt-pocket-man-sun-t-shirt-rru90048-c0082-jpg.jpg?v=1736444023" },
+  
+  { id: 216, img: "https://cdn.shopify.com/s/files/1/0242/0156/0160/files/Duo-Model-Unisex-Pressure-Washed-Heavyweight-Tee-Oversize-Black-White-1.jpg?v=1755150268" },
+  
+  { id: 217, img: "https://www.mountcart.in/wp-content/uploads/2024/06/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-3-1.jpg" },
+  { id: 218, img: "https://brandedcountrywear.com/cdn/shop/files/10058773_front_warm.jpg?v=1746639036" },
+  { id: 219, img: "https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large" },
+  
+  
+{ id: 220, img: "https://m.media-amazon.com/images/I/31sZk71NtPL._SY1000_.jpg" },
+  { id: 221, img: "https://eu.thefrankieshop.com/cdn/shop/products/beo-blazer-charcoal-blazer-the-frankie-shop-280096.jpg?v=1655465571" },
+  { id: 222, img: "https://st2.depositphotos.com/1017228/7475/i/950/depositphotos_74752425-stock-photo-fashion-young-man-in-glasses.jpg" },
+   { id: 223, img: "https://cdn.shopify.com/s/files/1/0163/6622/files/Hands_in_pockets_web_1.jpg?v=1669923238" },
+    
+
+
+  
+ 
+
+
+ 
+];
+
+
+    // Get product id from URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    // Show only that product
+    if (products[id]) {
+      
+      document.getElementById("product-img").src = products[id].img;
+      
+    } else {
+      document.body.innerHTML = "<h1>Product not found</h1>";
+    }
+    
+  </script>
+</body>
+</html>

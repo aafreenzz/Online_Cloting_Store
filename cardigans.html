@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+  }
+  h2 { text-align: center; }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .product-card h4 {
+    margin: 10px 0 5px;
+  }
+  .product-card span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  .add-btn {
+    padding: 5px 10px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+</style>
+</head>
+<body>
+<div style="background-color: bisque;text-align: center;">
+<h2>Pamper Yourself With Our Cardigan Collections</h2>
+</div>
+<div class="gallery" id="productGallery"></div>
+
+<script>
+const products = [
+  
+  { name:"Cardigans", price:16, img:"https://myer-media.com.au/wcsstore/MyerCatalogAssetStore/images/70/707/2518/100/1/113485780/113485780_4_720x928.webp?w=1920&q=75", url:"pruducts.html?id=126" },
+  { name:"Cardigans", price:17, img:"https://i.ebayimg.com/images/g/nIwAAOSwEm9kboUZ/s-l400.png", url:"pruducts.html?id=127" },
+  { name:"Cardigans", price:18, img:"https://media.cupshe.com/cdn-review.cupshe.com/cmc-admin/product/20240913/eb2580895e6d08d38108032419e43051.jpg", url:"pruducts.html?id=128" },
+  { name:"Cardigans", price:19, img:"https://m.media-amazon.com/images/I/81A6X+IPP0L.jpg", url:"pruducts.html?id=129" },
+  { name:"Cardigans", price:20, img:"https://m.media-amazon.com/images/I/71mnw5yuRBL._UY1000_.jpg", url:"pruducts.html?id=130" },
+  { name:"Cardigans", price:21, img:"https://pinkmartinicollection.com/cdn/shop/products/Pinkmartini61f31dc06bbbc361f31dc06be13.6438753661f31dc06be13.jpg?v=1666889201", url:"pruducts.html?id=131" },
+  { name:"Cardigans", price:22, img:"https://images-na.ssl-images-amazon.com/images/I/81-6xmclYTL._AC_UL600_SR600,600_.jpg", url:"pruducts.html?id=132" },
+  { name:"Cardigans", price:23, img:"https://www.apothea.com/cdn/shop/files/3.11.24Studio_Lifestyle0185_4e022496-5bea-4579-a4e0-b815075ed450.jpg?v=1710876595", url:"pruducts.html?id=133" },
+  { name:"Cardigans", price:24, img:"https://www.leftonthread.com/cdn/shop/files/23909601_06bd6d3a-8b97-41de-a6d1-7e5c94df0ba0.jpg?v=1756931115&width=2000", url:"pruducts.html?id=134" },
+  { name:"Cardigans", price:25, img:"https://i5.walmartimages.com/asr/b81bdf7c-d3b1-466e-b2ef-938a96f4eee2.f11dea584b1a5ea83ef38f23a623fbc0.jpeg", url:"pruducts.html?id=135" },
+  { name:"Cardigans", price:26, img:"https://www.denimculture.com.au/cdn/shop/files/jenae-knit-cardigan-kc524882-peach-100--v1-600.jpg?v=1753250274&width=533", url:"pruducts.html?id=136" },
+  { name:"Cardigans", price:27, img:"https://dynamic.zacdn.com/Y1Y6KHDuOy9mL5eZl6Vuo1qibKE=/filters:quality(70):format(webp)/https://static-sg.zacdn.com/p/fred-perry-1136-5729893-2.jpg", url:"pruducts.html?id=137" },
+  { name:"Cardigans", price:28, img:"https://i2-prod.walesonline.co.uk/article31503003.ece/ALTERNATES/s615/0_River-IslandJPG.jpg", url:"pruducts.html?id=138" },
+  { name:"Cardigans", price:29, img:"https://assets.ajio.com/medias/sys_master/root/20240731/eLUd/66aa3cad6f60443f31dce39b/-1117Wx1400H-700247865-green-MODEL.jpg", url:"pruducts.html?id=139" },
+  { name:"Cardigans", price:30, img:"https://dmfashion.com/cdn/shop/files/NEW235A8252_720x.jpg?v=1717450501", url:"pruducts.html?id=140" },
+  { name:"Cardigans", price:31, img:"https://i.pinimg.com/736x/a1/bd/80/a1bd803b6212d041690824ac69e92a95.jpg", url:"pruducts.html?id=141" },
+  { name:"Cardigans", price:32, img:"https://throughthestitch.com/wp-content/uploads/2020/04/knit-cardigan-pattern-jacket-knitting-pattern-1.jpg", url:"pruducts.html?id=142" },
+  { name:"Cardigans", price:33, img:"https://m.media-amazon.com/images/I/81sRBGHRncL._AC_SX466_.jpg", url:"pruducts.html?id=143" },
+  { name:"Cardigans", price:34, img:"https://media.kohlsimg.com/is/image/kohls/6856338?wid=600&hei=600&op_sharpen=1", url:"pruducts.html?id=144" },
+  { name:"Cardigans", price:35, img:"https://www.victoriajacket.com/wp-content/uploads/2025/01/Molly-Parker-TV-Series-Doc-2025-Amy-Larsen-Cardigan.jpg", url:"pruducts.html?id=145" },
+  { name:"Cardigans", price:36, img:"https://shinefashion.nz/cdn/shop/files/CH61BAIMEESTARCARDIBLACK_179.99_5.jpg?v=1707353026&width=1200", url:"pruducts.html?id=146" },
+  { name:"Cardigans", price:37, img:"https://www.amiparis.com/cdn/shop/files/UKC367.018_ae53e1c3-10c2-46f8-b2db-e6043d8bd4dc.jpg?v=1757265575&width=500", url:"pruducts.html?id=147" },
+  { name:"Cardigans", price:38, img:"https://cdn18.nnnow.com/web-images/large/styles/ASAJFIWYOA1/1745322482551/1.jpg", url:"pruducts.html?id=148" },
+  { name:"Cardigans", price:39, img:"https://img4.dhresource.com/webp/m/0x0/f3/albu/jc/s/28/35d39a1e-227c-41db-9de9-7516a8781fba.jpg", url:"pruducts.html?id=149" },
+  { name:"Cardigans", price:40, img:"https://www.hobbs.com/dw/image/v2/BDCH_PRD/on/demandware.static/-/Sites-hobbs-catalog/default/dwef80437c/images/0123-9303-1144L00/0123-9303-1144L00-AMY-CARDIGAN-FUCHSIA-PINK_02.jpg", url:"pruducts.html?id=150" },
+  { name:"Cardigans", price:41, img:"https://www.amiparis.com/cdn/shop/files/UKC365.KN0135_18de1291-3c89-46fc-81ce-ea3d41912701.jpg?v=1757264960&width=500", url:"pruducts.html?id=151" },
+  { name:"Cardigans", price:42, img:"https://d3rfhm6ilkew5i.cloudfront.net/spree/images/attachments/000/035/888/large/Truth-Hurts-Cardigan_FGY_Mellow-Mauve_11_INDEX.jpg?1677765960", url:"pruducts.html?id=152" },
+  { name:"Cardigans", price:43, img:"https://isv.prod.lovecrafts.co/v1/images/20542919b0bcc1e1938a8ac3343d9c90/19b1b162-668d-46b1-975d-97f5285759f4.jpeg/0/-/1000x1000", url:"pruducts.html?id=153" }
+  
+];
+
+
+
+const gallery = document.getElementById('productGallery');
+
+function addToCart(product) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(product);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  alert(`${product.name} added to your cart!`);
+}
+
+// Generate product cards
+products.forEach((product) => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+  img.onclick = () => { window.location.href = product.url; };
+
+  const name = document.createElement('h4');
+  name.textContent = product.name;
+
+  const price = document.createElement('span');
+  price.textContent = `$${product.price.toFixed(2)}`;
+
+  const btn = document.createElement('button');
+  btn.className = 'add-btn';
+  btn.textContent = 'Add to Cart';
+  btn.onclick = () => addToCart(product);
+
+  card.appendChild(img);
+  card.appendChild(name);
+  card.appendChild(price);
+  card.appendChild(btn);
+
+  gallery.appendChild(card);
+});
+</script>
+
+</body>
+</html>
