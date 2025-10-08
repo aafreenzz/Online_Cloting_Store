@@ -7,68 +7,112 @@
 <style>
   body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
   }
+
   .header-container {
     background-color: rgb(139, 124, 104);
-    padding: 10px;
+    padding: 15px 10px;
   }
+
   .header-container h2 {
     text-align: center;
     margin: 0;
     color: white;
+    font-size: 20px;
   }
+
   .subheader {
     background-color: rgb(78, 78, 78);
-    padding: 10px;
+    padding: 8px 10px;
   }
+
   .subheader h3 {
     margin: 0;
     text-align: center;
     color: white;
+    font-size: 16px;
   }
+
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 15px;
   }
+
   .product-card {
     position: relative;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     cursor: pointer;
+    transition: transform 0.2s;
   }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
   .product-card img {
-    width: 180px;
-    height: 200px;
+    width: 100%;
+    height: 180px;
     object-fit: cover;
     display: block;
-    margin: 0 auto;
   }
+
   .product-info {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 86%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
     background-color: rgb(192, 194, 194);
-    padding: 5px;
-    box-sizing: border-box;
     font-size: 14px;
+    font-weight: 500;
   }
+
   .add-btn {
-    float: right;
-    padding: 3px 8px;
+    padding: 4px 8px;
     border: none;
     background-color: #555;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 12px;
   }
+
   .add-btn:hover {
     background-color: #777;
+  }
+
+  @media (max-width: 768px) {
+    .product-card img {
+      height: 160px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+    }
+
+    .product-card img {
+      height: 140px;
+    }
+
+    .product-info {
+      font-size: 12px;
+      padding: 4px 6px;
+    }
+
+    .add-btn {
+      font-size: 10px;
+      padding: 3px 6px;
+    }
   }
 </style>
 </head>
@@ -84,46 +128,44 @@
 <div class="gallery" id="productGallery"></div>
 
 <script>
-  const products = [
-   
-    { name:"Jacket", price:13, img:"https://m.media-amazon.com/images/I/71ZSywHMLLL._UY1000_.jpg", url:"product.html?id=144" },
-    { name:"Jacket", price:14, img:"https://wearium.pk/cdn/shop/files/FullSizeRender_2b9de5e2-5541-4acc-893d-9578ecccb76c.jpg?v=1731063606&width=1080", url:"product.html?id=145" },
-    { name:"Jacket", price:15, img:"https://imagescdn.peterengland.com/img/app/product/3/39627671-12954593.jpg?auto=format&w=390", url:"product.html?id=146" },
-    { name:"Jacket", price:16, img:"https://rngsportshub.com.np/assets/tenant/uploads/media-uploader/rngsportshub/grid/grid-whatsapp-image-2025-03-07-at-22104-pm-21741501459.jpg", url:"product.html?id=147" },
-    { name:"Jacket", price:17, img:"https://taroob.in/cdn/shop/files/18.png?v=1682927590", url:"product.html?id=148" },
-    { name:"Jacket", price:18, img:"https://images.canadagoose.com/c_scale,f_auto,q_auto:best/cg-global/pages/CROSuperFilter/shop-mens-parkas.png", url:"product.html?id=149" },
-    { name:"Jacket", price:19, img:"https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/2024/NOVEMBER/28/kZXkrVOH_e597f94b58d74d298164c16f6e618cb7.jpg", url:"product.html?id=150" },
-    { name:"Jacket", price:20, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/SEPTEMBER/3/iJlqCnAE_20146141ffb242a7acb5fb3150b9f96e.jpg", url:"product.html?id=151" },
-    { name:"Jacket", price:21, img:"https://www.outters.pk/cdn/shop/products/IMG_1654copy.jpg?v=1667559294", url:"product.html?id=152" },
-    { name:"Jacket", price:22, img:"https://www.switchbacktravel.com/sites/default/files/image_fields/Best%20Of%20Gear%20Articles/Winter/Winter%20jackets/Patagonia%20Tres%203-in-1%20parka%20%28winter%20jacket%29.jpg", url:"product.html?id=153" },
-    { name:"Jacket", price:23, img:"https://buckmans.com/files/store/items/lg/patagonia-isthmusparka-nena2-fw2425.jpg", url:"product.html?id=154" },
-    { name:"Jacket", price:24, img:"https://imagescdn.peterengland.com/img/app/product/9/927467-11727452.jpg?auto=format&w=390", url:"product.html?id=155" },
-    { name:"Jacket", price:25, img:"https://leatherdirect.co.nz/wp-content/uploads/2024/02/blue-leather-jacket1.png.webp", url:"product.html?id=156" },
-    { name:"Jacket", price:26, img:"https://lsco.scene7.com/is/image/lsco/003AQ0000-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1120&hei=1494", url:"product.html?id=157" },
-    { name:"Jacket", price:27, img:"https://calvinklein-eu.scene7.com/is/image/CalvinKleinEU/J30J326386_1A4_main?$b2c_uplp_listing_2560$", url:"product.html?id=158" },
-    { name:"Jacket", price:28, img:"https://m.media-amazon.com/images/I/71zT0tJ2CjL._UY1100_.jpg", url:"product.html?id=159" },
-    { name:"Jacket", price:29, img:"https://ae01.alicdn.com/kf/S57979babe1564438b5d43092b15fbe73Q.jpg", url:"product.html?id=160" },
-    { name:"Jacket", price:30, img:"https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470118/item/usgoods_69_470118_3x4.jpg?width=250", url:"product.html?id=161" },
-    { name:"Jacket", price:31, img:"https://rukminim2.flixcart.com/image/368/490/xif0q/jacket/u/v/o/l-1-no-kgymlrd-kbjacket-kelonbro-original-imah4gypw9dkxu59.jpeg?q=90&crop=false", url:"product.html?id=162" },
-    { name:"Jacket", price:32, img:"https://img.ltwebstatic.com/images3_pi/2023/10/23/99/1698031231ad967b3884b08ab42a5c0116a4322c95_thumbnail_405x552.jpg", url:"product.html?id=163" },
-    { name:"Jacket", price:33, img:"https://assets.thenorthface.eu/images/t_Thumbnail/v1753203973/NF0A7QAW4GU-HERO/Mens-Alta-Vista-Rain-Jacket.jpg", url:"product.html?id=164" },
-    { name:"Jacket", price:34, img:"https://images-cdn.ubuy.co.in/66ce055f6ae2b216585443d4-cartoden-z011-men-39-s-denim-jacket.jpg", url:"product.html?id=165" },
-    { name:"Jacket", price:35, img:"https://img.drz.lazcdn.com/static/np/p/313b13cc405ab7f76556ade04d7a5dcc.jpg_720x720q80.jpg", url:"product.html?id=166" },
-    { name:"Jacket", price:36, img:"https://static-01.daraz.com.np/p/a638aee02b64521c547211f3514f2f8b.jpg", url:"product.html?id=167" },
-    { name:"Jacket", price:37, img:"https://m.media-amazon.com/images/I/41qL+bE7e7L._SR290,290_.jpg", url:"product.html?id=168" },
-    { name:"Jacket", price:38, img:"https://static-01.daraz.com.np/p/09a1aa158b7388598d6a7ac5cbfb4dfb.jpg", url:"product.html?id=169" },
-    { name:"Jacket", price:39, img:"https://img.drz.lazcdn.com/static/np/p/b9de4033c44ecb7d57053c2c3fd64910.jpg_720x720q80.jpg", url:"product.html?id=170" },
-    { name:"Jacket", price:40, img:"https://img.drz.lazcdn.com/static/np/p/f6fd7aa8872a7999371ffea330039d24.jpg_720x720q80.jpg", url:"product.html?id=171" },
-    { name:"Jacket", price:41, img:"https://i5.walmartimages.com/asr/c310b9a1-617c-43fe-8eff-a9d21192a67c.05219a87511b38a416dd9e0feda7c30f.jpeg", url:"product.html?id=172" },
-    { name:"Jacket", price:42, img:"https://www.rhino-leathers.com/image/cache/catalog/Product/Jacket/IMG_3455-web-1200x1200.jpg", url:"product.html?id=173" },
-    { name:"Jacket", price:43, img:"https://www.bonkerscorner.com/cdn/shop/files/Bonkerscorner_Looney_TunesRed_Varsity_Jacket_8.jpg?v=1734521285", url:"product.html?id=174" },
-    { name:"Jacket", price:44, img:"https://i5.walmartimages.com/seo/LEEy-world-Light-Winter-Jackets-for-Men-Men-s-Jacket-Casual-Winter-Cotton-Jacket-Thicken-Hooded-Cargo-Coat-Black-M_d1b4fb6a-202d-4365-8d0e-3fbe2c1f4f8a.79c40acd1d0705e09d63634699248fdd.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"product.html?id=175" },
-    { name:"Jacket", price:45, img:"https://m.media-amazon.com/images/I/71eJ2sbvC2L._UY1000_.jpg", url:"product.html?id=176" },
-    { name:"Jacket", price:46, img:"https://www.timberland.com.sg/wp-content/uploads/product/f24/A695W001-HERO.jpg", url:"product.html?id=177" },
-    { name:"Jacket", price:47, img:"https://www.carhartt-wip.com.au/media/catalog/product/-/i/-i023083_hz_01-st-03.png", url:"product.html?id=178" },
-    { name:"Jacket", price:48, img:"https://www.ruff.in/cdn/shop/files/7926_FS_R.BLUE_1.jpg?v=1739360864", url:"product.html?id=179" }
+const products = [
+  { name:"Jacket", price:13, img:"https://m.media-amazon.com/images/I/71ZSywHMLLL._UY1000_.jpg", url:"product.html?id=144" },
+  { name:"Jacket", price:14, img:"https://wearium.pk/cdn/shop/files/FullSizeRender_2b9de5e2-5541-4acc-893d-9578ecccb76c.jpg?v=1731063606&width=1080", url:"product.html?id=145" },
+  { name:"Jacket", price:15, img:"https://imagescdn.peterengland.com/img/app/product/3/39627671-12954593.jpg?auto=format&w=390", url:"product.html?id=146" },
+  { name:"Jacket", price:16, img:"https://rngsportshub.com.np/assets/tenant/uploads/media-uploader/rngsportshub/grid/grid-whatsapp-image-2025-03-07-at-22104-pm-21741501459.jpg", url:"product.html?id=147" },
+  { name:"Jacket", price:17, img:"https://taroob.in/cdn/shop/files/18.png?v=1682927590", url:"product.html?id=148" },
+  { name:"Jacket", price:18, img:"https://images.canadagoose.com/c_scale,f_auto,q_auto:best/cg-global/pages/CROSuperFilter/shop-mens-parkas.png", url:"product.html?id=149" },
+  { name:"Jacket", price:19, img:"https://assets.myntassets.com/w_412,q_60,dpr_2,fl_progressive/assets/images/2024/NOVEMBER/28/kZXkrVOH_e597f94b58d74d298164c16f6e618cb7.jpg", url:"product.html?id=150" },
+  { name:"Jacket", price:20, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/2025/SEPTEMBER/3/iJlqCnAE_20146141ffb242a7acb5fb3150b9f96e.jpg", url:"product.html?id=151" },
+  { name:"Jacket", price:21, img:"https://www.outters.pk/cdn/shop/products/IMG_1654copy.jpg?v=1667559294", url:"product.html?id=152" },
+  { name:"Jacket", price:22, img:"https://www.switchbacktravel.com/sites/default/files/image_fields/Best%20Of%20Gear%20Articles/Winter/Winter%20jackets/Patagonia%20Tres%203-in-1%20parka%20%28winter%20jacket%29.jpg", url:"product.html?id=153" },
+  { name:"Jacket", price:23, img:"https://buckmans.com/files/store/items/lg/patagonia-isthmusparka-nena2-fw2425.jpg", url:"product.html?id=154" },
+  { name:"Jacket", price:24, img:"https://imagescdn.peterengland.com/img/app/product/9/927467-11727452.jpg?auto=format&w=390", url:"product.html?id=155" },
+  { name:"Jacket", price:25, img:"https://leatherdirect.co.nz/wp-content/uploads/2024/02/blue-leather-jacket1.png.webp", url:"product.html?id=156" },
+  { name:"Jacket", price:26, img:"https://lsco.scene7.com/is/image/lsco/003AQ0000-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1120&hei=1494", url:"product.html?id=157" },
+  { name:"Jacket", price:27, img:"https://calvinklein-eu.scene7.com/is/image/CalvinKleinEU/J30J326386_1A4_main?$b2c_uplp_listing_2560$", url:"product.html?id=158" },
+  { name:"Jacket", price:28, img:"https://m.media-amazon.com/images/I/71zT0tJ2CjL._UY1100_.jpg", url:"product.html?id=159" },
+  { name:"Jacket", price:29, img:"https://ae01.alicdn.com/kf/S57979babe1564438b5d43092b15fbe73Q.jpg", url:"product.html?id=160" },
+  { name:"Jacket", price:30, img:"https://image.uniqlo.com/UQ/ST3/us/imagesgoods/470118/item/usgoods_69_470118_3x4.jpg?width=250", url:"product.html?id=161" },
+  { name:"Jacket", price:31, img:"https://rukminim2.flixcart.com/image/368/490/xif0q/jacket/u/v/o/l-1-no-kgymlrd-kbjacket-kelonbro-original-imah4gypw9dkxu59.jpeg?q=90&crop=false", url:"product.html?id=162" },
+  { name:"Jacket", price:32, img:"https://img.ltwebstatic.com/images3_pi/2023/10/23/99/1698031231ad967b3884b08ab42a5c0116a4322c95_thumbnail_405x552.jpg", url:"product.html?id=163" },
+  { name:"Jacket", price:33, img:"https://assets.thenorthface.eu/images/t_Thumbnail/v1753203973/NF0A7QAW4GU-HERO/Mens-Alta-Vista-Rain-Jacket.jpg", url:"product.html?id=164" },
+  { name:"Jacket", price:34, img:"https://images-cdn.ubuy.co.in/66ce055f6ae2b216585443d4-cartoden-z011-men-39-s-denim-jacket.jpg", url:"product.html?id=165" },
+  { name:"Jacket", price:35, img:"https://img.drz.lazcdn.com/static/np/p/313b13cc405ab7f76556ade04d7a5dcc.jpg_720x720q80.jpg", url:"product.html?id=166" },
+  { name:"Jacket", price:36, img:"https://static-01.daraz.com.np/p/a638aee02b64521c547211f3514f2f8b.jpg", url:"product.html?id=167" },
+  { name:"Jacket", price:37, img:"https://m.media-amazon.com/images/I/41qL+bE7e7L._SR290,290_.jpg", url:"product.html?id=168" },
+  { name:"Jacket", price:38, img:"https://static-01.daraz.com.np/p/09a1aa158b7388598d6a7ac5cbfb4dfb.jpg", url:"product.html?id=169" },
+  { name:"Jacket", price:39, img:"https://img.drz.lazcdn.com/static/np/p/b9de4033c44ecb7d57053c2c3fd64910.jpg_720x720q80.jpg", url:"product.html?id=170" },
+  { name:"Jacket", price:40, img:"https://img.drz.lazcdn.com/static/np/p/f6fd7aa8872a7999371ffea330039d24.jpg_720x720q80.jpg", url:"product.html?id=171" },
+  { name:"Jacket", price:41, img:"https://i5.walmartimages.com/asr/c310b9a1-617c-43fe-8eff-a9d21192a67c.05219a87511b38a416dd9e0feda7c30f.jpeg", url:"product.html?id=172" },
+  { name:"Jacket", price:42, img:"https://www.rhino-leathers.com/image/cache/catalog/Product/Jacket/IMG_3455-web-1200x1200.jpg", url:"product.html?id=173" },
+  { name:"Jacket", price:43, img:"https://www.bonkerscorner.com/cdn/shop/files/Bonkerscorner_Looney_TunesRed_Varsity_Jacket_8.jpg?v=1734521285", url:"product.html?id=174" },
+  { name:"Jacket", price:44, img:"https://i5.walmartimages.com/seo/LEEy-world-Light-Winter-Jackets-for-Men-Men-s-Jacket-Casual-Winter-Cotton-Jacket-Thicken-Hooded-Cargo-Coat-Black-M_d1b4fb6a-202d-4365-8d0e-3fbe2c1f4f8a.79c40acd1d0705e09d63634699248fdd.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"product.html?id=175" },
+  { name:"Jacket", price:45, img:"https://m.media-amazon.com/images/I/71eJ2sbvC2L._UY1000_.jpg", url:"product.html?id=176" },
+  { name:"Jacket", price:46, img:"https://www.timberland.com.sg/wp-content/uploads/product/f24/A695W001-HERO.jpg", url:"product.html?id=177" },
+  { name:"Jacket", price:47, img:"https://www.carhartt-wip.com.au/media/catalog/product/-/i/-i023083_hz_01-st-03.png", url:"product.html?id=178" },
+  { name:"Jacket", price:48, img:"https://www.ruff.in/cdn/shop/files/7926_FS_R.BLUE_1.jpg?v=1739360864", url:"product.html?id=179" }
 ];
-
 
 // Generate product cards dynamically
 const container = document.getElementById('productGallery');
@@ -131,8 +173,6 @@ const container = document.getElementById('productGallery');
 products.forEach(product => {
   const card = document.createElement('div');
   card.className = 'product-card';
-
-  // Make whole card clickable
   card.onclick = () => { window.location.href = product.url; };
 
   const img = document.createElement('img');
@@ -141,10 +181,9 @@ products.forEach(product => {
 
   const info = document.createElement('div');
   info.className = 'product-info';
-
   info.innerHTML = `
     $${product.price.toFixed(2)}
-    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+    <button class="add-btn" onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add</button>
   `;
 
   card.appendChild(img);
