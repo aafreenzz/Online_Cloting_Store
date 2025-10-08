@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="fire.js" defer></script>
   <meta charset="UTF-8" />
   <title>Clothing Store</title>
   <style>
-    /* Basic Reset and Styling */
+    * {
+      box-sizing: border-box;
+    }
     body {
       background-color: rgb(204, 164, 164);
       margin: 0;
       font-family: Arial, sans-serif;
     }
 
-    /* Header styles */
     .move, .moves, .mova {
       text-align: center;
-      padding: 5px;
+      padding: 10px;
     }
     .move {
       background-color: pink;
@@ -24,15 +24,20 @@
     .moves {
       background-color: rgb(165, 65, 65);
       color: white;
+      border-radius: 20px;
+      animation: slideInRight 1s ease forwards;
     }
     .mova {
       background-color: antiquewhite;
+      border-radius: 20px;
+      animation: slideInLeft 1s ease forwards;
+      animation-delay: 0.2s;
     }
 
     /* Cart Button */
     .cart-btn {
       background-color: rgb(224, 163, 117);
-      position: absolute;
+      position: fixed;
       top: 10px;
       right: 10px;
       padding: 8px 12px;
@@ -41,7 +46,9 @@
       display: flex;
       align-items: center;
       font-size: 14px;
-      border-radius: 4px;
+      border-radius: 6px;
+      z-index: 1001;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     .cart-btn img {
       height: 20px;
@@ -49,28 +56,7 @@
       margin-right: 8px;
     }
 
-    /* Products container */
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    /* Individual product */
-    .product {
-      margin: 10px;
-      flex: 1 1 200px; /* flexible width */
-      max-width: 220px;
-      text-align: center;
-    }
-    .product img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* Sidebar toggle button */
+    /* Sidebar Button */
     .sidebar-toggle {
       position: fixed;
       top: 10px;
@@ -81,22 +67,24 @@
       padding: 10px;
       font-size: 20px;
       cursor: pointer;
-      z-index: 1000;
-      border-radius: 4px;
+      z-index: 1002;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* Sidebar styles */
+    /* Sidebar */
     #sidebar {
       position: fixed;
       top: 0;
-      left: -250px; /* hidden initially */
-      width: 200px;
+      left: -250px;
+      width: 220px;
       height: 100%;
       background-color: rgb(164, 66, 66);
       transition: left 0.3s ease;
-      z-index: 999;
+      z-index: 1000;
       display: flex;
       flex-direction: column;
+      padding-top: 50px;
     }
     #sidebar.show {
       left: 0;
@@ -109,100 +97,128 @@
       color: white;
       font-size: 16px;
       cursor: pointer;
+      text-align: left;
+      padding-left: 20px;
     }
     #sidebar button:hover {
       background-color: rgb(113, 65, 56);
     }
     #sidebar h3 {
       margin: 10px 0;
-      padding: 10px;
+      padding: 10px 20px;
       background-color: rgb(182, 114, 114);
     }
 
-    /* Responsive adjustments */
-    @media(max-width: 768px){
-      /* Make header font sizes smaller if needed */
-      h1 { font-size: 24px; }
-      h3 { font-size: 18px; }
-      
-      /* Position cart button differently or hide if desired */
-      .cart-btn {
-        position: fixed;
-        top: 10px;
-        right: 10px;
+    /* Products Section */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 40px;
+      margin-top: 80px;
+    }
+
+    .product {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+    .product img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* SLIDE ANIMATIONS */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .product img {
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      .product img {
+        height: 280px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Sidebar toggle button -->
   <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
 
-  <!-- Sidebar -->
   <div id="sidebar">
     <button onclick="location.href='signin.html'"><h3>Sign in</h3></button>
-    <h3 style="margin:0; padding:10px;">Categories:</h3>
+    <h3>Categories:</h3>
     <button onclick="location.href='women.html'">Women Fashion</button>
     <button onclick="location.href='men.html'">Men Fashion</button>
     <button onclick="location.href='footwear.html'">Footwears</button>
-    <button onclick="location.href='about.html'">About us</button>
-    <button onclick="location.href='help.html'">Help and Settings</button>
+    <button onclick="location.href='about.html'">About Us</button>
+    <button onclick="location.href='help.html'">Help & Settings</button>
   </div>
 
-  <!-- Header -->
   <div class="move">
     <h1>Welcome To ModaWear</h1>
   </div>
-
-  <!-- Sub header -->
   <div class="moves">
     <h3>Where Fashion Meets Model</h3>
   </div>
-
-  <!-- Promo -->
   <div class="mova">
     <h3>(Shop Now?) Help yourself with some of our popular assets</h3>
   </div>
 
-  <!-- Cart Button -->
   <button class="cart-btn" onclick="location.href='signin.html'">
     <img src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA=">
     My Cart
   </button>
 
-  <!-- Products -->
   <div class="products">
-    <div class="product">
-      <img src="https://cdn.shopify.com/s/files/1/0242/0156/0160/files/Duo-Model-Unisex-Pressure-Washed-Heavyweight-Tee-Oversize-Black-White-1.jpg?v=1755150268" alt="Product 1">
-    </div>
-    <div class="product">
-      <img src="https://www.mountcart.in/wp-content/uploads/2024/06/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-3-1.jpg" alt="Product 2">
-    </div>
-    <div class="product">
-      <img src="https://brandedcountrywear.com/cdn/shop/files/10058773_front_warm.jpg?v=1746639036" alt="Product 3">
-    </div>
-    <div class="product">
-      <img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large" alt="Product 4">
-    </div>
-    <div class="product">
-      <img src="https://m.media-amazon.com/images/I/31sZk71NtPL._SY1000_.jpg" alt="Product 5">
-    </div>
-    <div class="product">
-      <img src="https://eu.thefrankieshop.com/cdn/shop/products/beo-blazer-charcoal-blazer-the-frankie-shop-280096.jpg?v=1655465571" alt="Product 6">
-    </div>
+    <div class="product"><img src="https://cdn.shopify.com/s/files/1/0242/0156/0160/files/Duo-Model-Unisex-Pressure-Washed-Heavyweight-Tee-Oversize-Black-White-1.jpg?v=1755150268"></div>
+    <div class="product"><img src="https://www.mountcart.in/wp-content/uploads/2024/06/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-3-1.jpg"></div>
+    <div class="product"><img src="https://brandedcountrywear.com/cdn/shop/files/10058773_front_warm.jpg?v=1746639036"></div>
+    <div class="product"><img src="https://img.abercrombie.com/is/image/anf/KIC_155-4247-0173-278_model2.jpg?policy=product-large"></div>
+    <div class="product"><img src="https://m.media-amazon.com/images/I/31sZk71NtPL._SY1000_.jpg"></div>
+    <div class="product"><img src="https://eu.thefrankieshop.com/cdn/shop/products/beo-blazer-charcoal-blazer-the-frankie-shop-280096.jpg?v=1655465571"></div>
+    <div class="product"><img src="https://st2.depositphotos.com/1017228/7475/i/950/depositphotos_74752425-stock-photo-fashion-young-man-in-glasses.jpg"></div>
+    <div class="product"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?fm=jpg&q=60&w=3000"></div>
     
-    <div class="product">
-      <img src="https://st2.depositphotos.com/1017228/7475/i/950/depositphotos_74752425-stock-photo-fashion-young-man-in-glasses.jpg" alt="Product 8" style="height:auto; max-height:290px;">
-    </div>
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="Product 9" style="width:100%; max-width:500px; height:auto;">
-    </div>
-    <div class="product">
-      <img src="https://cdn.shopify.com/s/files/1/0163/6622/files/Hands_in_pockets_web_1.jpg?v=1669923238" alt="Product 10" style="width:100%; max-width:400px; height:auto;">
-    </div>
-  </div>
-
   <script>
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('show');
