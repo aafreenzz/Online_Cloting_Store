@@ -1,74 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="style.css">
-     <style>
-        
-     </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women's Clothing</title>
+  <style>
+    
+      body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url('https://www.oxanaalexphotography.com/wp-content/uploads/2023/05/photoshoot-ideas-050.jpg');
+  background-size: contain; /* Scale image down so it fits nicely */
+  background-repeat: no-repeat;
+  background-position: top center; /* position nicely at top */
+  background-attachment: fixed;
+  padding: 20px;
+}
+
+    
+
+    h1 {
+      height: 50px;
+      text-align: center;
+      background-color: rgb(214, 191, 158);
+      line-height: 50px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      width: 200px;
+      height: 50px;
+      border-radius: 25px;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    .left {
+      float: left;
+    }
+
+    .right {
+      float: right;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Individual colors */
+    .btn-skirts { background: #4f7189; }
+    .btn-dresses { background: #517a96; }
+    .btn-jeans { background: #7ca6c3; }
+    .btn-cardigans { background: #446a83; }
+    .btn-trousers { background: #81afce; }
+    .btn-leggings { background: #3e6c8a; }
+    .btn-shorts { background: #6795b4; }
+    .btn-jumpsuit { background: #3f6884; }
+    .btn-crops { background: #86a8bf; }
+    .btn-blazers { background: #487999; }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .left, .right {
+        float: none;
+        display: block;
+        margin: 10px auto;
+      }
+      h1 { font-size: 22px; height: auto; line-height: normal; padding: 10px; }
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        width: 70%;
+        max-width: 250px;
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
+<body>
+  <h1>Welcome to Women's Clothing</h1>
 
-<body style= "background-image:url(https://www.oxanaalexphotography.com/wp-content/uploads/2023/05/photoshoot-ideas-050.jpg);">
-    <h1 style="height: 50px;text-align:center;background-color:   rgb(214, 191, 158);"> Welcome to women's clothing</h1>
-   <div>
-        
-             <button  style="width:200px; height:50px; border-radius:25px; background:#4f7189; color:white; border:none; cursor:pointer;" onclick="location.href='skirts.html'"> Skirts</button>
-             </div> 
-             <div style="position: absolute;right: 100px;">
-                <section>
-                <button onclick="location.href='dresses.html'" style="width:200px;position: absolute;bottom:-1px;left:-100px; height:50px; border-radius:25px; background:#517a96; color:white; border:none; cursor:pointer;"> Dresses</button>
-             </section>
-             </div> <br>
-                <div style="position: absolute;right: 100px;">
-                    <section>
-                <button onclick="location.href='jeans.html'" style="width:200px; position:absolute;bottom:-60px;left:-100px; height:50px; border-radius:25px; background:#7ca6c3; color:white; border:none; cursor:pointer;"> Jeans</button>
-                </section>
-                </div> <br>
-                <div >
-                    <section>
-                <button  style="width:200px; height:50px; border-radius:25px; background:#446a83; color:white; border:none; cursor:pointer;"onclick="location.href='cardigans.html'"> Cardigans</button>
-                </section>
-                </div> <br>
-                <div style="position: absolute;right: 100px;">
-                    <section>
-                <button onclick="location.href='trousers.html'" style="width:200px; height:50px;position: absolute;bottom:-50px;left:-100px; border-radius:25px; background:#81afce; color:white; border:none; cursor:pointer;"> Trousers</button>
-                </section>
-                </div> <br>
-                <div>
-                    <section>
-                <button onclick="location.href='leggings.html'" style="width:200px; height:50px; border-radius:25px; background:#3e6c8a; color:white; border:none; cursor:pointer;"> Leggings</button>
-                </section>
-                </div> <br>
-                <div style="position: absolute;right: 100px;">  
-                    <section> 
-                <button onclick="location.href='shorts.html'" style="width:200px; height:50px;position: absolute;bottom:-40px;left:-100px; border-radius:25px; background:#6795b4; color:white; border:none; cursor:pointer;"> Shorts</button>
-                </section>
-                </div> <br>
-                <div>
-                    <section>
-                <button onclick="location.href='jumpsuit.html'" style="width:200px; height:50px; border-radius:25px; background:#3f6884; color:white; border:none; cursor:pointer;"> Jumpsuits & Rompers</button>
-                </section>
-                </div> <br>
-                
-                <div style="position: absolute;right: 100px;">
-                    <section>
-                <button onclick="location.href='crops.html'" style="width:200px; height:50px;position: absolute;bottom:-50px;left:-100px; border-radius:25px; background:#86a8bf; color:white; border:none; cursor:pointer;">  Crop Tops </button>
-                </section>
-                </div> <br>
-                <div>
-                    <section>
-                <button onclick="location.href='blazers.html'" style="width:200px; height:50px; border-radius:25px; background:#487999; color:white; border:none; cursor:pointer;"> Blazers</button>
-                </section>
-                    
-                </div>
-                
-               
-          
-            
+  <div class="clearfix">
+    <button class="btn btn-skirts left" onclick="location.href='skirts.html'">Skirts</button>
+    <button class="btn btn-dresses right" onclick="location.href='dresses.html'">Dresses</button>
+  </div>
 
-      
-            
+  <div class="clearfix">
+    <button class="btn btn-jeans left" onclick="location.href='jeans.html'">Jeans</button>
+    <button class="btn btn-cardigans right" onclick="location.href='cardigans.html'">Cardigans</button>
+  </div>
+
+  <div class="clearfix">
+    <button class="btn btn-trousers left" onclick="location.href='trousers.html'">Trousers</button>
+    <button class="btn btn-leggings right" onclick="location.href='leggings.html'">Leggings</button>
+  </div>
+
+  <div class="clearfix">
+    <button class="btn btn-shorts left" onclick="location.href='shorts.html'">Shorts</button>
+    <button class="btn btn-jumpsuit right" onclick="location.href='jumpsuit.html'">Jumpsuits & Rompers</button>
+  </div>
+
+  <div class="clearfix">
+    <button class="btn btn-crops left" onclick="location.href='crops.html'">Crop Tops</button>
+    <button class="btn btn-blazers right" onclick="location.href='blazers.html'">Blazers</button>
+  </div>
 </body>
 </html>
