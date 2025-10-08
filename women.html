@@ -1,116 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Women's Clothing</title>
-  <style>
-    
-      body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-image: url('https://www.oxanaalexphotography.com/wp-content/uploads/2023/05/photoshoot-ideas-050.jpg');
-  background-size: contain; /* Scale image down so it fits nicely */
-  background-repeat: no-repeat;
-  background-position: top center; /* position nicely at top */
-  background-attachment: fixed;
-  padding: 20px;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Women's Clothing</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    /* Background image focused on the face */
+    background-image: url('https://www.oxanaalexphotography.com/wp-content/uploads/2023/05/photoshoot-ideas-050.jpg');
+    background-size: 60% auto; /* smaller to keep face visible */
+    background-repeat: no-repeat;
+    background-position: top center; /* keep face in view */
+    background-attachment: scroll;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    
+  h1 {
+    text-align: center;
+    background-color: rgba(214, 191, 158, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 40px; /* more space above buttons */
+    width: 100%;
+    max-width: 600px;
+  }
 
-    h1 {
-      height: 50px;
-      text-align: center;
-      background-color: rgb(214, 191, 158);
-      line-height: 50px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+  .button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 150px; /* push buttons further down */
+    background-color: rgba(255,255,255,0.2); /* subtle overlay behind buttons */
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .button-grid button {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+  }
+
+  .button-grid button:hover {
+    transform: scale(1.05);
+  }
+
+  /* Individual colors */
+  .btn-skirts { background: #4f7189; }
+  .btn-dresses { background: #517a96; }
+  .btn-jeans { background: #7ca6c3; }
+  .btn-cardigans { background: #446a83; }
+  .btn-trousers { background: #81afce; }
+  .btn-leggings { background: #3e6c8a; }
+  .btn-shorts { background: #6795b4; }
+  .btn-jumpsuit { background: #3f6884; }
+  .btn-crops { background: #86a8bf; }
+  .btn-blazers { background: #487999; }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .button-grid {
+      grid-template-columns: 1fr; /* single column for mobile */
+      margin-top: 50px; /* less space for smaller screens */
+      padding: 10px;
     }
-
-    .btn {
-      width: 200px;
-      height: 50px;
-      border-radius: 25px;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin: 10px;
-      font-size: 16px;
+    .button-grid button {
+      font-size: 14px;
+      height: 45px;
     }
-
-    .left {
-      float: left;
-    }
-
-    .right {
-      float: right;
-    }
-
-    /* Clear floats */
-    .clearfix::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    /* Individual colors */
-    .btn-skirts { background: #4f7189; }
-    .btn-dresses { background: #517a96; }
-    .btn-jeans { background: #7ca6c3; }
-    .btn-cardigans { background: #446a83; }
-    .btn-trousers { background: #81afce; }
-    .btn-leggings { background: #3e6c8a; }
-    .btn-shorts { background: #6795b4; }
-    .btn-jumpsuit { background: #3f6884; }
-    .btn-crops { background: #86a8bf; }
-    .btn-blazers { background: #487999; }
-
-    /* Responsive adjustments */
-    @media (max-width: 992px) {
-      .left, .right {
-        float: none;
-        display: block;
-        margin: 10px auto;
-      }
-      h1 { font-size: 22px; height: auto; line-height: normal; padding: 10px; }
-    }
-
-    @media (max-width: 600px) {
-      .btn {
-        width: 70%;
-        max-width: 250px;
-        font-size: 14px;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
   <h1>Welcome to Women's Clothing</h1>
 
-  <div class="clearfix">
-    <button class="btn btn-skirts left" onclick="location.href='skirts.html'">Skirts</button>
-    <button class="btn btn-dresses right" onclick="location.href='dresses.html'">Dresses</button>
-  </div>
+  <div class="button-grid">
+    <!-- Left column buttons -->
+    <button class="btn btn-skirts" onclick="location.href='skirts.html'">Skirts</button>
+    <button class="btn btn-jeans" onclick="location.href='jeans.html'">Jeans</button>
+    <button class="btn btn-trousers" onclick="location.href='trousers.html'">Trousers</button>
+    <button class="btn btn-shorts" onclick="location.href='shorts.html'">Shorts</button>
+    <button class="btn btn-crops" onclick="location.href='crops.html'">Crop Tops</button>
 
-  <div class="clearfix">
-    <button class="btn btn-jeans left" onclick="location.href='jeans.html'">Jeans</button>
-    <button class="btn btn-cardigans right" onclick="location.href='cardigans.html'">Cardigans</button>
-  </div>
-
-  <div class="clearfix">
-    <button class="btn btn-trousers left" onclick="location.href='trousers.html'">Trousers</button>
-    <button class="btn btn-leggings right" onclick="location.href='leggings.html'">Leggings</button>
-  </div>
-
-  <div class="clearfix">
-    <button class="btn btn-shorts left" onclick="location.href='shorts.html'">Shorts</button>
-    <button class="btn btn-jumpsuit right" onclick="location.href='jumpsuit.html'">Jumpsuits & Rompers</button>
-  </div>
-
-  <div class="clearfix">
-    <button class="btn btn-crops left" onclick="location.href='crops.html'">Crop Tops</button>
-    <button class="btn btn-blazers right" onclick="location.href='blazers.html'">Blazers</button>
+    <!-- Right column buttons -->
+    <button class="btn btn-dresses" onclick="location.href='dresses.html'">Dresses</button>
+    <button class="btn btn-cardigans" onclick="location.href='cardigans.html'">Cardigans</button>
+    <button class="btn btn-leggings" onclick="location.href='leggings.html'">Leggings</button>
+    <button class="btn btn-jumpsuit" onclick="location.href='jumpsuit.html'">Jumpsuits & Rompers</button>
+    <button class="btn btn-blazers" onclick="location.href='blazers.html'">Blazers</button>
   </div>
 </body>
 </html>
