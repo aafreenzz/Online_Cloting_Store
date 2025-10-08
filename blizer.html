@@ -4,127 +4,59 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Products Collection</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-  .header-container {
-    background-color: rgb(139, 124, 104);
-    padding: 10px;
-  }
-  .header-container h2 {
-    text-align: center;
-    margin: 0;
-    color: white;
-  }
-  .subheader {
-    background-color: rgb(78, 78, 78);
-    padding: 10px;
-  }
-  .subheader h3 {
-    margin: 0;
-    text-align: center;
-    color: white;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-  }
-  .product-card {
-    position: relative;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .product-card img {
-    width: 180px;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto;
-  }
-  .product-info {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 86%;
-    background-color: rgb(192, 194, 194);
-    padding: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  .add-btn {
-    float: right;
-    padding: 3px 8px;
-    border: none;
-    background-color: #555;
-    color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  .add-btn:hover {
-    background-color: #777;
-  }
-</style>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="font-sans bg-gray-100">
 
-<div class="header-container">
-  <h2>Pamper yourself with these cute collections.</h2>
-  <div class="subheader">
-    <h3>Everything you need is here</h3>
+<!-- Header -->
+<div class="bg-[rgb(139,124,104)] p-4">
+  <h2 class="text-center text-white text-xl md:text-2xl">Pamper yourself with these cute collections.</h2>
+  <div class="bg-[rgb(78,78,78)] mt-2 p-3">
+    <h3 class="text-center text-white text-lg">Everything you need is here</h3>
   </div>
 </div>
 
-<div class="gallery" id="productGallery"></div>
+<!-- Gallery -->
+<div id="productGallery" class="grid gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
 
 <script>
-  const products = [
-   {  name:"Blazer",price:12,img: "https://rukminim2.flixcart.com/image/368/490/xif0q/blazer/f/7/w/42-pibzwnsfi16409-peter-england-original-imagxydnqa5vqhfz.jpeg?q=90&crop=false",url:"product.html?id=36"},
-   
-{ name:"Blazer",price:12, img: "https://m.media-amazon.com/images/I/51InVIt3OIL._AC_SL1001_.jpg",url:"product.html?id=37" },
-{ name:"Blazer",price:12,img: "https://assets.ajio.com/medias/sys_master/root1/20250818/r9kf/68a3331d3d468c61ab766d75/-473Wx593H-702128858-grey-MODEL.jpg",url:"product.html?id=38" },
-{  name:"Blazer",price:12, img: "https://5.imimg.com/data5/SELLER/Default/2023/10/357100907/ID/WZ/GK/54166109/men-casual-blazers.jpeg",url:"product.html?id=39" },
-{ name:"Blazer",price:12, img: "https://www.diyanu.com/cdn/shop/files/HamiMen_sAfricanPrintLightweightBlazer_MossBlackGeometric_-11_2194bf3c-f6aa-4e89-a561-1b2119014aa4.jpg?v=1704477261",url:"product.html?id=40" },
-{  name:"Blazer",price:12, img: "https://images.meesho.com/images/products/420709260/2nirx_512.webp?width=512",url:"product.html?id=41" },
-
-{   name:"Blazer",price:12,img: "https://www.justinmichaelemmanuel.com/wp-content/uploads/2023/10/casual-blazer-for-men-194tiq-1.jpg",url:"product.html?id=42" },
-{  name:"Blazer",price:12,img: "https://shop.westside.com/_next/image?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0266%2F6276%2F4597%2Ffiles%2F300973274STONE_1.jpg%3Fv%3D1724926471&w=2048&q=75",url:"product.html?id=43" },
-{  name:"Blazer",price:12, img: "https://frenchcrown.com/cdn/shop/files/BL2960-CBG-D513_1.jpg?v=1700655112&width=3500",url:"product.html?id=44" },
-
-{ name:"Blazer",price:12, img: "https://www.crimsouneclub.com/cdn/shop/files/UntitledSession03249_1080x.jpg?v=1754568629",url:"product.html?id=45" },
-{name:"Blazer",price:12 , img: "https://img.mensxp.com/media/content/2022/Nov/man-wearing-a-double-breasted-blazer_638475c89a512.jpeg?w=780&h=520&cc=1",url:"product.html?id=46" },
-{name:"Blazer",price:12 , img: "https://m.media-amazon.com/images/I/81paAo+A9RL._UY1100_.jpg" ,url:"product.html?id=47"},
-{ name:"Blazer",price:12, img: "https://images-na.ssl-images-amazon.com/images/I/61LutX4ZEQL._UL500_.jpg",url:"product.html?id=48" },
-{ name:"Blazer",price:12, img: "https://blog.g3fashion.com/wp-content/uploads/2022/12/All-White-Blazer-Ensemble-1-768x1024.jpg",url:"product.html?id=49" },
-{ name:"Blazer",price:12, img: "https://i5.walmartimages.com/seo/YanHoo-Gray-Plaid-Blazer-for-Slim-Fit-One-Button-Mens-Casual-Blazers-Stylish-Men-s-Dinner-Prom-Party-Jacket_62956b1f-30f7-4458-8213-b4b97a36a9be.7ad791838d5bd81447af4d63a0b7571e.jpeg",url:"product.html?id=50" },
-{ name:"Blazer",price:12, img: "https://s.alicdn.com/@sc04/kf/H4e3ff3cfa5b24e4e97bf3c528995d6779.jpg",url:"product.html?id=51" },
-{ name:"Blazer",price:12, img: "https://dennison.in/cdn/shop/files/07-02-2400077.jpg?v=1709192578&width=1080",url:"product.html?id=52" },
-{name:"Blazer",price:12 , img: "https://www.westside.com/cdn/shop/products/300902658GREY_4.jpg",url:"product.html?id=53" },
-{name:"Blazer",price:12 , img: "https://docket.kartmax.in/sites/9s145MyZrWdIAwpU0JYS/product-images/stunning_grey_printed_blazer_for_men_1742274850as3241091_1.jpg",url:"product.html?id=54" },
-{ name:"Blazer",price:12, img: "https://cdn.thecoolist.com/wp-content/uploads/2016/03/Acne-Studios-Black-Jack-Wool-Pique-Blazer.png",url:"product.html?id=55" },
-{ name:"Blazer",price:12, img: "https://rukminim2.flixcart.com/image/368/490/xif0q/blazer/a/b/b/-original-imahf3zfzafuzwzh.jpeg?q=90&crop=false",url:"product.html?id=56" },
-{name:"Blazer",price:12 , img: "https://southerntide.com/cdn/shop/files/charleston-blazer-perfectly-pale-khaki-lifestyle-7242_1024x1024.jpg?v=1746649677",url:"product.html?id=57" },
-{name:"Blazer",price:12 , img: "https://m.media-amazon.com/images/I/71HKumZmxbL._AC_SL1500_.jpg",url:"product.html?id=58" },
-{ name:"Blazer",price:12, img: "https://m.media-amazon.com/images/I/41EGC-QcR3L._SR290,290_.jpg",url:"product.html?id=59" },
-{ name:"Blazer",price:12, img: "https://jadeblue.com/cdn/shop/products/4msn_2.jpg?v=1685393348",url:"product.html?id=60" },
-{ name:"Blazer",price:12, img: "https://imagescdn.louisphilippe.com/img/app/product/3/39755988-15864808.jpg",url:"product.html?id=61" },
-{name:"Blazer",price:12 , img: "https://frenchcrown.in/cdn/shop/products/BL1392-SB_9.jpg?v=1658743330&width=1800",url:"product.html?id=62" },
-{ name:"Blazer",price:12, img: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/21145428/2022/12/9/47bdb987-2934-456a-83e6-fac320c1d7711670592298326MenGreySolidRegularFitFormalBlazer1.jpg",url:"product.html?id=63" },
-{ name:"Blazer",price:12, img: "https://m.media-amazon.com/images/I/41uMphglDPL._SY1000_.jpg" ,url:"product.html?id=64"},
-{ name:"Blazer",price:12, img: "https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/12554420/2020/10/16/9e79f09f-1184-4843-bcdc-bd4aea14a66c1602829611719-MANQ-Men-Blazers-2701602829609587-1.jpg",url:"product.html?id=65" },
-{ name:"Blazer",price:12, img: "https://blackberrys.com/cdn/shop/files/textured-bandhgala-blazer-in-wine-franco-blackberrys-clothing-1.jpg",url:"product.html?id=66" },
-{ name:"Blazer",price:12, img: "https://img.perniaspopupshop.com/catalog/product/s/n/SNGC032514_1.jpg?impolicy=listingimagenew",url:"product.html?id=67" },
-{ name:"Blazer",price:12, img: "https://assets.ajio.com/medias/sys_master/root/20240807/ACf2/66b2a4126f60443f31f2134c/-473Wx593H-700266903-maroon-MODEL.jpg" ,url:"product.html?id=68"},
-{ name:"Blazer",price:12, img: "https://imagescdn.louisphilippe.com/img/app/product/3/39622188-12731044.jpg",url:"product.html?id=69" },
-{name:"Blazer",price:12 , img: "https://www.allaboutsuit.com/pdcimg/list/image/2020/11/700f047d2b474b636cde9c435d8bed1c.jpg",url:"product.html?id=70" },
-{name:"Blazer",price:12 , img: "https://m.media-amazon.com/images/I/517+aO51wWL._UY1000_.jpg",url:"product.html?id=71" },
- 
+const products = [
+  { name:"Blazer", price:12, img:"https://rukminim2.flixcart.com/image/368/490/xif0q/blazer/f/7/w/42-pibzwnsfi16409-peter-england-original-imagxydnqa5vqhfz.jpeg?q=90&crop=false", url:"product.html?id=36" },
+  { name:"Blazer", price:12, img:"https://m.media-amazon.com/images/I/51InVIt3OIL._AC_SL1001_.jpg", url:"product.html?id=37" },
+  { name:"Blazer", price:12, img:"https://assets.ajio.com/medias/sys_master/root1/20250818/r9kf/68a3331d3d468c61ab766d75/-473Wx593H-702128858-grey-MODEL.jpg", url:"product.html?id=38" },
+  { name:"Blazer", price:12, img:"https://5.imimg.com/data5/SELLER/Default/2023/10/357100907/ID/WZ/GK/54166109/men-casual-blazers.jpeg", url:"product.html?id=39" },
+  { name:"Blazer", price:12, img:"https://www.diyanu.com/cdn/shop/files/HamiMen_sAfricanPrintLightweightBlazer_MossBlackGeometric_-11_2194bf3c-f6aa-4e89-a561-1b2119014aa4.jpg?v=1704477261", url:"product.html?id=40" },
+  { name:"Blazer", price:12, img:"https://images.meesho.com/images/products/420709260/2nirx_512.webp?width=512", url:"product.html?id=41" },
+  { name:"Blazer", price:12, img:"https://www.justinmichaelemmanuel.com/wp-content/uploads/2023/10/casual-blazer-for-men-194tiq-1.jpg", url:"product.html?id=42" },
+  { name:"Blazer", price:12, img:"https://shop.westside.com/_next/image?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0266%2F6276%2F4597%2Ffiles%2F300973274STONE_1.jpg%3Fv%3D1724926471&w=2048&q=75", url:"product.html?id=43" },
+  { name:"Blazer", price:12, img:"https://frenchcrown.com/cdn/shop/files/BL2960-CBG-D513_1.jpg?v=1700655112&width=3500", url:"product.html?id=44" },
+  { name:"Blazer", price:12, img:"https://www.crimsouneclub.com/cdn/shop/files/UntitledSession03249_1080x.jpg?v=1754568629", url:"product.html?id=45" },
+  { name:"Blazer", price:12, img:"https://img.mensxp.com/media/content/2022/Nov/man-wearing-a-double-breasted-blazer_638475c89a512.jpeg?w=780&h=520&cc=1", url:"product.html?id=46" },
+  { name:"Blazer", price:12, img:"https://m.media-amazon.com/images/I/81paAo+A9RL._UY1100_.jpg", url:"product.html?id=47" },
+  { name:"Blazer", price:12, img:"https://images-na.ssl-images-amazon.com/images/I/61LutX4ZEQL._UL500_.jpg", url:"product.html?id=48" },
+  { name:"Blazer", price:12, img:"https://blog.g3fashion.com/wp-content/uploads/2022/12/All-White-Blazer-Ensemble-1-768x1024.jpg", url:"product.html?id=49" },
+  { name:"Blazer", price:12, img:"https://i5.walmartimages.com/seo/YanHoo-Gray-Plaid-Blazer-for-Slim-Fit-One-Button-Mens-Casual-Blazers-Stylish-Men-s-Dinner-Prom-Party-Jacket_62956b1f-30f7-4458-8213-b4b97a36a9be.7ad791838d5bd81447af4d63a0b7571e.jpeg", url:"product.html?id=50" },
+  { name:"Blazer", price:12, img:"https://s.alicdn.com/@sc04/kf/H4e3ff3cfa5b24e4e97bf3c528995d6779.jpg", url:"product.html?id=51" },
+  { name:"Blazer", price:12, img:"https://dennison.in/cdn/shop/files/07-02-2400077.jpg?v=1709192578&width=1080", url:"product.html?id=52" },
+  { name:"Blazer", price:12, img:"https://www.westside.com/cdn/shop/products/300902658GREY_4.jpg", url:"product.html?id=53" },
+  { name:"Blazer", price:12, img:"https://docket.kartmax.in/sites/9s145MyZrWdIAwpU0JYS/product-images/stunning_grey_printed_blazer_for_men_1742274850as3241091_1.jpg", url:"product.html?id=54" },
+  { name:"Blazer", price:12, img:"https://cdn.thecoolist.com/wp-content/uploads/2016/03/Acne-Studios-Black-Jack-Wool-Pique-Blazer.png", url:"product.html?id=55" },
+  { name:"Blazer", price:12, img:"https://rukminim2.flixcart.com/image/368/490/xif0q/blazer/a/b/b/-original-imahf3zfzafuzwzh.jpeg?q=90&crop=false", url:"product.html?id=56" },
+  { name:"Blazer", price:12, img:"https://southerntide.com/cdn/shop/files/charleston-blazer-perfectly-pale-khaki-lifestyle-7242_1024x1024.jpg?v=1746649677", url:"product.html?id=57" },
+  { name:"Blazer", price:12, img:"https://m.media-amazon.com/images/I/71HKumZmxbL._AC_SL1500_.jpg", url:"product.html?id=58" },
+  { name:"Blazer", price:12, img:"https://m.media-amazon.com/images/I/41EGC-QcR3L._SR290,290_.jpg", url:"product.html?id=59" },
+  { name:"Blazer", price:12, img:"https://jadeblue.com/cdn/shop/products/4msn_2.jpg?v=1685393348", url:"product.html?id=60" },
+  { name:"Blazer", price:12, img:"https://imagescdn.louisphilippe.com/img/app/product/3/39755988-15864808.jpg", url:"product.html?id=61" },
+  { name:"Blazer", price:12, img:"https://frenchcrown.in/cdn/shop/products/BL1392-SB_9.jpg?v=1658743330&width=1800", url:"product.html?id=62" },
+  { name:"Blazer", price:12, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/21145428/2022/12/9/47bdb987-2934-456a-83e6-fac320c1d7711670592298326MenGreySolidRegularFitFormalBlazer1.jpg", url:"product.html?id=63" },
+  { name:"Blazer", price:12, img:"https://m.media-amazon.com/images/I/41uMphglDPL._SY1000_.jpg", url:"product.html?id=64" },
+  { name:"Blazer", price:12, img:"https://assets.myntassets.com/h_1440,q_75,w_1080/v1/assets/images/12554420/2020/10/16/9e79f09f-1184-4843-bcdc-bd4aea14a66c1602829611719-MANQ-Men-Blazers-2701602829609587-1.jpg", url:"product.html?id=65" },
+  { name:"Blazer", price:12, img:"https://blackberrys.com/cdn/shop/files/textured-bandhgala-blazer-in-wine-franco-blackberrys-clothing-1.jpg", url:"product.html?id=66" },
+  { name:"Blazer", price:12, img:"https://img.perniaspopupshop.com/catalog/product/s/n/SNGC032514_1.jpg?impolicy=listingimagenew", url:"product.html?id=67" },
+  { name:"Blazer", price:12, img:"https://assets.ajio.com/medias/sys_master/root/20240807/ACf2/66b2a4126f60443f31f2134c/-473Wx593H-700266903-maroon-MODEL.jpg", url:"product.html?id=68" },
+  { name:"Blazer", price:12, img:"https://imagescdn.louisphilippe.com/img/app/product/3/39622188-12731044.jpg", url:"product.html?id=69" },
+  { name:"Blazer", price:12, img:"https://www.allaboutsuit.com/pdcimg/list/image/2020/11/700f047d2b474b636cde9c435d8bed1c.jpg", url:"product.html?id=70" },
+  { name:"Blazer", price:12, img:"https://m.media-amazon.com/images/I/517+aO51wWL._UY1000_.jpg", url:"product.html?id=71" }
 ];
 
 // Generate product cards dynamically
@@ -132,21 +64,21 @@ const container = document.getElementById('productGallery');
 
 products.forEach(product => {
   const card = document.createElement('div');
-  card.className = 'product-card';
+  card.className = 'bg-white rounded-lg overflow-hidden shadow hover:shadow-lg cursor-pointer relative';
 
-  // Make whole card clickable
   card.onclick = () => { window.location.href = product.url; };
 
   const img = document.createElement('img');
   img.src = product.img;
   img.alt = product.name;
+  img.className = 'w-full h-48 object-cover';
 
   const info = document.createElement('div');
-  info.className = 'product-info';
+  info.className = 'absolute bottom-0 left-0 w-[86%] bg-gray-300 p-2 text-sm flex justify-between items-center';
 
   info.innerHTML = `
     $${product.price.toFixed(2)}
-    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+    <button class="bg-gray-700 text-white px-2 py-1 rounded text-xs hover:bg-gray-500" onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
   `;
 
   card.appendChild(img);
