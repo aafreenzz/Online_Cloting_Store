@@ -8,16 +8,15 @@
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    /* Background image focused on the face */
     background-image: url('https://www.oxanaalexphotography.com/wp-content/uploads/2023/05/photoshoot-ideas-050.jpg');
-    background-size: 60% auto; /* smaller to keep face visible */
+    background-size: contain; /* full image visible */
     background-repeat: no-repeat;
-    background-position: top center; /* keep face in view */
+    background-position: top center; /* keep face visible */
     background-attachment: scroll;
-    padding: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; /* buttons at bottom */
     align-items: center;
   }
 
@@ -26,36 +25,37 @@
     background-color: rgba(214, 191, 158, 0.9);
     padding: 15px;
     border-radius: 10px;
-    margin-bottom: 40px; /* more space above buttons */
-    width: 100%;
+    margin: 20px;
+    width: 90%;
     max-width: 600px;
   }
 
-  .button-grid {
+  .button-panel {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    width: 100%;
+    width: 90%;
     max-width: 600px;
-    margin-top: 150px; /* push buttons further down */
-    background-color: rgba(255,255,255,0.2); /* subtle overlay behind buttons */
+    background-color: rgba(0,0,0,0.3); /* transparent panel */
     padding: 20px;
     border-radius: 15px;
+    margin-bottom: 30px; /* space from bottom edge */
   }
 
-  .button-grid button {
+  .button-panel button {
     width: 100%;
-    height: 50px;
+    padding: 15px;
     border-radius: 25px;
     color: white;
     border: none;
     cursor: pointer;
     font-size: 16px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
   }
 
-  .button-grid button:hover {
+  .button-panel button:hover {
     transform: scale(1.05);
+    background-color: rgba(255,255,255,0.2);
   }
 
   /* Individual colors */
@@ -70,37 +70,42 @@
   .btn-crops { background: #86a8bf; }
   .btn-blazers { background: #487999; }
 
-  /* Responsive adjustments */
+  /* Responsive */
   @media (max-width: 600px) {
-    .button-grid {
-      grid-template-columns: 1fr; /* single column for mobile */
-      margin-top: 50px; /* less space for smaller screens */
-      padding: 10px;
+    .button-panel {
+      grid-template-columns: 1fr; /* single column on phone */
+      padding: 15px;
     }
-    .button-grid button {
+    .button-panel button {
       font-size: 14px;
-      height: 45px;
+      padding: 12px;
+    }
+    h1 {
+      font-size: 20px;
+      padding: 10px;
     }
   }
 </style>
 </head>
 <body>
-  <h1>Welcome to Women's Clothing</h1>
 
-  <div class="button-grid">
-    <!-- Left column buttons -->
-    <button class="btn btn-skirts" onclick="location.href='skirts.html'">Skirts</button>
-    <button class="btn btn-jeans" onclick="location.href='jeans.html'">Jeans</button>
-    <button class="btn btn-trousers" onclick="location.href='trousers.html'">Trousers</button>
-    <button class="btn btn-shorts" onclick="location.href='shorts.html'">Shorts</button>
-    <button class="btn btn-crops" onclick="location.href='crops.html'">Crop Tops</button>
+<h1>Welcome to Women's Clothing</h1>
 
-    <!-- Right column buttons -->
-    <button class="btn btn-dresses" onclick="location.href='dresses.html'">Dresses</button>
-    <button class="btn btn-cardigans" onclick="location.href='cardigans.html'">Cardigans</button>
-    <button class="btn btn-leggings" onclick="location.href='leggings.html'">Leggings</button>
-    <button class="btn btn-jumpsuit" onclick="location.href='jumpsuit.html'">Jumpsuits & Rompers</button>
-    <button class="btn btn-blazers" onclick="location.href='blazers.html'">Blazers</button>
-  </div>
+<div class="button-panel">
+  <!-- Left column buttons -->
+  <button class="btn btn-skirts" onclick="location.href='skirts.html'">Skirts</button>
+  <button class="btn btn-jeans" onclick="location.href='jeans.html'">Jeans</button>
+  <button class="btn btn-trousers" onclick="location.href='trousers.html'">Trousers</button>
+  <button class="btn btn-shorts" onclick="location.href='shorts.html'">Shorts</button>
+  <button class="btn btn-crops" onclick="location.href='crops.html'">Crop Tops</button>
+
+  <!-- Right column buttons -->
+  <button class="btn btn-dresses" onclick="location.href='dresses.html'">Dresses</button>
+  <button class="btn btn-cardigans" onclick="location.href='cardigans.html'">Cardigans</button>
+  <button class="btn btn-leggings" onclick="location.href='leggings.html'">Leggings</button>
+  <button class="btn btn-jumpsuit" onclick="location.href='jumpsuit.html'">Jumpsuits & Rompers</button>
+  <button class="btn btn-blazers" onclick="location.href='blazers.html'">Blazers</button>
+</div>
+
 </body>
 </html>
