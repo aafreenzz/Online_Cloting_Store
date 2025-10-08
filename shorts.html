@@ -7,160 +7,204 @@
 <style>
   body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0 20px;
+    background-color: #f9f9f9;
   }
+
   .header-container {
     background-color: rgb(139, 124, 104);
-    padding: 10px;
-  }
-  .header-container h2 {
+    padding: 15px 10px;
     text-align: center;
-    margin: 0;
     color: white;
   }
   .subheader {
     background-color: rgb(78, 78, 78);
     padding: 10px;
-  }
-  .subheader h3 {
-    margin: 0;
     text-align: center;
     color: white;
   }
+
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 15px;
-    margin-top: 20px;
+    margin: 20px 0;
   }
+
   .product-card {
-    position: relative;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: #fff;
+    border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
   }
+  .product-card:hover {
+    transform: translateY(-4px);
+  }
+
   .product-card img {
-    width: 180px;
-    height: 200px;
+    width: 100%;
+    height: auto;
+    display: block;
     object-fit: cover;
-    display: block;
-    margin: 0 auto;
   }
+
   .product-info {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 86%;
+    padding: 8px 10px;
     background-color: rgb(192, 194, 194);
-    padding: 5px;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 14px;
   }
+
   .add-btn {
-    float: right;
-    padding: 3px 8px;
+    padding: 4px 8px;
     border: none;
     background-color: #555;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
   }
   .add-btn:hover {
     background-color: #777;
   }
+
+  
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* bigger cards */
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1400px; /* center the gallery */
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 300px; /* taller for laptops */
+  }
+
+  @media (max-width: 1200px) {
+    .product-card img {
+      height: 250px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .gallery {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .product-card img {
+      height: 220px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .gallery {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+    .product-card img {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .product-card img {
+      height: 160px;
+    }
+  }
 </style>
+
+
 </head>
 <body>
 
 <div class="header-container">
   <h2>Pamper yourself with these cute collections.</h2>
-  <div class="subheader">
-    <h3>Everything you need is here</h3>
-  </div>
+</div>
+<div class="subheader">
+  <h3>Everything you need is here</h3>
 </div>
 
 <div class="gallery" id="productGallery"></div>
 
 <script>
-  
- 
   const products = [
-  { name:"Shorts", price:17, img:"https://img.drz.lazcdn.com/static/np/p/5e4f9022ef0e10e99282c3bd20a9f00c.jpg_720x720q80.jpg", url:"pruducts.html?id=378" },
-  { name:"Shorts", price:18, img:"https://skytick.in/cdn/shop/files/KRS_6843.jpg?v=1686986936", url:"pruducts.html?id=379" },
-  { name:"Shorts", price:19, img:"https://image.made-in-china.com/318f0j00hTMURCedOLzt/20230416-d8fa09df5c7fe542-405948117771-mp4-264-hd-taobao-1-mp4.webp", url:"pruducts.html?id=380" },
-  { name:"Shorts", price:20, img:"https://www.globalrepublic.in/cdn/shop/files/2_2e01e8ca-3714-4173-8d75-f7f62b842834.webp?v=1747981161&width=1080", url:"pruducts.html?id=381" },
-  { name:"Shorts", price:21, img:"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/473173/item/goods_32_473173_3x4.jpg?width=494", url:"pruducts.html?id=382" },
-  { name:"Shorts", price:22, img:"https://www.net-a-porter.com/variants/images/1647597358044118/in/w358_q60.jpg", url:"pruducts.html?id=383" },
-  { name:"Shorts", price:23, img:"https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1714364171-aeroswift-womens-dri-fit-adv-mid-rise-brief-lined-3-running-shorts-ld7rcn-662f1eb3884ca.jpg?crop=0.588xw:0.470xh;0.233xw,0&resize=980:*", url:"pruducts.html?id=384" },
-  { name:"Shorts", price:24, img:"https://me.womensbest.com/cdn/shop/products/CyclingShorts_Lilac_1_400x.jpg?v=1637232812", url:"pruducts.html?id=385" },
-  { name:"Shorts", price:25, img:"https://www.gapfactory.com/webcontent/0029/194/795/cn29194795.jpg", url:"pruducts.html?id=386" },
-  { name:"Shorts", price:26, img:"https://images.meesho.com/images/products/137756060/hv1dr_512.webp", url:"pruducts.html?id=387" },
-  { name:"Shorts", price:27, img:"https://www.legit.co.za/cdn/shop/files/EDG090720250084.jpg?v=1752062655&width=580", url:"pruducts.html?id=388" },
-  { name:"Shorts", price:28, img:"https://m.media-amazon.com/images/I/61nnrfwWWIL._UY1000_.jpg", url:"pruducts.html?id=389" },
-  { name:"Shorts", price:29, img:"https://m.media-amazon.com/images/I/51Oopjy9SjL._UY1000_.jpg", url:"pruducts.html?id=390" },
-  { name:"Shorts", price:30, img:"https://i5.walmartimages.com/asr/ada16441-79ac-4914-9e24-066fe30ee791.6cea4ac67cb962dff65fb89158eb9b79.jpeg", url:"pruducts.html?id=391" },
-  { name:"Shorts", price:31, img:"https://m.media-amazon.com/images/I/41VNg-blrhL._SY1000_.jpg", url:"pruducts.html?id=392" },
-  { name:"Shorts", price:32, img:"https://m.media-amazon.com/images/I/81yCfZB0wWL._AC_SL1500_.jpg", url:"pruducts.html?id=393" },
-  { name:"Shorts", price:33, img:"https://m.media-amazon.com/images/I/41iLGK9jhQL._SY780_.jpg", url:"pruducts.html?id=394" },
-  { name:"Shorts", price:34, img:"https://i.ebayimg.com/images/g/V5UAAOSw7F9iO-s3/s-l1200.jpg", url:"pruducts.html?id=395" },
-  { name:"Shorts", price:35, img:"https://m.media-amazon.com/images/I/41TPPyO-lmS._SY1000_.jpg", url:"pruducts.html?id=396" },
-  { name:"Shorts", price:36, img:"https://m.media-amazon.com/images/I/51Zp8KMbH2L.jpg", url:"pruducts.html?id=397" },
-  { name:"Shorts", price:37, img:"https://m.media-amazon.com/images/I/61AL2-H3hZL._UY1000_.jpg", url:"pruducts.html?id=398" },
-  { name:"Shorts", price:38, img:"https://i5.walmartimages.com/asr/58b9a5c5-a18b-4a4a-ab5a-9bd7082ac3bb.178a95b8f424d42d5b5947fd14addb43.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"pruducts.html?id=399" },
-  { name:"Shorts", price:39, img:"https://contents.mediadecathlon.com/p2794622/k$a2e5490948a09e5ffec24f356c14fb95/women-s-swim-shorts-tini-flow-blue-and-purple.jpg?format=auto&quality=40&f=520x520", url:"pruducts.html?id=400" },
-  { name:"Shorts", price:40, img:"https://i5.walmartimages.com/seo/Naughtyhood-Summer-Clearance-Shorts-Womens-Work-Shorts-Women-s-Fashion-Solid-Color-Button-Pocket-Five-Point-Casual-Straight-Barrel-Pants-Black-M_a22ba376-4447-4ef2-8a44-a1c0f03443ac.35fd7b58b51f4d8195d5b01956a9970a.jpeg", url:"pruducts.html?id=401" },
-  { name:"Shorts", price:41, img:"https://m.media-amazon.com/images/I/51Q0v5Q128L._SY780_.jpg", url:"pruducts.html?id=402" },
-  { name:"Shorts", price:42, img:"https://m.media-amazon.com/images/I/41ghk+ZehwL._SY1000_.jpg", url:"pruducts.html?id=403" },
-  { name:"Shorts", price:43, img:"https://m.media-amazon.com/images/I/41iLGK9jhQL._SY780_.jpg", url:"pruducts.html?id=404" },
-  { name:"Shorts", price:44, img:"https://img.hollisterco.com/is/image/anf/KIC_349-5001-00154-276_prod1?policy=product-medium", url:"pruducts.html?id=405" },
-  { name:"Shorts", price:45, img:"https://akns-images.eonline.com/eol_images/Entire_Site/202265/rs_640x640-220705150052-fray-denim-e-comm-books.jpg", url:"pruducts.html?id=406" },
-  { name:"Shorts", price:46, img:"https://m.media-amazon.com/images/I/61awJCLfwRL._AC_SY879_.jpg", url:"pruducts.html?id=407" },
-  { name:"Shorts", price:47, img:"https://cdn-img.prettylittlething.com/8/a/a/2/8aa2327e7ef307abec6199285da0bb60a82b5b50_CMG9825_1_prettylittlething_washed_black_ripped_denim_mom_shorts.jpg?imwidth=600", url:"pruducts.html?id=408" },
-  { name:"Shorts", price:48, img:"https://www.nobellagrace.com/cdn/shop/files/8E61A199-1A68-4F78-9ADE-C6ECC3EA686D.jpg?v=1742508970&width=800", url:"pruducts.html?id=409" },
-  { name:"Shorts", price:49, img:"https://lsco.scene7.com/is/image/lsco/859400001-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=2000&hei=2500", url:"pruducts.html?id=410" },
-  { name:"Shorts", price:50, img:"https://m.media-amazon.com/images/I/81GXix9JGmL.jpg", url:"pruducts.html?id=411" },
-  { name:"Shorts", price:51, img:"https://cdn.shopify.com/s/files/1/0929/9725/5444/files/B2012400_STN-OM-F.jpg?v=1743096883&width=500", url:"pruducts.html?id=412" },
-  { name:"Shorts", price:52, img:"https://di2ponv0v5otw.cloudfront.net/posts/2022/02/19/621139d8941f172c901a542e/m_wp_62113a0b275e55832937e15d.webp", url:"pruducts.html?id=413" }
-];
+    { name:"Shorts", price:17, img:"https://img.drz.lazcdn.com/static/np/p/5e4f9022ef0e10e99282c3bd20a9f00c.jpg_720x720q80.jpg", url:"pruducts.html?id=378" },
+    { name:"Shorts", price:18, img:"https://skytick.in/cdn/shop/files/KRS_6843.jpg?v=1686986936", url:"pruducts.html?id=379" },
+    { name:"Shorts", price:19, img:"https://image.made-in-china.com/318f0j00hTMURCedOLzt/20230416-d8fa09df5c7fe542-405948117771-mp4-264-hd-taobao-1-mp4.webp", url:"pruducts.html?id=380" },
+    { name:"Shorts", price:20, img:"https://www.globalrepublic.in/cdn/shop/files/2_2e01e8ca-3714-4173-8d75-f7f62b842834.webp?v=1747981161&width=1080", url:"pruducts.html?id=381" },
+    { name:"Shorts", price:21, img:"https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/473173/item/goods_32_473173_3x4.jpg?width=494", url:"pruducts.html?id=382" },
+    { name:"Shorts", price:22, img:"https://www.net-a-porter.com/variants/images/1647597358044118/in/w358_q60.jpg", url:"pruducts.html?id=383" },
+    { name:"Shorts", price:23, img:"https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1714364171-aeroswift-womens-dri-fit-adv-mid-rise-brief-lined-3-running-shorts-ld7rcn-662f1eb3884ca.jpg?crop=0.588xw:0.470xh;0.233xw,0&resize=980:*", url:"pruducts.html?id=384" },
+    { name:"Shorts", price:24, img:"https://me.womensbest.com/cdn/shop/products/CyclingShorts_Lilac_1_400x.jpg?v=1637232812", url:"pruducts.html?id=385" },
+    { name:"Shorts", price:25, img:"https://www.gapfactory.com/webcontent/0029/194/795/cn29194795.jpg", url:"pruducts.html?id=386" },
+    { name:"Shorts", price:26, img:"https://images.meesho.com/images/products/137756060/hv1dr_512.webp", url:"pruducts.html?id=387" },
+    { name:"Shorts", price:27, img:"https://www.legit.co.za/cdn/shop/files/EDG090720250084.jpg?v=1752062655&width=580", url:"pruducts.html?id=388" },
+    { name:"Shorts", price:28, img:"https://m.media-amazon.com/images/I/61nnrfwWWIL._UY1000_.jpg", url:"pruducts.html?id=389" },
+    { name:"Shorts", price:29, img:"https://m.media-amazon.com/images/I/51Oopjy9SjL._UY1000_.jpg", url:"pruducts.html?id=390" },
+    { name:"Shorts", price:30, img:"https://i5.walmartimages.com/asr/ada16441-79ac-4914-9e24-066fe30ee791.6cea4ac67cb962dff65fb89158eb9b79.jpeg", url:"pruducts.html?id=391" },
+    { name:"Shorts", price:31, img:"https://m.media-amazon.com/images/I/41VNg-blrhL._SY1000_.jpg", url:"pruducts.html?id=392" },
+    { name:"Shorts", price:32, img:"https://m.media-amazon.com/images/I/81yCfZB0wWL._AC_SL1500_.jpg", url:"pruducts.html?id=393" },
+    { name:"Shorts", price:33, img:"https://m.media-amazon.com/images/I/41iLGK9jhQL._SY780_.jpg", url:"pruducts.html?id=394" },
+    { name:"Shorts", price:34, img:"https://i.ebayimg.com/images/g/V5UAAOSw7F9iO-s3/s-l1200.jpg", url:"pruducts.html?id=395" },
+    { name:"Shorts", price:35, img:"https://m.media-amazon.com/images/I/41TPPyO-lmS._SY1000_.jpg", url:"pruducts.html?id=396" },
+    { name:"Shorts", price:36, img:"https://m.media-amazon.com/images/I/51Zp8KMbH2L.jpg", url:"pruducts.html?id=397" },
+    { name:"Shorts", price:37, img:"https://m.media-amazon.com/images/I/61AL2-H3hZL._UY1000_.jpg", url:"pruducts.html?id=398" },
+    { name:"Shorts", price:38, img:"https://i5.walmartimages.com/asr/58b9a5c5-a18b-4a4a-ab5a-9bd7082ac3bb.178a95b8f424d42d5b5947fd14addb43.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF", url:"pruducts.html?id=399" },
+    { name:"Shorts", price:39, img:"https://contents.mediadecathlon.com/p2794622/k$a2e5490948a09e5ffec24f356c14fb95/women-s-swim-shorts-tini-flow-blue-and-purple.jpg?format=auto&quality=40&f=520x520", url:"pruducts.html?id=400" },
+    { name:"Shorts", price:40, img:"https://i5.walmartimages.com/seo/Naughtyhood-Summer-Clearance-Shorts-Womens-Work-Shorts-Women-s-Fashion-Solid-Color-Button-Pocket-Five-Point-Casual-Straight-Barrel-Pants-Black-M_a22ba376-4447-4ef2-8a44-a1c0f03443ac.35fd7b58b51f4d8195d5b01956a9970a.jpeg", url:"pruducts.html?id=401" },
+    { name:"Shorts", price:41, img:"https://m.media-amazon.com/images/I/51Q0v5Q128L._SY780_.jpg", url:"pruducts.html?id=402" },
+    { name:"Shorts", price:42, img:"https://m.media-amazon.com/images/I/41ghk+ZehwL._SY1000_.jpg", url:"pruducts.html?id=403" },
+    { name:"Shorts", price:43, img:"https://m.media-amazon.com/images/I/41iLGK9jhQL._SY780_.jpg", url:"pruducts.html?id=404" },
+    { name:"Shorts", price:44, img:"https://img.hollisterco.com/is/image/anf/KIC_349-5001-00154-276_prod1?policy=product-medium", url:"pruducts.html?id=405" },
+    { name:"Shorts", price:45, img:"https://akns-images.eonline.com/eol_images/Entire_Site/202265/rs_640x640-220705150052-fray-denim-e-comm-books.jpg", url:"pruducts.html?id=406" },
+    { name:"Shorts", price:46, img:"https://m.media-amazon.com/images/I/61awJCLfwRL._AC_SY879_.jpg", url:"pruducts.html?id=407" },
+    { name:"Shorts", price:47, img:"https://cdn-img.prettylittlething.com/8/a/a/2/8aa2327e7ef307abec6199285da0bb60a82b5b50_CMG9825_1_prettylittlething_washed_black_ripped_denim_mom_shorts.jpg?imwidth=600", url:"pruducts.html?id=408" },
+    { name:"Shorts", price:48, img:"https://www.nobellagrace.com/cdn/shop/files/8E61A199-1A68-4F78-9ADE-C6ECC3EA686D.jpg?v=1742508970&width=800", url:"pruducts.html?id=409" },
+    { name:"Shorts", price:49, img:"https://lsco.scene7.com/is/image/lsco/859400001-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=2000&hei=2500", url:"pruducts.html?id=410" },
+    { name:"Shorts", price:50, img:"https://m.media-amazon.com/images/I/81GXix9JGmL.jpg", url:"pruducts.html?id=411" },
+    { name:"Shorts", price:51, img:"https://cdn.shopify.com/s/files/1/0929/9725/5444/files/B2012400_STN-OM-F.jpg?v=1743096883&width=500", url:"pruducts.html?id=412" }
+    
+  ];
 
+  const container = document.getElementById('productGallery');
 
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.onclick = () => { window.location.href = product.url; };
 
-// Generate product cards dynamically
-const container = document.getElementById('productGallery');
+    const img = document.createElement('img');
+    img.src = product.img;
+    img.alt = product.name;
 
-products.forEach(product => {
-  const card = document.createElement('div');
-  card.className = 'product-card';
+    const info = document.createElement('div');
+    info.className = 'product-info';
+    info.innerHTML = `$${product.price.toFixed(2)}
+      <button class="add-btn" onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add</button>
+    `;
 
-  // Make whole card clickable
-  card.onclick = () => { window.location.href = product.url; };
+    card.appendChild(img);
+    card.appendChild(info);
+    container.appendChild(card);
+  });
 
-  const img = document.createElement('img');
-  img.src = product.img;
-  img.alt = product.name;
-
-  const info = document.createElement('div');
-  info.className = 'product-info';
-
-  info.innerHTML = `
-    $${product.price.toFixed(2)}
-    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
-  `;
-
-  card.appendChild(img);
-  card.appendChild(info);
-  container.appendChild(card);
-});
-
-// Add to cart function
-function addToCart(name, price, img) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({ name, price, img });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(name + " added to your cart!");
-}
+  function addToCart(name, price, img) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, img });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(`${name} added to your cart!`);
+  }
 </script>
 
 </body>
