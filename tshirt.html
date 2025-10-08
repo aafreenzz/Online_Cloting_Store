@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .header-container {
+    background-color: antiquewhite;
+    padding: 10px;
+  }
+  .header-container h2 {
+    text-align: center;
+    margin: 0;
+  }
+  .subheader {
+    background-color: azure;
+    padding: 10px;
+  }
+  .subheader h3 {
+    margin: 0;
+    text-align: center;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .product-card {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+  }
+  .product-card img {
+    width: 180px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .price-span {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 86%;
+    background-color: rgb(192, 194, 194);
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .add-btn {
+    float: right;
+    padding: 3px 8px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .add-btn:hover {
+    background-color: #777;
+  }
+  @media (max-width: 992px) {
+    .product-card img {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .gallery {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .product-card img {
+      height: 160px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .product-card img {
+      height: 140px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="header-container">
+  <h2>Pamper yourself with these cute collections.</h2>
+  <div class="subheader">
+    <h3>Everything you need is here</h3>
+  </div>
+</div>
+
+<div class="gallery" id="productGallery">
+  <!-- Products will be generated here -->
+</div>
+
+<script>
+  // Array of all products
+  const products = [
+
+  { name:"T-shirt", price:12, img:"https://img.drz.lazcdn.com/static/np/p/87c03b68c13965f740e8287e6cc22031.jpg_720x720q80.jpg_.webp", url:"product.html?id=180" },
+  { name:"T-shirt", price:13, img:"https://veirdo.in/cdn/shop/files/18_5.jpg?v=1754545490", url:"product.html?id=181" },
+  { name:"T-shirt", price:14, img:"https://m.media-amazon.com/images/I/81wy4PsxSCL._UY1100_.jpg", url:"product.html?id=182" },
+  { name:"T-shirt", price:15, img:"https://www.jiomart.com/images/product/500x630/rvfn6xqv2z/coloured-collar-t-shirt-for-men-casual-regular-fit-t-shirt-pure-cotton-lightweight-comfortable-classic-t-shirt-classic-vertical-stripes-medium-green-product-images-rvfn6xqv2z-0-202209090824.jpg", url:"product.html?id=183" },
+  { name:"T-shirt", price:16, img:"https://fastcolors.in/cdn/shop/files/LIFE_Mens_Oversize_Tshirt_-_FastColors-4952919.jpg?v=1729851075&width=2048", url:"product.html?id=184" },
+  { name:"T-shirt", price:17, img:"https://shosaqualitees.com/cdn/shop/files/Petrol_Blue_e84b87f4-f4d8-47e4-9a4f-8daef7ab391c.jpg?v=1712740771&width=1445", url:"product.html?id=185" },
+  { name:"T-shirt", price:18, img:"https://www.montecarlo.in/cdn/shop/files/224066148-2-38_1.jpg?v=1739283767", url:"product.html?id=186" },
+  { name:"T-shirt", price:19, img:"https://omaneshop.com/wp-content/uploads/2025/05/Trendy-CK-Style-Mens-TShirt.jpg", url:"product.html?id=187" },
+  { name:"T-shirt", price:20, img:"https://5.imimg.com/data5/VT/NW/MY-13845748/men-27s-stylish-t-shirt.jpg", url:"product.html?id=188" },
+  { name:"T-shirt", price:21, img:"https://levi.in/cdn/shop/files/0005E0003_01_Styleshot_360x.jpg?v=1756965836", url:"product.html?id=189" },
+  { name:"T-shirt", price:22, img:"https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/31426987/2025/5/14/ec2267f5-fa09-4163-a495-d386865906c91747216712981-glitchez-Typography-Printed-Relaxed-Fit-T-shirt-721747216712-1.jpg", url:"product.html?id=190" },
+  { name:"T-shirt", price:23, img:"https://i.pinimg.com/474x/d2/57/65/d25765e9a7d8d3146e00cde65a9e449c.jpg", url:"product.html?id=191" },
+  { name:"T-shirt", price:24, img:"https://underarmour.scene7.com/is/image/Underarmour/V5-6009095-001_FC?rp=standard-0pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640&size=512,640", url:"product.html?id=192" },
+  { name:"T-shirt", price:25, img:"https://www.hopkicks.pk/image/cache/catalog/2024/OCT%2024/2nd%20session%20clothing/2/3-1100x1100.jpg", url:"product.html?id=193" },
+  { name:"T-shirt", price:26, img:"https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/28137932/2024/3/19/10fa6957-1082-4a8e-a7fa-b28e8a4d7dc11710836900879-NOBERO-Men-Typography-Printed-Applique-T-shirt-2971710836900-7.jpg", url:"product.html?id=194" },
+  { name:"T-shirt", price:27, img:"https://img.kwcdn.com/product/open/2024-08-17/1723901373787-877e307f45ae494b9118e9b43d2f41e0-goods.jpeg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp", url:"product.html?id=195" },
+  { name:"T-shirt", price:28, img:"https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_300,h_300/global/631641/14/mod01/fnd/IND/fmt/png/F1%C2%AE-Graphic-Men's-Motorsport-Ringer-Tee", url:"product.html?id=196" },
+  { name:"T-shirt", price:29, img:"https://asda.scene7.com/is/image/Asda/5059203379593?hei=523&wid=392&qlt=85&fmt=pjpg&resmode=sharp2&op_usm=1.1,0.5,0,0&defaultimage=default_details_George_rd", url:"product.html?id=197" },
+  { name:"T-shirt", price:30, img:"https://images-na.ssl-images-amazon.com/images/I/51b0lITBHeL._AC_UL600_SR600,600_.jpg", url:"product.html?id=198" },
+  { name:"T-shirt", price:31, img:"https://assets.thenorthface.com/images/t_img/f_auto,h_400,w_344,e_unsharp_mask:150/dpr_2.0/v1752758799/NF0A8E3M8K2-HERO/Mens-Mountain-Logo-Relaxed-Pocket-Tee.png", url:"product.html?id=199" },
+  { name:"T-shirt", price:32, img:"https://i.pinimg.com/564x/d3/b3/f3/d3b3f3f836d8502d05d4e5713655dd3e.jpg", url:"product.html?id=200" },
+  { name:"T-shirt", price:33, img:"https://fkngymwear.com/cdn/shop/files/LiftersOversizedTee.jpg?v=1699272148", url:"product.html?id=201" },
+  { name:"T-shirt", price:34, img:"https://static.ticimax.cloud/cdn-cgi/image/width=-,quality=85/36915/uploads/urunresimleri/buyuk/gym-rag-top-oversize-t-shirt-87-44f.jpg", url:"product.html?id=202" },
+  { name:"T-shirt", price:35, img:"https://collegiateset.com/cdn/shop/products/315frkV51ZS._SL500__422629_3f3ad01f-c5dd-49a0-a368-45324de56741.jpg?v=1700070748", url:"product.html?id=203" },
+  { name:"T-shirt", price:36, img:"https://images-na.ssl-images-amazon.com/images/I/71rZBXKhbmL._AC_UL600_SR600,600_.jpg", url:"product.html?id=204" },
+  { name:"T-shirt", price:37, img:"https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/3e76f405-425e-4caa-a3bd-47fedc22c8b2/AS+M+NSW+TEE+LBR+SSNL+CLUB.png", url:"product.html?id=205" },
+  { name:"T-shirt", price:38, img:"https://assets.ajio.com/medias/sys_master/root/20230623/abKI/64953400d55b7d0c63b5086b/-473Wx593H-464620148-maroon-MODEL.jpg", url:"product.html?id=206" },
+  { name:"T-shirt", price:39, img:"https://assets.myntassets.com/w_412,q_30,dpr_3,fl_progressive,f_webp/assets/images/31636884/2025/5/26/8fd0c05a-1bbb-48ab-bbfe-218fe97db99b1748232027099-Puma-Men-Printed-Cotton-Slim-Fit-T-Shirt-1201748232026438-1.jpg", url:"product.html?id=207" },
+  { name:"T-shirt", price:40, img:"https://assets.ajio.com/medias/sys_master/root/20240522/eCD7/664df7ae16fd2c6e6a1bf8a1/-473Wx593H-442423766-black-MODEL.jpg", url:"product.html?id=208" },
+  { name:"T-shirt", price:41, img:"https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/586724/01/fnd/IND/fmt/png/Active-Big-Logo-Regular-Fit-Men's-T-shirt", url:"product.html?id=209" },
+  { name:"T-shirt", price:42, img:"https://veirdo.in/cdn/shop/files/01_0004_8_9550f34c-29a5-445a-98cc-7038d725642d.jpg?v=1753523542", url:"product.html?id=210" },
+  { name:"T-shirt", price:43, img:"https://cdn10.nnnow.com/web-images/large/styles/LGTBNH6BI3S/1720511891032/1.jpg", url:"product.html?id=211" },
+  { name:"T-shirt", price:44, img:"https://replayjeans.kleecks-cdn.com/nl/media/catalog/product/M/3/M3241_000_22662G_619_2.jpg", url:"product.html?id=212" },
+  { name:"T-shirt", price:45, img:"https://assets.ajio.com/medias/sys_master/root/20240715/DwLz/669551186f60443f313ed1f8/-473Wx593H-700196137-black-MODEL.jpg", url:"product.html?id=213" },
+  { name:"T-shirt", price:46, img:"https://marottastore.com/cdn/shop/files/immagine-1-roy-rogers-rru90048-tp-t-shirt-pocket-man-sun-t-shirt-rru90048-c0082-jpg.jpg?v=1736444023", url:"product.html?id=214" },
+  
+];
+
+
+
+
+ const container = document.getElementById('productGallery');
+
+products.forEach(product => {
+  const card = document.createElement('div');
+  card.className = 'product-card';
+
+  // Make whole card clickable
+  card.onclick = () => { window.location.href = product.url; };
+
+  const img = document.createElement('img');
+  img.src = product.img;
+  img.alt = product.name;
+
+  const info = document.createElement('div');
+  info.className = 'product-info';
+
+  info.innerHTML = `
+    $${product.price.toFixed(2)}
+    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+  `;
+
+  card.appendChild(img);
+  card.appendChild(info);
+  container.appendChild(card);
+});
+
+// Add to cart function
+function addToCart(name, price, img) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push({ name, price, img });
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to your cart!");
+}
+</script>
+</body>
+</html>
