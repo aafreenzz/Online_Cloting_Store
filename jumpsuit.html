@@ -7,70 +7,90 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0 10px;
+    background-color: #f9f9f9;
   }
+
+  /* Header */
   .header-container {
     background-color: antiquewhite;
-    padding: 10px;
+    padding: 15px;
+    text-align: center;
   }
   .header-container h2 {
-    text-align: center;
     margin: 0;
+    font-size: 1.5rem;
   }
   .subheader {
     background-color: azure;
     padding: 10px;
+    margin-top: 5px;
   }
   .subheader h3 {
     margin: 0;
-    text-align: center;
+    font-size: 1.2rem;
   }
+
+  /* Gallery Grid */
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 15px;
-    margin-top: 20px;
+    margin: 20px 0;
   }
+
+  /* Product Card */
   .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
     position: relative;
-    display: inline-block;
-    margin: 10px;
   }
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
   .product-card img {
-    width: 180px;
-    height: 200px;
+    width: 100%;
+    height: 180px;
     object-fit: cover;
   }
-  .price-span {
-    display: block;
+
+  /* Price overlay */
+  .price-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 86%;
-    background-color: rgb(192, 194, 194);
+    width: 100%;
+    background-color: rgba(192, 194, 194, 0.85);
     padding: 5px;
-    box-sizing: border-box;
     font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .add-btn {
-    float: right;
+
+  .price-overlay button {
     padding: 3px 8px;
     background-color: #555;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 12px;
+    transition: background 0.2s;
   }
-  .add-btn:hover {
+  .price-overlay button:hover {
     background-color: #777;
   }
-  @media (max-width: 992px) {
-    .product-card img {
-      height: 180px;
-    }
-  }
 
+  /* Responsive adjustments */
   @media (max-width: 768px) {
     .gallery {
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -106,10 +126,7 @@
 </div>
 
 <script>
-  // Array of all products
-  
-  
-  const products = [
+const products = [
   { name:"Jumpsuit", price:15, img:"https://thefoschini.vtexassets.com/arquivos/ids/220036231-300-400/ad12684d-49f0-43ba-bc0e-784fbb58c673.png?v=638919738272400000", url:"pruducts.html?id=200" },
   { name:"Jumpsuit", price:16, img:"https://cdn.aboutstatic.com/file/images/a601043caffe81b75903aa54e1396331.jpg?quality=75&height=480&width=360", url:"pruducts.html?id=201" },
   { name:"Jumpsuit", price:17, img:"https://www.sparklygowns.com/cdn/shop/products/17436969_5e42e47c-3928-4f04-ac0f-1afa3be7d47a.jpg?v=1671673599", url:"pruducts.html?id=202" },
@@ -133,19 +150,18 @@
   { name:"Jumpsuit", price:35, img:"https://www.galvanlondon.com/cdn/shop/files/PRISMJUMPSUITBLUEMOON1_600x.jpg?v=1744819835", url:"pruducts.html?id=220" },
   { name:"Jumpsuit", price:36, img:"https://yaya.eu/cdn/shop/files/sleeveless-woven-jumpsuit-with-cord-detail-2_f83d7e49-1176-47af-89e7-7acc87ed7529.jpg?v=1751962654&width=1440", url:"pruducts.html?id=221" },
   { name:"Jumpsuit", price:37, img:"https://cdn.shopify.com/s/files/1/0859/9853/4942/files/Miyako-Printed-Cotton-Chino-Crop-Jumpsuit-Aster-Blue-by-Natori_e55bf428-1cfa-4da8-bfb7-d16749fb4b1b_345x_crop_center.jpg?v=1730243240", url:"pruducts.html?id=222" },
-  { name:"Jumpsuit", price:38, img:"https://shopduer.com/cdn/shop/files/Performance_Denim_Jumpsuit-Stone_Wash_5342_R-584663.jpg?v=1717706020&width=1143", url:"pruducts.html?id=223" },
-  { name:"Jumpsuit", price:39, img:"https://cdn.aboutstatic.com/file/images/19157087acf517265a74f5c81ef1e340.jpg?quality=75&height=480&width=360", url:"pruducts.html?id=224" },
-  { name:"Jumpsuit", price:29, img:"https://dimesnco.com/cdn/shop/collections/image_7ad591c0-efc9-4696-9319-e38569f036ea.jpg?v=1706791076", url:"pruducts.html?id=225" },
-  { name:"Jumpsuit", price:49, img:"https://twothirds.com/cdn/shop/files/hornos-umber-brown-898374.jpg?v=1739450078&width=1200", url:"pruducts.html?id=226" },
-  { name:"Jumpsuit", price:33, img:"https://www.only.in/cdn/shop/files/213555801_g3.jpg?v=1745888853&width=1080", url:"pruducts.html?id=227" }
+  { name:"Jumpsuit", price:38, img:"https://shopduer.com/cdn/shop/files/Performance_Denim_Jumpsuit-Stone_Wash_5342_R-584663.jpg?v=1717706020&width=1143", url:"pruducts.html?id=223" }
+  
+
+
+
+
+
+
+
+
 ];
-
-
-
-
-
-
- const container = document.getElementById('productGallery');
+const container = document.getElementById('productGallery');
 
 products.forEach(product => {
   const card = document.createElement('div');
