@@ -5,86 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Products Collection</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-  }
-  .header-container {
-    background-color: rgb(139, 124, 104);
-    padding: 10px;
-  }
-  .header-container h2 {
-    text-align: center;
-    margin: 0;
-    color: white;
-  }
-  .subheader {
-    background-color: rgb(78, 78, 78);
-    padding: 10px;
-  }
-  .subheader h3 {
-    margin: 0;
-    text-align: center;
-    color: white;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-  }
-  .product-card {
-    position: relative;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .product-card img {
-    width: 180px;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto;
-  }
-  .product-info {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 86%;
-    background-color: rgb(192, 194, 194);
-    padding: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  .add-btn {
-    float: right;
-    padding: 3px 8px;
-    border: none;
-    background-color: #555;
-    color: #fff;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  .add-btn:hover {
-    background-color: #777;
-  }
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  .header-container { background-color: rgb(139, 124, 104); padding: 10px; }
+  .header-container h2 { text-align: center; margin: 0; color: white; }
+  .subheader { background-color: rgb(78, 78, 78); padding: 10px; }
+  .subheader h3 { margin: 0; text-align: center; color: white; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px; }
+  .product-card { position: relative; border: 1px solid #ccc; border-radius: 4px; overflow: hidden; cursor: pointer; }
+  .product-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .product-info { position: absolute; bottom: 0; left: 0; width: 86%; background-color: rgb(192, 194, 194); padding: 5px; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .product-info button { padding: 3px 8px; border: none; background-color: #555; color: #fff; border-radius: 3px; cursor: pointer; font-size: 12px; }
+  .product-info button:hover { background-color: #777; }
+  @media (max-width: 992px) { .product-card img { height: 180px; } }
+  @media (max-width: 768px) { .gallery { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; } .product-card img { height: 160px; } }
+  @media (max-width: 480px) { .gallery { grid-template-columns: 1fr; gap: 10px; } .product-card img { height: 140px; } }
 </style>
 </head>
 <body>
 
 <div class="header-container">
   <h2>Pamper yourself with these cute collections.</h2>
-  <div class="subheader">
-    <h3>Everything you need is here</h3>
-  </div>
+  <div class="subheader"><h3>Everything you need is here</h3></div>
 </div>
 
 <div class="gallery" id="productGallery"></div>
 
 <script>
-  const products = [
+const products = [
   { name:"Trouser", price:13, img:"https://brandsego.com/cdn/shop/files/Untitled-3copy_999396d0-a483-4db4-bf0a-cd7be725f45b.jpg?v=1750766174&width=1340", url:"product.html?id=108" },
   { name:"Trouser", price:14, img:"https://www.sainly.com/cdn/shop/products/sainly-apparel-accessories-green-m-basic-men-s-cotton-linen-pants-male-casual-solid-color-breathable-loose-trousers-straight-pants-men-cotton-linen-pants-casual-loose-trousers-straigh_2048x2048.png?v=1663259228", url:"product.html?id=109" },
   { name:"Trouser", price:15, img:"https://sa.redtagfashion.com/cdn/shop/files/131286598-1-Beige_20_20Mens_20_20Casual_20_20Trouser_20_20-_20_20Beige_20_20-_20_2030_20_20Waist_700x.jpg?v=1737461600", url:"product.html?id=110" },
@@ -123,15 +70,11 @@
   { name:"Trouser", price:48, img:"https://img-lcwaikiki.mncdn.com/mnpadding/1020/1360/ffffff/pim/productimages/20242/7992768/v1/l_20242-w4lt90z8-hzz-94-75-93-189_a1.jpg", url:"product.html?id=143" }
 ];
 
-
-// Generate product cards dynamically
 const container = document.getElementById('productGallery');
 
 products.forEach(product => {
   const card = document.createElement('div');
   card.className = 'product-card';
-
-  // Make whole card clickable
   card.onclick = () => { window.location.href = product.url; };
 
   const img = document.createElement('img');
@@ -140,7 +83,6 @@ products.forEach(product => {
 
   const info = document.createElement('div');
   info.className = 'product-info';
-
   info.innerHTML = `
     $${product.price.toFixed(2)}
     <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
@@ -151,7 +93,6 @@ products.forEach(product => {
   container.appendChild(card);
 });
 
-// Add to cart function
 function addToCart(name, price, img) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.push({ name, price, img });
