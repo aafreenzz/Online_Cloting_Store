@@ -5,110 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Products</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  .header-container {
-    background-color: antiquewhite;
-    padding: 10px;
-  }
-  .header-container h2 {
-    text-align: center;
-    margin: 0;
-  }
-  .subheader {
-    background-color: azure;
-    padding: 10px;
-  }
-  .subheader h3 {
-    margin: 0;
-    text-align: center;
-  }
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-  }
-  .product-card {
-    position: relative;
-    display: inline-block;
-    margin: 10px;
-  }
-  .product-card img {
-    width: 180px;
-    height: 200px;
-    object-fit: cover;
-  }
-  .price-span {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 86%;
-    background-color: rgb(192, 194, 194);
-    padding: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  .add-btn {
-    float: right;
-    padding: 3px 8px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  .add-btn:hover {
-    background-color: #777;
-  }
-  @media (max-width: 992px) {
-    .product-card img {
-      height: 180px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .gallery {
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-    }
-    .product-card img {
-      height: 160px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .gallery {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .product-card img {
-      height: 140px;
-    }
-  }
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  .header-container { background-color: antiquewhite; padding: 10px; text-align: center; }
+  .subheader { background-color: azure; padding: 10px; text-align: center; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
+  .product-card { position: relative; cursor: pointer; }
+  .product-card img { width: 100%; height: 200px; object-fit: cover; }
+  .product-info { position: absolute; bottom: 0; left: 0; width: 86%; background-color: rgb(192, 194, 194); padding: 5px; box-sizing: border-box; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+  .product-info button { padding: 3px 8px; background-color: #555; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 12px; }
+  .product-info button:hover { background-color: #777; }
+  @media (max-width: 992px) { .product-card img { height: 180px; } }
+  @media (max-width: 768px) { .gallery { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; } .product-card img { height: 160px; } }
+  @media (max-width: 480px) { .gallery { grid-template-columns: 1fr; gap: 10px; } .product-card img { height: 140px; } }
 </style>
 </head>
 <body>
 
 <div class="header-container">
   <h2>Pamper yourself with these cute collections.</h2>
-  <div class="subheader">
-    <h3>Everything you need is here</h3>
-  </div>
+</div>
+<div class="subheader">
+  <h3>Everything you need is here</h3>
 </div>
 
-<div class="gallery" id="productGallery">
-  <!-- Products will be generated here -->
-</div>
+<div class="gallery" id="productGallery"></div>
 
 <script>
-  // Array of all products
-  const products = [
-
+const products = [
   { name:"T-shirt", price:12, img:"https://img.drz.lazcdn.com/static/np/p/87c03b68c13965f740e8287e6cc22031.jpg_720x720q80.jpg_.webp", url:"product.html?id=180" },
   { name:"T-shirt", price:13, img:"https://veirdo.in/cdn/shop/files/18_5.jpg?v=1754545490", url:"product.html?id=181" },
   { name:"T-shirt", price:14, img:"https://m.media-amazon.com/images/I/81wy4PsxSCL._UY1100_.jpg", url:"product.html?id=182" },
@@ -143,21 +66,15 @@
   { name:"T-shirt", price:43, img:"https://cdn10.nnnow.com/web-images/large/styles/LGTBNH6BI3S/1720511891032/1.jpg", url:"product.html?id=211" },
   { name:"T-shirt", price:44, img:"https://replayjeans.kleecks-cdn.com/nl/media/catalog/product/M/3/M3241_000_22662G_619_2.jpg", url:"product.html?id=212" },
   { name:"T-shirt", price:45, img:"https://assets.ajio.com/medias/sys_master/root/20240715/DwLz/669551186f60443f313ed1f8/-473Wx593H-700196137-black-MODEL.jpg", url:"product.html?id=213" },
-  { name:"T-shirt", price:46, img:"https://marottastore.com/cdn/shop/files/immagine-1-roy-rogers-rru90048-tp-t-shirt-pocket-man-sun-t-shirt-rru90048-c0082-jpg.jpg?v=1736444023", url:"product.html?id=214" },
-  
+  { name:"T-shirt", price:46, img:"https://marottastore.com/cdn/shop/files/immagine-1-roy-rogers-rru90048-tp-t-shirt-pocket-man-sun-t-shirt-rru90048-c0082-jpg.jpg?v=1736444023", url:"product.html?id=214" }
 ];
 
-
-
-
- const container = document.getElementById('productGallery');
+const container = document.getElementById('productGallery');
 
 products.forEach(product => {
   const card = document.createElement('div');
   card.className = 'product-card';
-
-  // Make whole card clickable
-  card.onclick = () => { window.location.href = product.url; };
+  card.onclick = () => window.location.href = product.url;
 
   const img = document.createElement('img');
   img.src = product.img;
@@ -165,7 +82,6 @@ products.forEach(product => {
 
   const info = document.createElement('div');
   info.className = 'product-info';
-
   info.innerHTML = `
     $${product.price.toFixed(2)}
     <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
@@ -176,7 +92,6 @@ products.forEach(product => {
   container.appendChild(card);
 });
 
-// Add to cart function
 function addToCart(name, price, img) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   cart.push({ name, price, img });
@@ -184,5 +99,6 @@ function addToCart(name, price, img) {
   alert(name + " added to your cart!");
 }
 </script>
+
 </body>
 </html>
