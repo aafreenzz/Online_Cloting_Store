@@ -7,68 +7,137 @@
 <style>
   body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f9f9f9;
   }
+
   .header-container {
     background-color: rgb(139, 124, 104);
-    padding: 10px;
+    padding: 15px 10px;
   }
+
   .header-container h2 {
     text-align: center;
     margin: 0;
     color: white;
   }
+
   .subheader {
     background-color: rgb(78, 78, 78);
     padding: 10px;
   }
+
   .subheader h3 {
     margin: 0;
     text-align: center;
     color: white;
   }
+
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 15px;
-    margin-top: 20px;
+    padding: 15px;
   }
+
   .product-card {
     position: relative;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
+    background-color: #fff;
+    transition: transform 0.2s;
   }
+
+  .product-card:hover {
+    transform: scale(1.03);
+  }
+
   .product-card img {
-    width: 180px;
+    width: 100%;
     height: 200px;
     object-fit: cover;
     display: block;
-    margin: 0 auto;
   }
+
   .product-info {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 86%;
-    background-color: rgb(192, 194, 194);
-    padding: 5px;
+    width: 100%;
+    background-color: rgba(192, 194, 194, 0.95);
+    padding: 5px 8px;
     box-sizing: border-box;
     font-size: 14px;
   }
+
+  .product-info span {
+    font-weight: bold;
+  }
+
   .add-btn {
-    float: right;
-    padding: 3px 8px;
+    flex: 1;
+    text-align: center;
+    margin-left: 8px;
+    padding: 6px 0;
     border: none;
     background-color: #555;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
   }
+
   .add-btn:hover {
     background-color: #777;
+  }
+
+  @media (max-width: 768px) {
+    .gallery {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .product-card img {
+      height: 160px;
+    }
+
+    .add-btn {
+      font-size: 15px;
+      padding: 8px 0;
+      margin-left: 5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .product-card img {
+      height: 140px;
+    }
+
+    .product-info {
+      flex-direction: column;
+      font-size: 13px;
+      padding: 6px 8px;
+      align-items: stretch;
+      gap: 5px;
+    }
+
+    .add-btn {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 14px;
+      margin-left: 0;
+    }
   }
 </style>
 </head>
@@ -84,7 +153,6 @@
 <div class="gallery" id="productGallery"></div>
 
 <script>
-  
  const products = [
   { name:"Jean", price:28, img:"https://static.aceomni.cmsaceturtle.com/prod/product-image/aceomni/Wrangler/Monobrand/WWJN001233/WWJN001233_1.jpg", url:"pruducts.html?id=342" },
   { name:"Jean", price:29, img:"https://cdn.shopify.com/s/files/1/0696/4215/8323/files/Womens_Loose.webp?v=1729682346&width=400", url:"pruducts.html?id=343" },
@@ -116,44 +184,40 @@
   { name:"Jean", price:55, img:"https://lsco.scene7.com/is/image/lsco/0039A0009-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1120&hei=1494", url:"pruducts.html?id=369" },
   { name:"Jean", price:56, img:"https://lsco.scene7.com/is/image/lsco/003NF0001-dynamic1-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=0.6,0.6,8&wid=1120&hei=1494", url:"pruducts.html?id=370" },
   { name:"Jean", price:53, img:"https://levi.com.hk/cdn/shop/files/001LA0002-dynamic1-pdp.webp?v=1754992092", url:"pruducts.html?id=371" }
-
-
 ];
 
-// Generate product cards dynamically
-const container = document.getElementById('productGallery');
 
-products.forEach(product => {
-  const card = document.createElement('div');
-  card.className = 'product-card';
+  const container = document.getElementById('productGallery');
 
-  // Make whole card clickable
-  card.onclick = () => { window.location.href = product.url; };
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
 
-  const img = document.createElement('img');
-  img.src = product.img;
-  img.alt = product.name;
+    card.onclick = () => { window.location.href = product.url; };
 
-  const info = document.createElement('div');
-  info.className = 'product-info';
+    const img = document.createElement('img');
+    img.src = product.img;
+    img.alt = product.name;
 
-  info.innerHTML = `
-    $${product.price.toFixed(2)}
-    <button onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
-  `;
+    const info = document.createElement('div');
+    info.className = 'product-info';
 
-  card.appendChild(img);
-  card.appendChild(info);
-  container.appendChild(card);
-});
+    info.innerHTML = `
+      <span>$${product.price.toFixed(2)}</span>
+      <button class="add-btn" onclick="event.stopPropagation(); addToCart('${product.name}', ${product.price}, '${product.img}')">Add to Cart</button>
+    `;
 
-// Add to cart function
-function addToCart(name, price, img) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({ name, price, img });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(name + " added to your cart!");
-}
+    card.appendChild(img);
+    card.appendChild(info);
+    container.appendChild(card);
+  });
+
+  function addToCart(name, price, img) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, img });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(name + " added to your cart!");
+  }
 </script>
 
 </body>
