@@ -14,7 +14,6 @@
     background-attachment: fixed;
     color: #fff;
   }
-
   .cart-container {
     background-color: rgba(72, 43, 43, 0.9);
     border-radius: 20px;
@@ -24,165 +23,106 @@
     padding: 20px;
     text-align: center;
   }
-
-  h1, h2 {
-    margin-top: 10px;
-    color: #fff;
+  h1,h2{color:#fff;margin-top:10px;}
+  #cart-items{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    margin-top:20px;
   }
-
-  #cart-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
+  .cart-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    background-color:#fff;
+    color:#000;
+    border-radius:10px;
+    padding:10px;
+    box-shadow:0 3px 6px rgba(0,0,0,0.2);
   }
-
-  .cart-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    color: #000;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  .cart-item img{width:120px;height:120px;object-fit:cover;border-radius:8px;margin-bottom:10px;}
+  .cart-item span{margin:5px 0;font-size:14px;}
+  .cart-item button{
+    padding:5px 10px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:13px;
+    color:#fff;
+    margin-top:5px;
   }
-
-  .cart-item img {
-    width: 120px;      /* smaller image */
-    height: 120px;     /* smaller image */
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  .cart-item span {
-    margin: 5px 0;
-    font-size: 14px;
-  }
-
-  .cart-item button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #16181a;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 13px;
-  }
-
-  .cart-item button:hover {
-    background-color: #2d2f32;
-  }
-
-  .cart-total {
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 20px;
-  }
-
-  .empty-msg {
-    text-align: center;
-    font-size: 18px;
-    color: #ffeaea;
-    margin-top: 50px;
-  }
-
-  button.clear-btn {
-    padding: 8px 15px;
-    background-color: #000;
-    color: #fff;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-
-  button.clear-btn:hover {
-    background-color: #222;
-  }
-
-  @media (max-width: 600px) {
-    .cart-container {
-      width: 95%;
-      margin: 50px auto;
-      padding: 15px;
-    }
-
-    #cart-items {
-      grid-template-columns: 1fr;
-    }
-
-    .cart-item img {
-      width: 100px;   /* smaller for mobile */
-      height: 100px;  /* smaller for mobile */
-    }
-
-    .cart-item span {
-      font-size: 13px;
-    }
-
-    .cart-item button {
-      font-size: 12px;
-      padding: 4px 8px;
-    }
+  .remove-btn{background-color:#16181a;}
+  .remove-btn:hover{background-color:#2d2f32;}
+  .buy-btn{background-color:#28a745;}
+  .buy-btn:hover{background-color:#218838;}
+  .cart-total{font-weight:bold;font-size:18px;margin-top:20px;}
+  .empty-msg{text-align:center;font-size:18px;color:#ffeaea;margin-top:50px;}
+  .clear-btn{padding:8px 15px;background-color:#000;color:#fff;border-radius:6px;border:none;cursor:pointer;margin-top:10px;}
+  .clear-btn:hover{background-color:#222;}
+  @media(max-width:600px){
+    .cart-container{width:95%;margin:50px auto;padding:15px;}
+    #cart-items{grid-template-columns:1fr;}
+    .cart-item img{width:100px;height:100px;}
+    .cart-item span{font-size:13px;}
+    .cart-item button{font-size:12px;padding:4px 8px;}
   }
 </style>
 </head>
-
 <body>
   <div class="cart-container">
     <h1>Welcome to Your Cart!</h1>
     <h2>Your Shopping Cart</h2>
-
     <div id="cart-items"></div>
     <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
-
     <button class="clear-btn" onclick="clearCart()">Clear Cart</button>
   </div>
 
-  <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function displayCart() {
-      const cartItems = document.getElementById('cart-items');
-      cartItems.innerHTML = '';
+function displayCart(){
+  const cartItems = document.getElementById('cart-items');
+  cartItems.innerHTML = '';
+  if(cart.length===0){
+    cartItems.innerHTML='<div class="empty-msg">Your cart is empty!</div>';
+    document.getElementById('cart-total').innerText='0.00';
+    return;
+  }
+  let total=0;
+  cart.forEach((item,index)=>{
+    total+=item.price;
+    cartItems.innerHTML+=`
+      <div class="cart-item">
+        <img src="${item.img}" alt="${item.name}">
+        <span>${item.name}</span>
+        <span>$${item.price.toFixed(2)}</span>
+        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        <button class="buy-btn" onclick="buyItem(${index})">Buy Now</button>
+      </div>
+    `;
+  });
+  document.getElementById('cart-total').innerText=total.toFixed(2);
+}
 
-      if (cart.length === 0) {
-        cartItems.innerHTML = '<div class="empty-msg">Your cart is empty!</div>';
-        document.getElementById('cart-total').innerText = '0.00';
-        return;
-      }
+function removeItem(index){
+  cart.splice(index,1);
+  localStorage.setItem('cart',JSON.stringify(cart));
+  displayCart();
+}
 
-      let total = 0;
-      cart.forEach((item, index) => {
-        total += item.price;
-        cartItems.innerHTML += `
-          <div class="cart-item">
-            <img src="${item.img}" alt="${item.name}">
-            <span>${item.name}</span>
-            <span>$${item.price.toFixed(2)}</span>
-            <button onclick="removeItem(${index})">Remove</button>
-          </div>
-        `;
-      });
+function clearCart(){
+  cart=[];
+  localStorage.setItem('cart',JSON.stringify(cart));
+  displayCart();
+}
 
-      document.getElementById('cart-total').innerText = total.toFixed(2);
-    }
+function buyItem(index){
+  const itemToBuy=cart[index];
+  localStorage.setItem('buyItem',JSON.stringify(itemToBuy));
+  window.location.href='buy.html';
+}
 
-    function removeItem(index) {
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      displayCart();
-    }
-
-    function clearCart() {
-      cart = [];
-      localStorage.setItem('cart', JSON.stringify(cart));
-      displayCart();
-    }
-
-    displayCart();
-  </script>
+displayCart();
+</script>
 </body>
 </html>
