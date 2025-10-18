@@ -10,76 +10,25 @@
   body {
     font-family: 'Arial', sans-serif;
     color: #fff;
-    background: linear-gradient(135deg, #1f0944, #6b2a6d, #3a1c40);
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     min-height: 100vh;
     overflow-x: hidden;
-    position: relative;
   }
-  a { text-decoration: none; }
-
-  /* SPARKLING STARS */
-  .star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #fff;
-    border-radius: 50%;
-    animation: twinkle 3s infinite;
-    opacity: 0.8;
-  }
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 0.2; transform: scale(1.5); }
-  }
+  a { text-decoration: none; color: inherit; }
 
   /* HEADER */
   header {
     text-align: center;
     padding: 60px 20px 30px 20px;
-    background: rgba(255, 192, 203, 0.1);
-    box-shadow: 0 0 20px rgba(255,192,203,0.5);
   }
   header h1 {
     font-size: 3em;
-    color: #ff9ce3;
-    text-shadow: 0 0 15px #ff9ce3, 0 0 30px #ff66cc;
-    animation: glow 2s ease-in-out infinite alternate;
+    color: #cce6ff;
   }
   header p {
     font-size: 1.2em;
-    color: #ffc0f0;
+    color: #e0f0ff;
     margin-top: 10px;
-  }
-
-  @keyframes glow {
-    from { text-shadow: 0 0 10px #ff9ce3, 0 0 20px #ff66cc; }
-    to { text-shadow: 0 0 25px #ff9ce3, 0 0 50px #ff66cc; }
-  }
-
-  /* NAVIGATION */
-  nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 50px;
-  }
-  nav button {
-    background: #ff9ce3;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #3a0b3f;
-    transition: 0.3s;
-    box-shadow: 0 0 10px #ff9ce3;
-  }
-  nav button:hover {
-    background: #ff66cc;
-    color: #fff;
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #ff66cc;
   }
 
   /* SECTIONS */
@@ -87,12 +36,25 @@
     padding: 60px 20px;
     max-width: 1000px;
     margin: auto;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideIn 1s forwards;
   }
+  section:nth-of-type(1) { animation-delay: 0.2s; }
+  section:nth-of-type(2) { animation-delay: 0.4s; }
+  section:nth-of-type(3) { animation-delay: 0.6s; }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   section h2 {
-    color: #ff9ce3;
+    color: #a0d4ff;
     text-align: center;
     margin-bottom: 30px;
-    text-shadow: 0 0 10px #ff9ce3, 0 0 20px #ff66cc;
   }
 
   /* CARDS */
@@ -103,39 +65,24 @@
     gap: 25px;
   }
   .card {
-    background: rgba(255,192,203,0.05);
+    background: rgba(255,255,255,0.05);
     padding: 25px;
-    border-radius: 20px;
+    border-radius: 15px;
     width: 220px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(255,192,203,0.3);
+    box-shadow: 0 0 10px rgba(255,255,255,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
   }
   .card:hover {
-    transform: translateY(-10px) rotate(-2deg);
-    box-shadow: 0 0 25px #ff66cc;
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
   }
   .card h3 {
     margin-bottom: 12px;
-    color: #ffc0f0;
+    color: #cce6ff;
   }
   .card p {
-    color: #ffe6f0;
-  }
-  .card button {
-    margin-top: 10px;
-    background: #ff9ce3;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #3a0b3f;
-  }
-  .card button:hover {
-    background: #ff66cc;
-    color: #fff;
-    transform: scale(1.05);
+    color: #e0f0ff;
   }
 
   /* CONTACT */
@@ -145,7 +92,7 @@
     font-size: 1.1em;
   }
   .contact-info a {
-    color: #ff9ce3;
+    color: #cce6ff;
     margin: 0 10px;
     font-weight: bold;
   }
@@ -155,42 +102,22 @@
   footer {
     text-align: center;
     padding: 30px 20px;
-    background: rgba(255,192,203,0.1);
-    color: #ffc0f0;
+    background: rgba(255,255,255,0.05);
+    color: #e0f0ff;
   }
 
   /* RESPONSIVE */
   @media (max-width: 600px) {
-    nav { flex-direction: column; }
     .cards-container { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
 <body>
 
-<!-- Stars -->
-<script>
-  const numStars = 50;
-  for(let i=0; i<numStars; i++){
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.top = Math.random() * window.innerHeight + 'px';
-    star.style.left = Math.random() * window.innerWidth + 'px';
-    star.style.width = star.style.height = (Math.random()*3+1)+'px';
-    document.body.appendChild(star);
-  }
-</script>
-
 <header>
   <h1>Aafreen Poudel</h1>
   <p>Web Developer | Python & React | HTML, CSS, JS, SQL, PHP</p>
 </header>
-
-<nav>
-  <button onclick="location.href='index.html'">Portfolio</button>
-  <button onclick="location.href='taskmanager/index.html'">Task Manager</button>
-  <button onclick="location.href='frontend/index.html'">Online Store</button>
-</nav>
 
 <section id="skills">
   <h2>My Skills & Technologies</h2>
@@ -209,15 +136,12 @@
   <div class="cards-container">
     <div class="card">
       <h3>Portfolio</h3>
-      <button onclick="location.href='index.html'">Visit</button>
     </div>
     <div class="card">
       <h3>Task Manager App</h3>
-      <button onclick="location.href='taskmanager/index.html'">Visit</button>
     </div>
     <div class="card">
       <h3>Online Store</h3>
-      <button onclick="location.href='frontend/index.html'">Visit</button>
     </div>
   </div>
 </section>
