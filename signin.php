@@ -1,122 +1,38 @@
+<?php
+$message = "";
+if(isset($_GET['message'])){
+    $message = htmlspecialchars($_GET['message']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In</title>
-  <style>
-    body {
-      background-color: rgb(190, 151, 151);
-      font-family: Arial, sans-serif;
-    }
-    .form-container {
-      background-color: rgb(200, 200, 192);
-      border-radius: 20px;
-      width: 300px;
-      margin: 50px auto;
-      padding: 30px;
-      text-align: center;
-    }
-    h1 {
-      margin-bottom: 20px;
-    }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #999;
-    }
-    button {
-      width: 95%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .continue-btn {
-      background-color: rgb(188, 153, 153);
-      color: white;
-    }
-    .social-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .social-btn {
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-    }
-    .social-btn img {
-      width: 25px;
-      height: 25px;
-    }
-    .other-ways {
-      margin-top: 20px;
-      color: #333;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<style>
+body { background-color: rgb(190,151,151); font-family: Arial,sans-serif; }
+.form-container { background-color: rgb(200,200,192); border-radius: 20px; width: 300px; margin: 50px auto; padding: 30px; text-align: center; }
+h1 { margin-bottom: 20px; }
+input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 10px; border: 1px solid #999; }
+button { width: 95%; padding: 10px; margin: 10px 0; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; background-color: rgb(188,153,153); color: white; }
+.message { color: red; margin-bottom: 10px; }
+</style>
 </head>
 <body>
+<div class="form-container">
+<h1>SIGN-UP HERE!</h1>
 
-  <div class="form-container">
-    <h1>SIGN-IN HERE!</h1>
-    <input type="text" id="name" placeholder="Enter your name">
-    <input type="email" id="email" placeholder="Enter your Gmail">
-    <input type="tel" id="phone" placeholder="Enter your phone number">
-    <input type="password" id="password" placeholder="Enter your password">
-    <input type="password" id="confirmPassword" placeholder="Confirm your password">
-    <button onclick="location.href='cart.html'" id="continueBtn" type="submit" disabled>Continue</button>
+<?php if(!empty($message)) echo "<div class='message'>$message</div>"; ?>
 
-    <div class="other-ways">
-      <h3>Use other ways</h3>
-    </div>
-
-    <div class="social-container">
-      <button class="social-btn">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVZEZ6fa7bPwCI4HE5583rhd3qiFNmf6kiPg&s" alt="Facebook">
-      </button>
-      <button class="social-btn">
-        <img src="https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049579.jpg?semt=ais_hybrid&w=740&q=80" alt="Instagram">
-      </button>
-      <button class="social-btn">
-        <img src="https://yt3.googleusercontent.com/s5hlNKKDDQWjFGzYNnh8UeOW2j2w6id-cZGx7GdAA3d5Fu7zEi7ZMXEyslysuQUKigXNxtAB=s900-c-k-c0x00ffffff-no-rj" alt="Google">
-      </button>
-    </div>
-  </div>
-
-  <script>
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    const continueBtn = document.getElementById('continueBtn');
-
-    function checkInputs() {
-      if (
-        nameInput.value.trim() !== '' &&
-        emailInput.value.trim() !== '' &&
-        phoneInput.value.trim() !== '' &&
-        passwordInput.value.trim() !== '' &&
-        confirmPasswordInput.value.trim() !== ''
-      ) {
-        continueBtn.disabled = false;
-      } else {
-        continueBtn.disabled = true;
-      }
-    }
-
-    [nameInput, emailInput, phoneInput, passwordInput, confirmPasswordInput].forEach(input => {
-      input.addEventListener('input', checkInputs);
-    });
-  </script>
-
+<form action="users.php" method="post">
+    <input type="text" name="name" placeholder="Enter your name" required>
+    <input type="email" name="email" placeholder="Enter your email" required>
+    <input type="tel" name="phone" placeholder="Enter your phone number" required>
+    <input type="password" name="password" placeholder="Enter your password" required>
+    <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+    <button type="submit" name="add">Continue</button>
+</form>
+</div>
 </body>
 </html>
