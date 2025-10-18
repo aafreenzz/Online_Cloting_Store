@@ -1,3 +1,10 @@
+<?php
+// Optional: Display messages from users.php
+$message = "";
+if(isset($_GET['message'])){
+    $message = htmlspecialchars($_GET['message']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +42,6 @@
       border-radius: 10px;
       cursor: pointer;
       font-size: 16px;
-    }
-    .continue-btn {
       background-color: rgb(188, 153, 153);
       color: white;
     }
@@ -61,18 +66,28 @@
       margin-top: 20px;
       color: #333;
     }
+    .message {
+      color: red;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
 
   <div class="form-container">
     <h1>SIGN-UP HERE!</h1>
-    <input type="text" id="name" placeholder="Enter your name">
-    <input type="email" id="email" placeholder="Enter your Gmail">
-    <input type="tel" id="phone" placeholder="Enter your phone number">
-    <input type="password" id="password" placeholder="Enter your password">
-    <input type="password" id="confirmPassword" placeholder="Confirm your password">
-    <button onclick="location.href='cart.html'" id="continueBtn" type="submit" disabled>Continue</button>
+
+    <?php if(!empty($message)) echo "<div class='message'>$message</div>"; ?>
+
+    <!-- Form pointing to your PHP backend -->
+    <form action="users.php" method="post" id="signupForm">
+      <input type="text" name="name" placeholder="Enter your name" required>
+      <input type="email" name="email" placeholder="Enter your Gmail" required>
+      <input type="tel" name="phone" placeholder="Enter your phone number" required>
+      <input type="password" name="password" placeholder="Enter your password" required>
+      <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+      <button type="submit" name="add">Continue</button>
+    </form>
 
     <div class="other-ways">
       <h3>Use other ways</h3>
@@ -91,33 +106,5 @@
     </div>
   </div>
 
-  <script>
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    const continueBtn = document.getElementById('continueBtn');
-
-    function checkInputs() {
-      if (
-        nameInput.value.trim() !== '' &&
-        emailInput.value.trim() !== '' &&
-        phoneInput.value.trim() !== '' &&
-        passwordInput.value.trim() !== '' &&
-        confirmPasswordInput.value.trim() !== ''
-      ) {
-        continueBtn.disabled = false;
-      } else {
-        continueBtn.disabled = true;
-      }
-    }
-
-    [nameInput, emailInput, phoneInput, passwordInput, confirmPasswordInput].forEach(input => {
-      input.addEventListener('input', checkInputs);
-    });
-  </script>
-
 </body>
 </html>
-
