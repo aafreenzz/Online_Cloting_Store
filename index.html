@@ -10,26 +10,50 @@
   body {
     font-family: 'Arial', sans-serif;
     color: #fff;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background: linear-gradient(135deg, #1f0944, #6b2a6d, #3a1c40);
     min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
   }
   a { text-decoration: none; }
+
+  /* SPARKLING STARS */
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+    opacity: 0.8;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 0.2; transform: scale(1.5); }
+  }
 
   /* HEADER */
   header {
     text-align: center;
     padding: 60px 20px 30px 20px;
-    background: rgba(0,,0,0.3);
+    background: rgba(255, 192, 203, 0.1);
+    box-shadow: 0 0 20px rgba(255,192,203,0.5);
   }
   header h1 {
     font-size: 3em;
-    color: #00d4ff;
-
+    color: #ff9ce3;
+    text-shadow: 0 0 15px #ff9ce3, 0 0 30px #ff66cc;
+    animation: glow 2s ease-in-out infinite alternate;
   }
   header p {
     font-size: 1.2em;
-    color: #a0e7ff;
+    color: #ffc0f0;
     margin-top: 10px;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #ff9ce3, 0 0 20px #ff66cc; }
+    to { text-shadow: 0 0 25px #ff9ce3, 0 0 50px #ff66cc; }
   }
 
   /* NAVIGATION */
@@ -41,18 +65,21 @@
     margin-bottom: 50px;
   }
   nav button {
-    background: #00d4ff;
+    background: #ff9ce3;
     border: none;
     padding: 12px 25px;
-    border-radius: 8px;
+    border-radius: 15px;
     cursor: pointer;
     font-weight: bold;
-    color: #0f0f1e;
+    color: #3a0b3f;
     transition: 0.3s;
+    box-shadow: 0 0 10px #ff9ce3;
   }
   nav button:hover {
-    background: #007bb5;
+    background: #ff66cc;
     color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff66cc;
   }
 
   /* SECTIONS */
@@ -62,10 +89,10 @@
     margin: auto;
   }
   section h2 {
-    color: #00d4ff;
+    color: #ff9ce3;
     text-align: center;
     margin-bottom: 30px;
-    text-shadow: 0 0 10px #00d4ff;
+    text-shadow: 0 0 10px #ff9ce3, 0 0 20px #ff66cc;
   }
 
   /* CARDS */
@@ -76,38 +103,39 @@
     gap: 25px;
   }
   .card {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255,192,203,0.05);
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 20px;
     width: 220px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0,212,255,0.3);
+    box-shadow: 0 0 10px rgba(255,192,203,0.3);
     transition: transform 0.3s, box-shadow 0.3s;
   }
   .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 20px #00d4ff;
+    transform: translateY(-10px) rotate(-2deg);
+    box-shadow: 0 0 25px #ff66cc;
   }
   .card h3 {
     margin-bottom: 12px;
-    color: #a0e7ff;
+    color: #ffc0f0;
   }
   .card p {
-    color: #ccefff;
+    color: #ffe6f0;
   }
   .card button {
     margin-top: 10px;
-    background: #00d4ff;
+    background: #ff9ce3;
     border: none;
     padding: 8px 18px;
-    border-radius: 8px;
+    border-radius: 15px;
     font-weight: bold;
     cursor: pointer;
-    color: #0f0f1e;
+    color: #3a0b3f;
   }
   .card button:hover {
-    background: #007bb5;
+    background: #ff66cc;
     color: #fff;
+    transform: scale(1.05);
   }
 
   /* CONTACT */
@@ -117,7 +145,7 @@
     font-size: 1.1em;
   }
   .contact-info a {
-    color: #00d4ff;
+    color: #ff9ce3;
     margin: 0 10px;
     font-weight: bold;
   }
@@ -127,8 +155,8 @@
   footer {
     text-align: center;
     padding: 30px 20px;
-    background: rgba(0,0,0,0.3);
-    color: #a0e7ff;
+    background: rgba(255,192,203,0.1);
+    color: #ffc0f0;
   }
 
   /* RESPONSIVE */
@@ -140,23 +168,39 @@
 </head>
 <body>
 
+<!-- Stars -->
+<script>
+  const numStars = 50;
+  for(let i=0; i<numStars; i++){
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * window.innerHeight + 'px';
+    star.style.left = Math.random() * window.innerWidth + 'px';
+    star.style.width = star.style.height = (Math.random()*3+1)+'px';
+    document.body.appendChild(star);
+  }
+</script>
+
 <header>
-  <h1> Aafreen Poudel</h1>
-  <p> Web Developer | Python & React | HTML, CSS, JS, SQL, PHP</p>
+  <h1>Aafreen Poudel</h1>
+  <p>Web Developer | Python & React | HTML, CSS, JS, SQL, PHP</p>
 </header>
 
+<nav>
+  <button onclick="location.href='index.html'">Portfolio</button>
+  <button onclick="location.href='taskmanager/index.html'">Task Manager</button>
+  <button onclick="location.href='frontend/index.html'">Online Store</button>
+</nav>
 
 <section id="skills">
   <h2>My Skills & Technologies</h2>
   <div class="cards-container">
     <div class="card"><h3>HTML</h3><p>Frontend</p></div>
-    <div class="card"><h3>CSS</h3><p>Designing </p></div>
+    <div class="card"><h3>CSS</h3><p>Designing</p></div>
     <div class="card"><h3>JavaScript</h3><p>Functional</p></div>
-   
-    <div class="card"><h3>SQL & PHP </h3Backends><p></p></div>
-     <div class="card"><h3>Python</h3><p>Beginner</p></div>
+    <div class="card"><h3>SQL & PHP</h3><p>Backend</p></div>
+    <div class="card"><h3>Python</h3><p>Beginner</p></div>
     <div class="card"><h3>React</h3><p>Beginner</p></div>
-   
   </div>
 </section>
 
@@ -164,16 +208,16 @@
   <h2>My Projects</h2>
   <div class="cards-container">
     <div class="card">
-      <h3>My portfolio</h3>
+      <h3>Portfolio</h3>
       <button onclick="location.href='index.html'">Visit</button>
     </div>
     <div class="card">
       <h3>Task Manager App</h3>
-     
+      <button onclick="location.href='taskmanager/index.html'">Visit</button>
     </div>
     <div class="card">
       <h3>Online Store</h3>
-     
+      <button onclick="location.href='frontend/index.html'">Visit</button>
     </div>
   </div>
 </section>
@@ -193,5 +237,3 @@
 
 </body>
 </html>
-
-
