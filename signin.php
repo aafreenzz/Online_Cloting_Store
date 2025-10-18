@@ -31,8 +31,9 @@ button { width: 95%; padding: 10px; margin: 10px 0; border: none; border-radius:
     <input type="tel" name="phone" placeholder="Enter your phone number" required>
     <input type="password" name="password" placeholder="Enter your password" required>
     <input type="password" name="confirm_password" placeholder="Confirm your password" required>
-    <button type="submit" name="add">Continue</button>
+    <button onclick="location.href='cart.html'"  type="submit" name="add">Continue</button>
 </form>
 </div>
 </body>
 </html>
+
