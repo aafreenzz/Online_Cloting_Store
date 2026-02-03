@@ -4,156 +4,187 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aafreen Poudel Portfolio</title>
+
 <style>
-  /* GENERAL STYLES */
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Arial', sans-serif;
-    color: #4b3b3b;
-    background: linear-gradient(135deg, #f5e6e8, #f0e1d2);
-    min-height: 100vh;
-  }
-  a { text-decoration: none; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  /* HEADER */
-  header {
-    text-align: center;
-    padding: 60px 20px 40px 20px;
-    background: rgba(255, 240, 230, 0.5);
-    animation: slideDown 1s ease forwards;
-  }
-  header h1 {
-    font-size: 3em;
-    color: #a6745a;
-  }
-  header p {
-    font-size: 1.2em;
-    color: #5c3a2e;
-    margin-top: 10px;
-    line-height: 1.5em;
-  }
+body {
+  font-family: Arial, sans-serif;
+  color: #4b3b3b;
+  background: linear-gradient(135deg, #f5e6e8, #f0e1d2);
+  min-height: 100vh;
+}
 
-  /* SECTIONS */
-  section {
-    padding: 60px 20px;
-    max-width: 1000px;
-    margin: auto;
-    opacity: 0;
-    transform: translateY(50px);
-    animation: slideUp 1s forwards;
-  }
-  section:nth-of-type(1) { animation-delay: 0.5s; }
-  section:nth-of-type(2) { animation-delay: 1s; }
-  section:nth-of-type(3) { animation-delay: 1.5s; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  section h2 {
-    color: #a6745a;
-    text-align: center;
-    margin-bottom: 30px;
-  }
+header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: rgba(255, 240, 230, 0.5);
+  animation: slideDown 1s ease forwards;
+}
 
-  /* CARDS */
+header h1 {
+  font-size: 3em;
+  color: #a6745a;
+}
+
+header p {
+  font-size: 1.2em;
+  color: #5c3a2e;
+  margin-top: 10px;
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 1s forwards;
+}
+
+section:nth-of-type(1) { animation-delay: 0.4s; }
+section:nth-of-type(2) { animation-delay: 0.8s; }
+section:nth-of-type(3) { animation-delay: 1.2s; }
+
+section h2 {
+  color: #a6745a;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  background: rgba(255,255,255,0.6);
+  padding: 25px;
+  border-radius: 15px;
+  width: 220px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(172, 123, 102, 0.5);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #7d5749;
+}
+
+.card p {
+  color: #5c3a2e;
+}
+
+#contact {
+  text-align: center;
+}
+
+.contact-info {
+  font-size: 1.1em;
+}
+
+.contact-info p {
+  margin: 10px 0;
+}
+
+.contact-info a {
+  color: #a6745a;
+  font-weight: bold;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(240, 230, 220, 0.6);
+  color: #5c3a2e;
+}
+
+@media (max-width: 600px) {
   .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-  }
-  .card {
-    background: rgba(255,255,255,0.6);
-    padding: 25px;
-    border-radius: 15px;
-    width: 220px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 5px 15px rgba(172, 123, 102, 0.5);
-  }
-  .card h3 {
-    margin-bottom: 12px;
-    color: #7d5749;
-  }
-  .card p {
-    color: #5c3a2e;
+    flex-direction: column;
+    align-items: center;
   }
 
-  /* CONTACT */
-  .contact-info {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 1.1em;
+  header h1 {
+    font-size: 2.2em;
   }
-  .contact-info a {
-    color: #a6745a;
-    margin: 0 10px;
-    font-weight: bold;
-  }
-  .contact-info a:hover { text-decoration: underline; }
+}
 
-  /* FOOTER */
-  footer {
-    text-align: center;
-    padding: 30px 20px;
-    background: rgba(240, 230, 220, 0.6);
-    color: #5c3a2e;
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  /* RESPONSIVE */
-  @media (max-width: 600px) {
-    .cards-container { flex-direction: column; align-items: center; }
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
   }
-
-  /* ANIMATIONS */
-  @keyframes slideUp {
-    to { opacity: 1; transform: translateY(0); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-50px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+}
 </style>
 </head>
+
 <body>
 
 <header>
   <h1>Aafreen Poudel</h1>
-  <p>Web Developer |  React,Node.js, HTML, CSS, JS </p>
- 
+  <p>Web Developer | React, Node.js, HTML, CSS, JavaScript</p>
 </header>
 
 <section id="skills">
   <h2>My Skills & Technologies</h2>
   <div class="cards-container">
     <div class="card"><h3>React</h3><p>Frontend</p></div>
-    <div class="card"><h3>Node.js</h3></h3><p>Backend</p></div>
-    <div class="card"><h3>HTML</h3><p> Frontend </p></div>
+    <div class="card"><h3>Node.js</h3><p>Backend</p></div>
+    <div class="card"><h3>HTML</h3><p>Frontend</p></div>
     <div class="card"><h3>CSS</h3><p>Designing</p></div>
     <div class="card"><h3>JavaScript</h3><p>Functional</p></div>
-    
-   
   </div>
-</section><br> 
-   
+</section>
+
 <section id="projects">
   <h2>My Projects</h2>
   <div class="cards-container">
-    <div class="card"><h3>Portfolio</h3></div>
+    <div class="card"><h3>Portfolio Website</h3></div>
     <div class="card"><h3>Task Manager App</h3></div>
     <div class="card"><h3>Online Store</h3></div>
   </div>
 </section>
-  <br>
 
-  <h2 style="margin-left: 400px;">Contact Me</h2>
+<section id="contact">
+  <h2>Contact Me</h2>
   <div class="contact-info">
     <p>Email: <a href="mailto:poudelaafreen@gmail.com">poudelaafreen@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/aafreen-poudel-954836301/">linkedin.com/in/aafreen-poudel-954836301/</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/aafreen-poudel-954836301/">linkedin.com/in/aafreen-poudel</a></p>
     <p>GitHub: <a href="https://github.com/aafreenzz/Aafreen">github.com/aafreenzz/Aafreen</a></p>
   </div>
-
-  
+</section>
 
 <footer>
   &copy; 2025 Aafreen Poudel. All rights reserved.
@@ -161,19 +192,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
